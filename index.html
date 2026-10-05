@@ -1,0 +1,1062 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>MuchWalk</title>
+<meta name="description" content="Clickable UI prototype for MuchWalk, a move-to-earn dapp on DogeOS. All data is fake.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Comic+Neue:wght@700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* ===== Tokens (mirror of docs/10-UI-UX.md §2) ===== */
+:root{
+  --bg:#FFF6E5; --surface:#FFFFFF; --surface2:#FFF0CC; --text:#1F1A33; --text2:#5B5470; --outline:#1F1A33;
+  --gold:#FFC531; --goldDeep:#F2A900; --shiba:#F08A24; --moon:#6C5CE7; --mint:#22C997; --pink:#FF5C8A; --sky:#3BA7FF; --danger:#FF4D4F;
+  --onGold:#1F1A33; --page:#FFE3A8; --pageDot:rgba(31,26,51,.07); --stars:none;
+  --shadow:0 5px 0 var(--outline); --r-card:24px; --r-btn:18px;
+  --f-display:"Baloo 2", "Nunito", system-ui, sans-serif; --f-body:"Nunito", system-ui, -apple-system, "Segoe UI", sans-serif; --f-meme:"Comic Neue","Comic Sans MS","Chalkboard SE",cursive;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#14112A; --surface:#221D40; --surface2:#2C2652; --text:#FFF6E5; --text2:#B9B2D9; --outline:#05040C;
+    --shiba:#FF9A3D; --moon:#8B7CFF; --mint:#2EE6AE; --pink:#FF6E98; --sky:#5BB8FF; --danger:#FF6B6B;
+    --page:#0B0920; --pageDot:rgba(255,255,255,.08); --stars:radial-gradient(rgba(255,255,255,.09) 1px, transparent 1.5px); color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#14112A; --surface:#221D40; --surface2:#2C2652; --text:#FFF6E5; --text2:#B9B2D9; --outline:#05040C;
+  --shiba:#FF9A3D; --moon:#8B7CFF; --mint:#2EE6AE; --pink:#FF6E98; --sky:#5BB8FF; --danger:#FF6B6B;
+  --page:#0B0920; --pageDot:rgba(255,255,255,.08); --stars:radial-gradient(rgba(255,255,255,.09) 1px, transparent 1.5px); color-scheme:dark;
+}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%}
+body{background:var(--page);background-image:radial-gradient(var(--pageDot) 2px, transparent 2.5px);background-size:26px 26px;color:var(--text);font-family:var(--f-body);-webkit-font-smoothing:antialiased}
+button{font:inherit;color:inherit;cursor:pointer}
+h1,h2,h3{font-family:var(--f-display);margin:0;line-height:1.05}
+
+/* ===== Stage / phone frame ===== */
+.stage{min-height:100%;display:flex;align-items:center;justify-content:center;gap:40px;padding:24px}
+.side{width:340px;max-width:100%}
+.side h1{font-size:44px;letter-spacing:-.5px}
+.side h1 .wow{font-family:var(--f-meme);color:var(--pink);font-size:22px;display:block;transform:rotate(-4deg);margin-top:4px}
+.side p{color:var(--text2);font-weight:600;line-height:1.45}
+.side ol{padding-left:20px;line-height:1.5;font-weight:600}
+.side ol li{margin-bottom:6px}
+.side .ctrls{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0}
+.side small{color:var(--text2);font-weight:700}
+.phone{width:390px;height:min(844px, calc(100vh - 48px));min-height:640px;border:10px solid #1F1A33;border-radius:50px;overflow:hidden;position:relative;background-color:var(--bg);background-image:var(--stars);background-size:22px 22px;box-shadow:0 30px 60px rgba(0,0,0,.25),0 12px 0 #1F1A33;flex-shrink:0}
+@media (max-width: 860px){ .side{display:none} }
+@media (max-width: 760px){
+  .stage{padding:0;gap:0;display:block;height:100%;min-height:0}
+  .phone{width:100%;height:100%;min-height:0;border:0;border-radius:0;box-shadow:none}
+  .statusbar{display:none !important}
+}
+
+/* ===== App shell ===== */
+.app{display:flex;flex-direction:column;height:100%;position:relative}
+.statusbar{height:34px;display:flex;align-items:center;justify-content:space-between;padding:6px 26px 0;font-weight:800;font-size:14px}
+.topbar{display:flex;align-items:center;gap:8px;padding:8px 16px 10px}
+.avatar{width:42px;height:42px;border-radius:50%;border:3px solid var(--outline);background:var(--surface2);overflow:hidden;display:grid;place-items:center;flex-shrink:0;padding:0}
+.avatar svg{width:46px;height:46px;margin-top:6px}
+.chip{display:inline-flex;align-items:center;gap:6px;padding:6px 10px;border:3px solid var(--outline);border-radius:999px;background:var(--surface);font-weight:800;font-size:13px;white-space:nowrap;box-shadow:0 3px 0 var(--outline)}
+.chip.gold{background:var(--gold);color:var(--onGold)}
+.chip.ghost{box-shadow:none}
+.topbar .grow{flex:1;min-width:0}
+.lvl{font-family:var(--f-display);font-weight:800;font-size:15px;line-height:1}
+.lvl small{display:block;font-family:var(--f-body);font-size:11px;color:var(--text2);font-weight:700}
+.iconbtn{width:38px;height:38px;border-radius:12px;border:3px solid var(--outline);background:var(--surface);display:grid;place-items:center;box-shadow:0 3px 0 var(--outline);padding:0;font-size:17px}
+.iconbtn:active{transform:translateY(2px);box-shadow:0 1px 0 var(--outline)}
+.screen{flex:1;overflow-y:auto;overflow-x:hidden;padding:4px 16px 120px;scroll-behavior:smooth}
+.screen::-webkit-scrollbar{width:0}
+.view{display:none;animation:pop .25s ease}
+.view.active{display:block}
+@keyframes pop{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+/* ===== Components ===== */
+.card{background:var(--surface);border:3px solid var(--outline);border-radius:var(--r-card);box-shadow:var(--shadow);padding:16px;margin-bottom:16px;position:relative}
+.card.tint{background:var(--surface2)}
+.card.click{cursor:pointer;transition:transform .1s}
+.card.click:active{transform:translateY(3px);box-shadow:0 2px 0 var(--outline)}
+.card h3{font-size:19px;margin-bottom:8px;display:flex;align-items:center;gap:8px}
+.row{display:flex;align-items:center;gap:12px}
+.between{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.muted{color:var(--text2);font-weight:600;font-size:13px}
+.big{font-family:var(--f-display);font-weight:800;font-size:30px;line-height:1}
+.btn{font-family:var(--f-body);font-weight:800;font-size:16px;padding:13px 18px;border:3px solid var(--outline);border-radius:var(--r-btn);background:var(--gold);color:var(--onGold);box-shadow:0 5px 0 var(--outline);transition:transform .08s, box-shadow .08s;display:inline-flex;align-items:center;justify-content:center;gap:8px;line-height:1}
+.btn:active{transform:translateY(3px);box-shadow:0 2px 0 var(--outline)}
+.btn.block{width:100%}
+.btn.sm{font-size:13px;padding:9px 12px;border-radius:14px;box-shadow:0 3px 0 var(--outline)}
+.btn.sec{background:var(--surface);color:var(--text)}
+.btn.mint{background:var(--mint);color:var(--onGold)}
+.btn.pink{background:var(--pink);color:#fff}
+.btn.moon{background:var(--moon);color:#fff}
+.btn:disabled{opacity:.45;pointer-events:none}
+.bar{height:14px;border:3px solid var(--outline);border-radius:999px;background:var(--surface2);overflow:hidden}
+.bar > i{display:block;height:100%;background:var(--gold);border-right:3px solid var(--outline);border-radius:999px;transition:width .5s cubic-bezier(.3,1.4,.6,1)}
+.bar.mint > i{background:var(--mint)} .bar.moon > i{background:var(--moon)} .bar.pink > i{background:var(--pink)}
+.tag{font-size:11px;font-weight:800;padding:3px 8px;border-radius:999px;border:2px solid var(--outline);text-transform:uppercase;letter-spacing:.4px}
+.tag.easy{background:var(--mint);color:var(--onGold)} .tag.medium{background:var(--sky);color:var(--onGold)} .tag.hard{background:var(--pink);color:#fff}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.tile{border:3px solid var(--outline);border-radius:20px;background:var(--surface);box-shadow:0 4px 0 var(--outline);padding:12px 6px;text-align:center;font-weight:800;font-size:12px}
+.tile .e{font-size:26px;display:block;margin-bottom:4px}
+.tile:active{transform:translateY(3px);box-shadow:0 1px 0 var(--outline)}
+.section-title{font-family:var(--f-display);font-weight:800;font-size:24px;margin:6px 0 12px}
+.banner{border:3px dashed var(--outline);border-radius:16px;padding:10px 12px;font-weight:700;font-size:13px;background:var(--surface2);margin-bottom:14px}
+
+/* Ring */
+.ringwrap{position:relative;width:148px;height:148px;flex-shrink:0}
+.ringwrap svg{width:148px;height:148px;transform:rotate(-90deg)}
+.ringwrap .lbl{position:absolute;inset:0;display:grid;place-content:center;text-align:center}
+.ringwrap .lbl b{font-family:var(--f-display);font-size:30px;line-height:1}
+.ringwrap .lbl span{font-size:12px;font-weight:700;color:var(--text2)}
+.ring-pulse{animation:ringpulse .7s ease}
+@keyframes ringpulse{50%{transform:scale(1.08)}}
+
+/* Quests */
+.quest{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:2px dashed color-mix(in srgb, var(--outline) 25%, transparent)}
+.quest:last-of-type{border-bottom:0}
+.quest .chk{width:30px;height:30px;border-radius:10px;border:3px solid var(--outline);display:grid;place-items:center;font-weight:900;flex-shrink:0;background:var(--surface)}
+.quest.done .chk{background:var(--mint)}
+.quest.done .qt{text-decoration:line-through;opacity:.6}
+.quest .qt{font-weight:800;font-size:14px}
+
+/* Pup */
+.pup-bob{animation:bob 2.6s ease-in-out infinite;transform-origin:100px 170px}
+@keyframes bob{0%,100%{transform:rotate(-2deg) translateY(0)}50%{transform:rotate(2deg) translateY(-3px)}}
+.ear-l{animation:twitch 5s ease-in-out infinite;transform-origin:70px 80px}
+@keyframes twitch{0%,90%,100%{transform:rotate(0)}94%{transform:rotate(-8deg)}}
+.blink{animation:blink 4.6s infinite;transform-origin:center 104px}
+@keyframes blink{0%,94%,100%{transform:scaleY(1)}97%{transform:scaleY(.1)}}
+.mood{position:absolute;top:10px;right:12px;background:var(--surface);border:3px solid var(--outline);border-radius:16px 16px 4px 16px;padding:6px 10px;font-weight:800;font-size:12px;box-shadow:0 3px 0 var(--outline)}
+.stagetrack{display:flex;gap:6px;margin:12px 0}
+.stagetrack button{flex:1;border:3px solid var(--outline);border-radius:14px;background:var(--surface);padding:8px 2px;font-weight:800;font-size:11px;box-shadow:0 3px 0 var(--outline)}
+.stagetrack button.on{background:var(--gold);color:var(--onGold)}
+.stagetrack button.lock{opacity:.55}
+.swatches{display:flex;gap:10px;flex-wrap:wrap}
+.swatch{width:44px;height:44px;border-radius:50%;border:3px solid var(--outline);box-shadow:0 3px 0 var(--outline);padding:0}
+.swatch.on{outline:4px solid var(--gold);outline-offset:2px}
+.glow{animation:glow 1.4s ease-in-out infinite}
+@keyframes glow{50%{box-shadow:0 5px 0 var(--outline),0 0 0 6px color-mix(in srgb, var(--gold) 55%, transparent)}}
+
+/* Tabbar */
+.tabbar{position:absolute;left:0;right:0;bottom:0;height:86px;background:var(--surface);border-top:3px solid var(--outline);display:grid;grid-template-columns:repeat(5,1fr);align-items:center;padding:0 6px 10px;z-index:5}
+.tab{background:none;border:0;display:flex;flex-direction:column;align-items:center;gap:2px;font-weight:800;font-size:11px;color:var(--text2);padding:6px 0}
+.tab .ti{font-size:22px;filter:grayscale(.6);transition:transform .15s}
+.tab.on{color:var(--text)} .tab.on .ti{filter:none;transform:translateY(-2px) scale(1.12)}
+.tab-walk{justify-self:center;width:70px;height:70px;border-radius:50%;background:var(--gold);color:var(--onGold);border:3px solid var(--outline);box-shadow:0 5px 0 var(--outline);margin-top:-34px;font-size:30px;display:grid;place-items:center;padding:0}
+.tab-walk:active{transform:translateY(3px);box-shadow:0 2px 0 var(--outline)}
+.tab-walk.live{background:var(--pink);animation:glow 1.4s infinite}
+.fab{position:absolute;right:14px;bottom:100px;width:58px;height:58px;border-radius:50%;border:3px solid var(--outline);background:var(--moon);box-shadow:0 4px 0 var(--outline);z-index:6;display:grid;place-items:center;padding:0;overflow:hidden}
+.fab svg{width:64px;height:64px;margin-top:10px}
+.fab .bub{position:absolute;top:-2px;right:-2px;background:var(--pink);color:#fff;border:2px solid var(--outline);border-radius:999px;font-size:10px;font-weight:900;padding:1px 5px}
+.fab.hide{display:none}
+
+/* Walk */
+.modes{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap}
+.mode{border:3px solid var(--outline);border-radius:999px;padding:8px 12px;font-weight:800;font-size:13px;background:var(--surface);box-shadow:0 3px 0 var(--outline)}
+.mode.on{background:var(--gold);color:var(--onGold)}
+.startbtn{width:190px;height:190px;border-radius:50%;margin:10px auto 18px;display:grid;place-items:center;font-family:var(--f-display);font-size:34px;font-weight:800;background:var(--gold);color:var(--onGold);border:4px solid var(--outline);box-shadow:0 8px 0 var(--outline)}
+.startbtn:active{transform:translateY(5px);box-shadow:0 3px 0 var(--outline)}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.stat{border:3px solid var(--outline);border-radius:18px;background:var(--surface);padding:10px;text-align:center}
+.stat b{display:block;font-family:var(--f-display);font-size:22px;line-height:1.1}
+.stat span{font-size:11px;font-weight:800;color:var(--text2);text-transform:uppercase}
+.route{width:100%;height:150px;border:3px solid var(--outline);border-radius:20px;background:var(--surface2);margin:12px 0;display:block}
+.cue{display:flex;gap:10px;align-items:flex-start;background:var(--moon);color:#fff;border:3px solid var(--outline);border-radius:18px;padding:10px 12px;font-weight:700;font-size:14px;box-shadow:0 4px 0 var(--outline);margin-bottom:12px}
+.toggle{width:52px;height:30px;border-radius:999px;border:3px solid var(--outline);background:var(--surface2);position:relative;padding:0;flex-shrink:0}
+.toggle::after{content:"";position:absolute;top:2px;left:2px;width:20px;height:20px;border-radius:50%;background:var(--surface);border:2px solid var(--outline);transition:left .15s}
+.toggle.on{background:var(--pink)} .toggle.on::after{left:24px}
+.cheerlayer{position:absolute;left:12px;right:12px;bottom:100px;display:flex;flex-direction:column;gap:8px;z-index:7;pointer-events:none}
+.cheer{align-self:flex-start;max-width:88%;background:var(--surface);border:3px solid var(--outline);border-radius:18px 18px 18px 6px;padding:8px 12px;font-weight:800;font-size:13px;box-shadow:0 4px 0 var(--outline);animation:cheerin .35s cubic-bezier(.3,1.6,.5,1), cheerout .4s ease 3.6s forwards}
+.cheer.tip{background:var(--gold);color:var(--onGold)}
+@keyframes cheerin{from{transform:translateY(30px) scale(.6);opacity:0}}
+@keyframes cheerout{to{transform:translateY(-20px);opacity:0}}
+
+/* Moon */
+.moonmap{width:100%;height:auto;display:block;border:3px solid var(--outline);border-radius:22px;background:linear-gradient(160deg,#1b1640,#3b2f7a);margin-bottom:12px}
+.feed .blk{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:2px dashed color-mix(in srgb, var(--outline) 25%, transparent);font-size:13px;font-weight:700}
+.feed .blk:last-child{border-bottom:0}
+.feed .blk .n{font-family:var(--f-display);font-weight:800;font-size:15px;min-width:70px}
+.feed .blk.me{background:color-mix(in srgb, var(--gold) 30%, transparent);border-radius:12px;padding:9px 8px}
+.feed .blk.new{animation:pop .5s ease}
+.ticker{display:flex;align-items:center;gap:12px}
+.ticker .clock{font-family:var(--f-display);font-weight:800;font-size:28px;background:var(--outline);color:var(--gold);border-radius:14px;padding:4px 10px;min-width:96px;text-align:center}
+
+/* Ranks */
+.tabs{display:flex;gap:6px;margin-bottom:12px}
+.tabs button{flex:1;border:3px solid var(--outline);border-radius:14px;padding:8px 0;font-weight:800;font-size:13px;background:var(--surface)}
+.tabs button.on{background:var(--outline);color:var(--gold)}
+.lrow{display:grid;grid-template-columns:30px 34px 1fr auto;gap:8px;align-items:center;padding:7px 8px;border-radius:14px;font-weight:700;font-size:14px}
+.lrow .rk{font-family:var(--f-display);font-weight:800;text-align:center}
+.lrow .av{width:32px;height:32px;border-radius:50%;border:2px solid var(--outline);display:grid;place-items:center;font-size:16px;background:var(--surface2)}
+.lrow.up{background:color-mix(in srgb, var(--mint) 18%, transparent)}
+.lrow.down{background:color-mix(in srgb, var(--danger) 14%, transparent)}
+.lrow.me{background:var(--gold);color:var(--onGold);border:3px solid var(--outline);box-shadow:0 3px 0 var(--outline)}
+.zone{font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:.5px;padding:8px 8px 4px;color:var(--text2)}
+
+/* Coach */
+.chat{display:flex;flex-direction:column;gap:10px;padding-bottom:8px}
+.msg{max-width:84%;padding:10px 13px;border:3px solid var(--outline);border-radius:20px;font-weight:600;font-size:14px;line-height:1.4;box-shadow:0 3px 0 var(--outline);white-space:pre-wrap}
+.msg.coach{background:var(--surface);border-bottom-left-radius:6px;align-self:flex-start}
+.msg.me{background:var(--sky);color:#06213b;border-bottom-right-radius:6px;align-self:flex-end}
+.msg.safety{background:color-mix(in srgb, var(--danger) 20%, var(--surface));}
+.typing span{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--text2);margin:0 2px;animation:dot 1s infinite}
+.typing span:nth-child(2){animation-delay:.15s}.typing span:nth-child(3){animation-delay:.3s}
+@keyframes dot{50%{transform:translateY(-5px)}}
+.qr{display:flex;gap:8px;overflow-x:auto;padding:4px 0 10px}
+.qr::-webkit-scrollbar{height:0}
+.qr button{flex-shrink:0;border:3px solid var(--outline);border-radius:999px;padding:8px 12px;font-weight:800;font-size:13px;background:var(--surface);box-shadow:0 3px 0 var(--outline)}
+.composer{display:flex;gap:8px;position:sticky;bottom:0;background:var(--bg);padding:8px 0 4px}
+.composer input{flex:1;min-width:0;border:3px solid var(--outline);border-radius:16px;padding:12px;font:600 15px var(--f-body);background:var(--surface);color:var(--text)}
+.proposal{border:3px dashed var(--outline);border-radius:18px;padding:12px;background:var(--surface2);align-self:flex-start;max-width:90%}
+
+/* Badges */
+.badges{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.badge{border:3px solid var(--outline);border-radius:20px;padding:12px 6px;text-align:center;background:var(--surface);box-shadow:0 4px 0 var(--outline)}
+.badge .e{font-size:30px;display:block}
+.badge b{display:block;font-size:12px;line-height:1.2;margin-top:4px}
+.badge small{font-size:10px;font-weight:900;text-transform:uppercase}
+.badge.lock{filter:grayscale(1);opacity:.5}
+.badge small{display:inline-block;margin-top:6px;padding:2px 7px;border:2px solid var(--outline);border-radius:999px;color:var(--onGold);letter-spacing:.4px}
+.r-C{background:var(--mint)}.r-R{background:var(--sky)}.r-E{background:var(--moon);color:#fff !important}.r-L{background:var(--gold)}.r-M{background:var(--pink);color:#fff !important}
+
+/* Overlays */
+.toast{position:absolute;left:50%;bottom:104px;transform:translateX(-50%) translateY(20px);opacity:0;background:var(--outline);color:var(--gold);font-weight:800;font-size:14px;padding:12px 16px;border-radius:16px;z-index:20;transition:all .25s;pointer-events:none;max-width:88%;text-align:center}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.modal{position:absolute;inset:0;background:rgba(15,10,35,.55);display:none;align-items:flex-end;justify-content:center;z-index:30;padding:12px}
+.modal.show{display:flex}
+.sheet{width:100%;background:var(--bg);border:3px solid var(--outline);border-radius:28px;padding:20px;box-shadow:0 6px 0 var(--outline);animation:sheet .3s cubic-bezier(.3,1.3,.5,1);max-height:92%;overflow:auto}
+@keyframes sheet{from{transform:translateY(60px);opacity:0}}
+.sheet.center{text-align:center}
+.lvlup .num{font-family:var(--f-display);font-size:88px;font-weight:800;line-height:1;color:var(--gold);-webkit-text-stroke:3px var(--outline);paint-order:stroke fill;text-shadow:0 6px 0 var(--outline)}
+.wowlayer{position:absolute;inset:0;pointer-events:none;z-index:25;overflow:hidden}
+.wow{position:absolute;font-family:var(--f-meme);font-weight:700;font-size:24px;white-space:nowrap;animation:wowfloat 1.7s ease-out forwards;text-shadow:0 2px 0 rgba(0,0,0,.12)}
+@keyframes wowfloat{0%{opacity:0;transform:translateY(10px) scale(.6) rotate(var(--rot))}15%{opacity:1;transform:translateY(0) scale(1.1) rotate(var(--rot))}100%{opacity:0;transform:translateY(-60px) scale(1) rotate(var(--rot))}}
+canvas#confetti{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:26}
+.onb{position:absolute;inset:0;background:var(--bg);z-index:40;display:none;flex-direction:column;padding:40px 22px 28px;text-align:center}
+.onb.show{display:flex}
+.onb .art{flex:1;display:grid;place-items:center;min-height:0}
+.onb .art svg{width:220px;height:220px}
+.onb h2{font-size:32px;margin-bottom:8px}
+.onb p{color:var(--text2);font-weight:600;line-height:1.45;margin:0 0 18px}
+.dots{display:flex;gap:6px;justify-content:center;margin-bottom:16px}
+.dots i{width:10px;height:10px;border-radius:50%;border:2px solid var(--outline);background:var(--surface)}
+.dots i.on{background:var(--gold);width:26px;border-radius:999px}
+.fakeqr{display:grid;grid-template-columns:repeat(21,1fr);width:210px;height:210px;margin:10px auto;border:6px solid #fff;outline:3px solid var(--outline);background:#fff}
+.fakeqr i{background:#1F1A33}
+.fakeqr b{background:#fff}
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.001ms !important}
+}
+:focus-visible{outline:3px solid var(--sky);outline-offset:2px}
+</style>
+</head>
+<body>
+<div class="stage">
+  <aside class="side">
+    <h1>MuchWalk <span class="wow">much walk. very health. wow.</span></h1>
+    <p>Clickable prototype of the DogeOS move-to-earn dapp. Everything is fake data, running in your browser. Open this link on a phone for the full-screen app.</p>
+    <ol>
+      <li>Tap <b>🐾 +1,000 steps</b> twice for the goal confetti. Tap once more to level up.</li>
+      <li><b>Pup</b> tab: Evolve Biscuit and try on gear.</li>
+      <li><b>Walk</b>: start a run, flip <b>Go Live</b>, and turn on 🔊 to hear Coach Bark read tips aloud.</li>
+      <li>Ask Coach: <i>"Should I buy more TREAT?"</i></li>
+      <li><b>Moon</b>: the live Walk Block feed (real 10-minute windows).</li>
+    </ol>
+    <div class="ctrls">
+      <button class="btn sm sec" data-action="theme">🌗 Theme</button>
+      <button class="btn sm sec" data-action="onboarding">🎬 Onboarding</button>
+      <button class="btn sm" data-action="blockme">⛏️ Find a block</button>
+      <button class="btn sm sec" data-action="reset">↺ Reset</button>
+    </div>
+    <small>Testnet concept · DogeOS Chikyū (chain 6281971) · Treats have no value</small>
+  </aside>
+
+  <div class="phone" id="phone">
+    <div class="app" id="app">
+      <div class="statusbar"><span id="clock">9:41</span><span>●●● ⌁ ▮</span></div>
+      <header class="topbar">
+        <button class="avatar" data-action="go" data-view="badges" aria-label="Profile and badges" id="avatar"></button>
+        <div class="grow"><div class="lvl" id="lvlTop">Lv 12 <small>Strider</small></div></div>
+        <span class="chip" title="Streak" id="streakChip">🔥 9</span>
+        <button class="chip gold" data-action="go" data-view="wallet" id="treatChip" aria-label="Treat balance">🦴 860</button>
+        <button class="iconbtn" data-action="theme" aria-label="Toggle theme" id="themeBtn">🌙</button>
+      </header>
+
+      <main class="screen" id="screen">
+        <section class="view" data-v="home"></section>
+        <section class="view" data-v="walk"></section>
+        <section class="view" data-v="moon"></section>
+        <section class="view" data-v="ranks"></section>
+        <section class="view" data-v="pup"></section>
+        <section class="view" data-v="coach"></section>
+        <section class="view" data-v="bets"></section>
+        <section class="view" data-v="badges"></section>
+        <section class="view" data-v="wallet"></section>
+      </main>
+
+      <button class="fab" id="fab" data-action="go" data-view="coach" aria-label="Open Coach Bark"><span class="bub">1</span></button>
+      <div class="cheerlayer" id="cheers" aria-live="polite"></div>
+
+      <nav class="tabbar" aria-label="Main">
+        <button class="tab" data-action="go" data-view="home"><span class="ti">🏠</span>Home</button>
+        <button class="tab" data-action="go" data-view="moon"><span class="ti">🌙</span>Moon</button>
+        <button class="tab-walk" id="walkTab" data-action="go" data-view="walk" aria-label="Walk">🐾</button>
+        <button class="tab" data-action="go" data-view="ranks"><span class="ti">🏆</span>Ranks</button>
+        <button class="tab" data-action="go" data-view="pup"><span class="ti">🐕</span>Pup</button>
+      </nav>
+
+      <div class="toast" id="toast" role="status"></div>
+      <div class="modal" id="modal"><div class="sheet" id="sheet"></div></div>
+      <div class="wowlayer" id="wowLayer"></div>
+      <canvas id="confetti"></canvas>
+      <div class="onb" id="onb"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+/* MuchWalk prototype — vanilla JS, no build. All data is simulated. */
+const $ = (s, el = document) => el.querySelector(s);
+const $$ = (s, el = document) => [...el.querySelectorAll(s)];
+const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const fmt = n => Math.round(n).toLocaleString('en-US');
+const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+const rand = (a, b) => a + Math.random() * (b - a);
+const pick = arr => arr[Math.floor(Math.random() * arr.length)];
+
+/* ---------- Game constants (subset of docs/02 + 03) ---------- */
+const levelXp = L => Math.floor(50 * Math.pow(L - 1, 1.8));
+const titleFor = L => L >= 100 ? 'Moon Walker' : L >= 75 ? 'Legend' : L >= 50 ? 'Alpha Walker' : L >= 35 ? 'Pack Leader' : L >= 20 ? 'Zoomer' : L >= 10 ? 'Strider' : L >= 5 ? 'Trotter' : 'Sniffer';
+const STAGES = ['Puppy', 'Shibe', 'Doge', 'Moon Doge'];
+const STAGE_CAP = [9, 24, 49, 50];
+const EVOLVE_COST = [100, 500, 2000];
+const COATS = {
+  classic:  { name: 'Classic Red', fur: '#F08A24', dark: '#C9661A', cream: '#FFF1DA', brow: '#FFF1DA' },
+  sesame:   { name: 'Sesame',      fur: '#D58A45', dark: '#7A4317', cream: '#FFF1DA', brow: '#FFF1DA' },
+  blacktan: { name: 'Black & Tan', fur: '#2E2836', dark: '#16121C', cream: '#F6E6CC', brow: '#E9A75A' },
+  cream:    { name: 'Cream',       fur: '#F1D7A6', dark: '#D2B47A', cream: '#FFFAF0', brow: '#FFFAF0' },
+  galaxy:   { name: 'Galaxy ✦',    fur: '#6C5CE7', dark: '#3E2FB3', cream: '#ECE8FF', brow: '#ECE8FF' },
+  gold:     { name: 'Gold ✦',      fur: '#FFC531', dark: '#DE9600', cream: '#FFF7DC', brow: '#FFF7DC' },
+};
+const MODES = {
+  walk: { label: '🚶 Walk', cadence: 112, stride: 0.72, unit: 'steps' },
+  run:  { label: '🏃 Run',  cadence: 166, stride: 1.05, unit: 'steps' },
+  roll: { label: '♿ Roll', cadence: 58,  stride: 1.2,  unit: 'pushes' },
+  pack: { label: '👯 Pack', cadence: 108, stride: 0.72, unit: 'steps' },
+};
+const WOW = ['wow', 'much walk', 'very cardio', 'such streak', 'so moon', 'much legs', 'very proud', 'such treat', 'amaze'];
+const WOW_COLORS = ['#FF5C8A', '#3BA7FF', '#22C997', '#6C5CE7', '#F08A24', '#F2A900'];
+
+/* ---------- State ---------- */
+const initialState = () => ({
+  view: 'home',
+  steps: 6240, goal: 8000, xp: 4300, level: 12, weekXp: 1420,
+  streak: 9, shields: 1, wallet: 860, claimable: 1240, connected: false,
+  goalHit: false,
+  pup: { name: 'Biscuit', coat: 'classic', stage: 0, level: 9, hat: false, shades: false },
+  quests: [
+    { id: 'Q_MORNING_2K', tier: 'easy', text: '2,000 steps before 10am', xp: 20, prog: 2000, target: 2000, done: true },
+    { id: 'Q_SESSION_15', tier: 'medium', text: 'Take a 15-min walk session', xp: 35, prog: 0, target: 15, done: false },
+    { id: 'Q_GOAL_120', tier: 'hard', text: 'Hit 120% of your goal', xp: 50, prog: 6240, target: 9600, done: false },
+  ],
+  chestOpened: false,
+  moonKm: 152340.6, myKm: 48.2,
+  blocksBase: 48213, myHashes: 1240, miners: 2193,
+  feed: [
+    { n: 48212, who: 'sesame_sprint', h: 1284, r: 190 },
+    { n: 48211, who: 'zoomie_queen', h: 1932, r: 190 },
+    { n: 48210, who: 'lil_bork', h: 744, r: 190 },
+    { n: 48209, who: 'mochi_miles', h: 1650, r: 190 },
+    { n: 48208, who: 'noodle_legs', h: 2000, r: 190 },
+  ],
+  walk: { mode: 'walk', active: false, live: false, t: 0, steps: 0, dist: 0, lastKm: 0, cue: 'Tap start. Biscuit is already wagging. 🐾' },
+  voice: false,
+  chat: [{ from: 'coach', text: "Wow, good to see you! You're at 78% of today's goal. Want a quick plan for the rest of the day?" }],
+  ranksTab: 'League',
+  badgesEarned: [101, 102, 103, 201, 202, 301, 302, 501, 601, 701, 851],
+});
+let S = initialState();
+let walkTimer = null, cheerTimer = null;
+
+/* ---------- Pup renderer (reference for packages/shared/src/pup/render.ts) ---------- */
+function pupSVG({ coat = 'classic', stage = 0, mood = 'content', hat = false, shades = false, bob = true } = {}) {
+  const c = COATS[coat] || COATS.classic;
+  const ink = '#1F1A33';
+  const puppy = stage === 0, doge = stage >= 2, moon = stage === 3;
+  const earS = puppy ? 0.82 : 1;
+  const eyeR = puppy ? 9 : 7;
+  const headRx = doge ? 76 : 72;
+  const ear = (flip) => {
+    const t = flip ? `translate(200 0) scale(-1 1)` : '';
+    // CSS animations replace an element's transform attribute, so the twitch lives on its own wrapper
+    return `<g transform="${t}"><g class="${flip ? '' : 'ear-l'}"><g transform="translate(66 92) scale(${earS}) translate(-66 -92)">
+      <path d="M36 96 L50 24 Q55 15 63 22 L98 64 Z" fill="${c.fur}" stroke="${ink}" stroke-width="5" stroke-linejoin="round"/>
+      <path d="M50 78 L58 40 L82 64 Z" fill="#FFB4A2"/></g></g></g>`;
+  };
+  let eyes;
+  if (mood === 'sleepy') {
+    eyes = `<path d="M68 106 q8 6 16 0 M116 106 q8 6 16 0" stroke="${ink}" stroke-width="4.5" fill="none" stroke-linecap="round"/>`;
+  } else if (doge) {
+    // the classic side-eye, as a nod to the original meme
+    eyes = `<g class="blink"><ellipse cx="76" cy="104" rx="11" ry="9" fill="#fff" stroke="${ink}" stroke-width="3.5"/><circle cx="81" cy="105" r="5.5" fill="${ink}"/>
+            <ellipse cx="124" cy="104" rx="11" ry="9" fill="#fff" stroke="${ink}" stroke-width="3.5"/><circle cx="129" cy="105" r="5.5" fill="${ink}"/></g>`;
+  } else {
+    eyes = `<g class="blink"><ellipse cx="76" cy="104" rx="${eyeR}" ry="${eyeR + 1}" fill="${ink}"/><circle cx="${78.5}" cy="100" r="${puppy ? 3.2 : 2.5}" fill="#fff"/>
+            <ellipse cx="124" cy="104" rx="${eyeR}" ry="${eyeR + 1}" fill="${ink}"/><circle cx="${126.5}" cy="100" r="${puppy ? 3.2 : 2.5}" fill="#fff"/></g>`;
+  }
+  const mouth = mood === 'happy'
+    ? `<path d="M100 134 Q100 142 91 145 M100 134 Q100 142 109 145" stroke="${ink}" stroke-width="4" fill="none" stroke-linecap="round"/><path d="M94 144 Q100 160 106 144 Z" fill="#FF7A93" stroke="${ink}" stroke-width="3" stroke-linejoin="round"/>`
+    : `<path d="M100 134 Q100 141 92 143 M100 134 Q100 141 108 143" stroke="${ink}" stroke-width="4" fill="none" stroke-linecap="round"/>`;
+  const stars = coat === 'galaxy' ? `<g fill="#fff"><circle cx="58" cy="78" r="2"/><circle cx="140" cy="70" r="2.5"/><circle cx="150" cy="96" r="1.6"/><circle cx="46" cy="104" r="1.6"/><circle cx="118" cy="62" r="1.4"/></g>` : '';
+  const sesame = coat === 'sesame' ? `<path d="M70 62 Q100 50 130 62 Q118 74 100 70 Q82 74 70 62 Z" fill="${c.dark}" opacity=".55"/>` : '';
+  const hatSvg = hat ? `<g><path d="M66 60 Q100 18 134 60 Z" fill="#3BA7FF" stroke="${ink}" stroke-width="5" stroke-linejoin="round"/><path d="M62 62 Q100 50 138 62" stroke="${ink}" stroke-width="5" fill="#FF5C8A"/><circle cx="100" cy="26" r="9" fill="#FFC531" stroke="${ink}" stroke-width="4"/></g>` : '';
+  const shadesSvg = shades ? `<g fill="${ink}"><rect x="58" y="96" width="34" height="14" rx="2"/><rect x="108" y="96" width="34" height="14" rx="2"/><rect x="88" y="98" width="24" height="5"/><rect x="62" y="98" width="8" height="5" fill="#fff"/><rect x="112" y="98" width="8" height="5" fill="#fff"/></g>` : '';
+  const helmet = moon ? `<circle cx="100" cy="106" r="94" fill="rgba(170,215,255,.18)" stroke="${ink}" stroke-width="5"/><path d="M40 70 Q60 30 104 22" stroke="#fff" stroke-width="7" fill="none" stroke-linecap="round" opacity=".7"/>` : '';
+  return `<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="${STAGES[stage]} pup, ${c.name} coat, ${mood}">
+    <g class="${bob ? 'pup-bob' : ''}">
+      ${ear(false)}${ear(true)}
+      <ellipse cx="100" cy="112" rx="${headRx}" ry="62" fill="${c.fur}" stroke="${ink}" stroke-width="5"/>
+      ${sesame}${stars}
+      <path d="M${100 - headRx + 10} 122 Q52 164 100 170 Q148 164 ${100 + headRx - 10} 122 Q140 130 122 117 Q110 107 100 113 Q90 107 78 117 Q60 130 ${100 - headRx + 10} 122 Z" fill="${c.cream}"/>
+      <ellipse cx="76" cy="84" rx="9" ry="6" fill="${c.brow}"/><ellipse cx="124" cy="84" rx="9" ry="6" fill="${c.brow}"/>
+      ${eyes}
+      <path d="M89 124 Q100 117 111 124 Q109 133 100 135 Q91 133 89 124 Z" fill="${ink}"/>
+      ${mouth}
+      <ellipse cx="56" cy="130" rx="10" ry="6" fill="#FF8FA3" opacity=".55"/><ellipse cx="144" cy="130" rx="10" ry="6" fill="#FF8FA3" opacity=".55"/>
+      ${shadesSvg}${hatSvg}${helmet}
+    </g></svg>`;
+}
+
+/* ---------- Derived ---------- */
+const pct = () => S.steps / S.goal;
+const pupMood = () => pct() >= 1 ? 'happy' : pct() >= 0.5 ? 'content' : 'sleepy';
+const moodText = () => ({ happy: 'Happy 🤩 Goal met!', content: 'Content 😊 Keep going', sleepy: 'Sleepy 😴 Walk me?' })[pupMood()];
+const pupBonus = () => Math.min(20, 0.4 * S.pup.level);
+const currentBlock = () => S.blocksBase + Math.floor(Date.now() / 600000) - BOOT_WINDOW;
+const BOOT_WINDOW = Math.floor(Date.now() / 600000);
+
+/* ---------- UI helpers ---------- */
+function toast(msg, ms = 2200) {
+  const t = $('#toast'); t.textContent = msg; t.classList.add('show');
+  clearTimeout(t._h); t._h = setTimeout(() => t.classList.remove('show'), ms);
+}
+function wowBurst(n = 3) {
+  if (reduceMotion) return;
+  const layer = $('#wowLayer'); const w = layer.clientWidth, h = layer.clientHeight;
+  for (let i = 0; i < n; i++) {
+    const el = document.createElement('span');
+    el.className = 'wow'; el.textContent = pick(WOW);
+    el.style.left = rand(8, w - 150) + 'px'; el.style.top = rand(h * 0.18, h * 0.6) + 'px';
+    el.style.color = pick(WOW_COLORS); el.style.setProperty('--rot', rand(-14, 14) + 'deg');
+    el.style.animationDelay = (i * 0.18) + 's';
+    layer.appendChild(el); setTimeout(() => el.remove(), 2400);
+  }
+}
+let confettiRun = 0;
+function confetti(amount = 120) {
+  if (reduceMotion) return;
+  const cv = $('#confetti'), ctx = cv.getContext('2d');
+  const W = cv.width = cv.clientWidth * devicePixelRatio, H = cv.height = cv.clientHeight * devicePixelRatio;
+  const parts = Array.from({ length: amount }, () => ({
+    x: W / 2 + rand(-W * 0.15, W * 0.15), y: H * 0.42, vx: rand(-9, 9) * devicePixelRatio, vy: rand(-17, -6) * devicePixelRatio,
+    s: rand(6, 12) * devicePixelRatio, r: rand(0, 6.28), vr: rand(-0.3, 0.3), c: pick(WOW_COLORS.concat(['#FFC531'])), shape: Math.random() < 0.3 ? 'paw' : 'rect',
+  }));
+  // Only the newest burst animates; a timer guarantees cleanup even if rAF is throttled in a background tab
+  const id = ++confettiRun;
+  setTimeout(() => { if (id === confettiRun) { confettiRun++; ctx.clearRect(0, 0, W, H); } }, 2200);
+  let frames = 0;
+  (function tick() {
+    if (id !== confettiRun) return;
+    ctx.clearRect(0, 0, W, H);
+    parts.forEach(p => {
+      p.vy += 0.45 * devicePixelRatio; p.x += p.vx; p.y += p.vy; p.r += p.vr;
+      ctx.save(); ctx.translate(p.x, p.y); ctx.rotate(p.r); ctx.fillStyle = p.c;
+      if (p.shape === 'paw') { ctx.beginPath(); ctx.arc(0, 0, p.s / 2, 0, 6.28); ctx.fill(); }
+      else ctx.fillRect(-p.s / 2, -p.s / 4, p.s, p.s / 2);
+      ctx.restore();
+    });
+    if (++frames < 110) requestAnimationFrame(tick); else ctx.clearRect(0, 0, W, H);
+  })();
+}
+function haptic(ms = 12) {
+  // Browsers block vibration until the user has tapped the page
+  if (!navigator.vibrate || !(navigator.userActivation && navigator.userActivation.hasBeenActive)) return;
+  try { navigator.vibrate(ms); } catch (e) { /* not supported */ }
+}
+function speak(text) {
+  if (!S.voice || !('speechSynthesis' in window)) return;
+  const u = new SpeechSynthesisUtterance(text.replace(/[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}]/gu, ''));
+  u.rate = 1.05; u.pitch = 1.25; speechSynthesis.speak(u);
+}
+function openSheet(html, center = false) {
+  const sh = $('#sheet'); sh.className = 'sheet' + (center ? ' center' : ''); sh.innerHTML = html;
+  $('#modal').classList.add('show');
+}
+function closeSheet() { $('#modal').classList.remove('show'); }
+
+/* ---------- Core actions ---------- */
+function addXp(n, why) {
+  S.xp += n; S.weekXp += n;
+  if (why) toast(`+${n} XP · ${why}`);
+  let leveled = false;
+  while (S.xp >= levelXp(S.level + 1)) { S.level++; leveled = true; }
+  if (leveled) setTimeout(showLevelUp, 600);
+}
+function addSteps(n, { quiet = false } = {}) {
+  const before = S.steps;
+  S.steps += n; S.myHashes += n; S.myKm += n * 0.00072; S.moonKm += n * 0.00072;
+  const stepXp = Math.floor(S.steps / 100) - Math.floor(before / 100);
+  if (stepXp > 0) addXp(stepXp);
+  const q = S.quests.find(x => x.id === 'Q_GOAL_120');
+  q.prog = S.steps;
+  if (!q.done && q.prog >= q.target) { q.done = true; setTimeout(() => addXp(q.xp, 'Quest done: 120% of goal'), 900); }
+  if (!S.goalHit && S.steps >= S.goal) {
+    S.goalHit = true; S.streak += 1;
+    addXp(50, 'Goal crushed! Much walk 🎉');
+    confetti(); wowBurst(3); haptic(40);
+    const ring = $('.ringwrap'); ring && ring.classList.add('ring-pulse');
+  } else if (!quiet) haptic();
+  renderChrome(); if (S.view === 'home') renderHome();
+}
+function showLevelUp() {
+  confetti(160); wowBurst(4); haptic(60);
+  openSheet(`<div class="lvlup">
+    <div class="muted" style="font-size:14px;font-weight:800;letter-spacing:1px">LEVEL UP</div>
+    <div class="num">${S.level}</div>
+    <h2 style="font-size:26px;margin:6px 0">You're a ${titleFor(S.level)}!</h2>
+    <p class="muted" style="font-size:14px">+1 chest unlocked. ${S.level % 5 === 0 ? 'Bonus cosmetic added to your Pup closet. ' : ''}Very proud of you.</p>
+    <button class="btn block" data-action="close">Such wow, continue</button></div>`, true);
+}
+function setTheme(next) {
+  const root = document.documentElement;
+  const cur = root.dataset.theme || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+  const t = next || (cur === 'dark' ? 'light' : 'dark');
+  root.dataset.theme = t; $('#themeBtn').textContent = t === 'dark' ? '☀️' : '🌙';
+}
+
+/* ---------- Chrome ---------- */
+function renderChrome() {
+  $('#avatar').innerHTML = pupSVG({ ...S.pup, mood: pupMood(), bob: false });
+  $('#lvlTop').innerHTML = `Lv ${S.level} <small>${titleFor(S.level)}</small>`;
+  $('#streakChip').textContent = `🔥 ${S.streak}`;
+  $('#treatChip').textContent = `🦴 ${fmt(S.wallet)}`;
+  $$('.tab').forEach(t => t.classList.toggle('on', t.dataset.view === S.view));
+  $('#walkTab').classList.toggle('live', S.walk.active && S.walk.live);
+  $('#fab').classList.toggle('hide', ['coach', 'walk'].includes(S.view));
+  $('#fab').innerHTML = `<span class="bub">1</span>` + pupSVG({ coat: 'gold', stage: 1, mood: 'happy', bob: false });
+}
+function go(view) {
+  S.view = view;
+  $$('.view').forEach(v => v.classList.toggle('active', v.dataset.v === view));
+  ({ home: renderHome, walk: renderWalk, moon: renderMoon, ranks: renderRanks, pup: renderPup, coach: renderCoach, bets: renderBets, badges: renderBadges, wallet: renderWallet })[view]();
+  renderChrome();
+  $('#screen').scrollTop = 0;
+}
+
+/* ---------- Home ---------- */
+function ring(p) {
+  const r = 62, C = 2 * Math.PI * r, off = C * (1 - clamp(p, 0, 1));
+  return `<div class="ringwrap"><svg viewBox="0 0 148 148">
+    <circle cx="74" cy="74" r="${r}" fill="none" stroke="var(--outline)" stroke-width="22"/>
+    <circle cx="74" cy="74" r="${r}" fill="none" stroke="var(--surface2)" stroke-width="15"/>
+    <circle cx="74" cy="74" r="${r}" fill="none" stroke="${p >= 1 ? 'var(--mint)' : 'var(--gold)'}" stroke-width="15" stroke-linecap="round" stroke-dasharray="${C}" stroke-dashoffset="${off}" style="transition:stroke-dashoffset .6s cubic-bezier(.3,1.3,.6,1)"/></svg>
+    <div class="lbl" aria-label="${fmt(S.steps)} of ${fmt(S.goal)} steps, ${Math.round(p * 100)} percent"><b>${fmt(S.steps)}</b><span>of ${fmt(S.goal)} ${MODES[S.walk.mode].unit === 'pushes' ? 'pushes' : 'steps'}</span></div></div>`;
+}
+function renderHome() {
+  const L = S.level, lo = levelXp(L), hi = levelXp(L + 1), into = (S.xp - lo) / (hi - lo);
+  const hr = new Date().getHours();
+  const greet = hr < 12 ? 'Good morning' : hr < 18 ? 'Good afternoon' : 'Good evening';
+  const allDone = S.quests.every(q => q.done);
+  const moonP = S.moonKm / 384400;
+  const atCap = S.pup.level >= STAGE_CAP[S.pup.stage] && S.pup.stage < 3;
+  $('[data-v=home]').innerHTML = `
+    <div class="between" style="margin:2px 0 12px"><h2 style="font-size:26px">${greet}, shibe!</h2><span class="muted">${new Date().toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' })}</span></div>
+    <div class="card">
+      <div class="row">
+        ${ring(pct())}
+        <div style="flex:1;min-width:0">
+          <div class="between"><b style="font-family:var(--f-display);font-size:18px">Lv ${L}</b><span class="muted">${fmt(hi - S.xp)} XP to ${L + 1}</span></div>
+          <div class="bar" style="margin:6px 0 12px"><i style="width:${clamp(into * 100, 3, 100)}%"></i></div>
+          <div class="muted" style="font-size:13px">🔥 <b style="color:var(--text)">${S.streak}-day streak</b> · 🛡️ ${S.shields}</div>
+          <div class="muted" style="font-size:13px;margin-top:6px">🦴 ≈ <b style="color:var(--text)">${fmt(S.steps * 0.066)}</b> treats today <span style="opacity:.7">(est.)</span></div>
+        </div>
+      </div>
+      <div class="row" style="margin-top:14px">
+        <button class="btn block" data-action="steps">🐾 +1,000 steps</button>
+        <button class="btn sec" data-action="go" data-view="walk" aria-label="Start a walk">▶︎</button>
+      </div>
+    </div>
+
+    <div class="card tint click" data-action="go" data-view="moon">
+      <div class="ticker">
+        <div class="clock blockClock">--:--</div>
+        <div style="flex:1"><b>⛏️ Walk Block #${fmt(currentBlock())}</b>
+          <div class="muted">your hashes <b style="color:var(--text)" class="myHashes">${fmt(S.myHashes)}</b> · ${fmt(S.miners)} miners</div></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>🎯 Today's quests <span class="muted" style="margin-left:auto">${S.quests.filter(q => q.done).length}/3</span></h3>
+      ${S.quests.map(q => `<div class="quest ${q.done ? 'done' : ''}">
+        <div class="chk">${q.done ? '✓' : ''}</div>
+        <div style="flex:1;min-width:0"><div class="between"><span class="qt">${q.text}</span><span class="tag ${q.tier}">${q.xp} XP</span></div>
+        ${q.done ? '' : `<div class="bar mint" style="height:10px;margin-top:6px"><i style="width:${clamp(q.prog / q.target * 100, 2, 100)}%"></i></div>`}</div></div>`).join('')}
+      <button class="btn block ${allDone && !S.chestOpened ? 'glow' : 'sec'}" style="margin-top:10px" data-action="chest" ${allDone && !S.chestOpened ? '' : 'disabled'}>${S.chestOpened ? '🎁 Chest opened, come back tomorrow' : allDone ? '🎁 Open daily chest!' : '🔒 Daily chest (finish all 3)'}</button>
+    </div>
+
+    <div class="card click" data-action="go" data-view="pup" style="padding:12px 16px">
+      <div class="row">
+        <div style="width:86px;height:86px;flex-shrink:0">${pupSVG({ ...S.pup, mood: pupMood() })}</div>
+        <div style="flex:1"><b style="font-family:var(--f-display);font-size:20px">${S.pup.name}</b> <span class="muted">· ${STAGES[S.pup.stage]} Lv ${S.pup.level}</span>
+          <div class="muted">${moodText()}</div>
+          ${atCap ? '<span class="chip gold" style="margin-top:6px">✨ Ready to evolve!</span>' : `<span class="chip ghost" style="margin-top:6px">+${pupBonus().toFixed(1)}% walk bonus</span>`}
+        </div>
+      </div>
+    </div>
+
+    <div class="card click" data-action="go" data-view="moon">
+      <div class="between"><b>🚀 Season 1 · To the Moon</b><span class="muted">${(moonP * 100).toFixed(1)}%</span></div>
+      <div class="bar moon" style="margin-top:8px"><i style="width:${moonP * 100}%"></i></div>
+      <div class="muted" style="margin-top:6px">${fmt(S.moonKm)} / 384,400 km · you added ${S.myKm.toFixed(1)} km</div>
+    </div>
+
+    <div class="grid4">
+      <button class="tile" data-action="go" data-view="bets"><span class="e">🎲</span>Walk Bets</button>
+      <button class="tile" data-action="go" data-view="badges"><span class="e">🏅</span>Badges</button>
+      <button class="tile" data-action="go" data-view="coach"><span class="e">💬</span>Coach</button>
+      <button class="tile" data-action="go" data-view="wallet"><span class="e">🦴</span>Claim</button>
+    </div>`;
+  tickBlock();
+}
+
+/* ---------- Walk ---------- */
+const ROUTE = 'M20 120 C 60 40, 110 150, 150 80 S 230 30, 260 90 S 330 140, 350 50';
+function renderWalk() {
+  const w = S.walk, m = MODES[w.mode];
+  const mins = Math.floor(w.t / 60), secs = Math.floor(w.t % 60);
+  const pace = w.dist > 30 ? (w.t / (w.dist / 1000)) : 0;
+  const paceTxt = pace ? `${Math.floor(pace / 60)}'${String(Math.floor(pace % 60)).padStart(2, '0')}"` : '--';
+  $('[data-v=walk]').innerHTML = `
+    <div class="between" style="margin:2px 0 12px"><h2 style="font-size:26px">${w.active ? (w.live ? '🔴 Live walk' : 'Walking…') : 'Ready to roll?'}</h2>
+      <button class="iconbtn" data-action="voice" aria-label="Toggle coach voice" title="Coach voice">${S.voice ? '🔊' : '🔈'}</button></div>
+    <div class="modes">${Object.entries(MODES).map(([k, v]) => `<button class="mode ${w.mode === k ? 'on' : ''}" data-action="mode" data-mode="${k}" ${w.active ? 'disabled' : ''}>${v.label}</button>`).join('')}</div>
+    <div class="cue"><span style="font-size:22px">🐕</span><span id="cueText">${w.cue}</span></div>
+    ${w.mode === 'pack' && !w.active ? `<div class="card tint"><div class="between"><div><b>👯 Pack of 3</b><div class="muted">sesame_sprint & lil_bork joined · 1.3× bonus</div></div><button class="btn sm sec" data-action="qr">Show QR</button></div></div>` : ''}
+    ${!w.active ? `<button class="startbtn" data-action="start">START</button>
+      <div class="muted" style="text-align:center">Steps sync from your phone all day.<br>Sessions add GPS distance, coach cues and Go Live.</div>` : `
+      <div class="stats">
+        <div class="stat"><b>${mins}:${String(secs).padStart(2, '0')}</b><span>time</span></div>
+        <div class="stat"><b>${(w.dist / 1000).toFixed(2)}</b><span>km</span></div>
+        <div class="stat"><b>${paceTxt}</b><span>pace/km</span></div>
+        <div class="stat"><b>${fmt(w.steps)}</b><span>${m.unit}</span></div>
+        <div class="stat"><b>${Math.round(m.cadence * rand(0.97, 1.03))}</b><span>per min</span></div>
+        <div class="stat"><b>${fmt(S.myHashes)}</b><span>hashes</span></div>
+      </div>
+      <svg class="route" viewBox="0 0 370 150" preserveAspectRatio="none" aria-hidden="true">
+        <path d="${ROUTE}" fill="none" stroke="var(--outline)" stroke-width="12" stroke-linecap="round" opacity=".15"/>
+        <path id="routeLive" d="${ROUTE}" fill="none" stroke="var(--shiba)" stroke-width="8" stroke-linecap="round" pathLength="100" stroke-dasharray="100" stroke-dashoffset="${100 - ((w.dist / 40) % 100)}"/>
+      </svg>
+      <div class="card" style="padding:12px 14px"><div class="between">
+        <div><b>📡 Go Live</b><div class="muted">Friends watch your pace (never your map) and send cheers and tips</div></div>
+        <button class="toggle ${w.live ? 'on' : ''}" data-action="live" aria-label="Go live" aria-pressed="${w.live}"></button></div></div>
+      <button class="btn block pink" data-action="stop">■ Finish ${w.mode === 'roll' ? 'roll' : 'walk'}</button>
+      <div class="muted" style="text-align:center;margin-top:8px">Demo clock runs ×20 so things happen fast</div>`}`;
+}
+function startWalk() {
+  const w = S.walk; Object.assign(w, { active: true, t: 0, steps: 0, dist: 0, lastKm: 0 });
+  w.cue = pick(["Let's go! Biscuit is wagging so hard right now. 🐾", 'Warm-up pace for 2 minutes, then we cruise. Much plan.']);
+  speak(w.cue); haptic(30);
+  clearInterval(walkTimer);
+  walkTimer = setInterval(() => {
+    const m = MODES[w.mode], dt = 20; // demo time ×20
+    const d = Math.round(m.cadence * dt / 60 * rand(0.9, 1.1));
+    w.t += dt; w.steps += d; w.dist += d * m.stride;
+    const km = Math.floor(w.dist / 1000);
+    if (km > w.lastKm) {
+      w.lastKm = km;
+      w.cue = pick([`${km} km down! Much stride. 🐾`, `Kilometre ${km}! Very consistent pace, wow.`, `${km} km. Shoulders relaxed, keep it smooth.`]);
+      speak(w.cue);
+    }
+    if (w.t >= 900) { const q = S.quests.find(x => x.id === 'Q_SESSION_15'); q.prog = 15; if (!q.done) { q.done = true; addXp(q.xp, 'Quest done: 15-min session'); } }
+    addSteps(d, { quiet: true });
+    if (S.view === 'walk') renderWalk();
+  }, 1000);
+  renderWalk(); renderChrome();
+}
+function stopWalk() {
+  const w = S.walk; clearInterval(walkTimer); clearTimeout(cheerTimer);
+  const km = (w.dist / 1000).toFixed(2), mins = Math.round(w.t / 60);
+  w.active = false; w.live = false; w.cue = 'Nice one. Biscuit is proud of you. 🐾';
+  addXp(20, 'Session complete');
+  if ('speechSynthesis' in window) speechSynthesis.cancel();
+  renderWalk(); renderChrome();
+  confetti(90);
+  openSheet(`<div class="card" style="background:var(--gold);color:var(--onGold);text-align:center;overflow:hidden">
+      <div style="position:absolute;top:10px;left:14px;font-family:var(--f-meme);color:#FF5C8A;transform:rotate(-8deg);font-size:20px">such pace</div>
+      <div style="position:absolute;top:40px;right:12px;font-family:var(--f-meme);color:#3BA7FF;transform:rotate(6deg);font-size:18px">very legs</div>
+      <div style="position:absolute;bottom:60px;left:12px;font-family:var(--f-meme);color:#6C5CE7;transform:rotate(4deg);font-size:18px">much ${km} km</div>
+      <div style="width:140px;margin:10px auto 0">${pupSVG({ ...S.pup, mood: 'happy' })}</div>
+      <h2 style="font-size:28px">Wow. ${km} km of pure doge energy.</h2>
+      <div class="muted" style="color:#4a3c1a;margin-top:6px">${mins} min · ${fmt(w.steps)} ${MODES[w.mode].unit} · ${w.mode}</div>
+      <div style="font-family:var(--f-meme);font-size:22px;margin-top:8px">wow</div>
+    </div>
+    <div class="grid2"><button class="btn sec" data-action="close">Close</button><button class="btn" data-action="share">📤 Share card</button></div>`);
+}
+const CHEER_FROM = ['sesame_sprint', 'zoomie_queen', 'lil_bork', 'mochi_miles', 'very_cardio', 'moonwalker42', 'treat_hunter'];
+const CHEER_MSG = ['go go go!', 'much speed!', 'to the moon 🚀', 'very proud of u', "don't stop now!", 'such legs wow'];
+function scheduleCheer() {
+  clearTimeout(cheerTimer);
+  if (!S.walk.active || !S.walk.live) return;
+  cheerTimer = setTimeout(() => {
+    const who = pick(CHEER_FROM), tip = Math.random() < 0.45;
+    let text;
+    if (tip) {
+      const doge = Math.random() < 0.3; const amt = doge ? pick([1, 2, 5]) : pick([5, 10, 25]);
+      const msg = pick(CHEER_MSG);
+      text = `${doge ? 'Ð' : '🦴'} ${who} tipped ${amt} ${doge ? 'DOGE' : 'TREAT'}: "${msg}"`;
+      speak(`Wow! ${who.replace(/_/g, ' ')} tipped you ${amt} ${doge ? 'doge' : 'treats'}. ${msg}`);
+      if (!doge) { S.wallet += amt; renderChrome(); }
+    } else {
+      text = `${pick(['🎉', '👏', '🔥', '🐕', '💛'])} ${who} cheered you on`;
+    }
+    const el = document.createElement('div'); el.className = 'cheer' + (tip ? ' tip' : ''); el.textContent = text;
+    $('#cheers').appendChild(el); setTimeout(() => el.remove(), 4200); haptic(15);
+    scheduleCheer();
+  }, rand(3500, 7000));
+}
+
+/* ---------- Moon ---------- */
+function renderMoon() {
+  const p = S.moonKm / 384400;
+  const pos = t => Math.sqrt(t); // sqrt scale so the checkpoints are visible
+  $('[data-v=moon]').innerHTML = `
+    <h2 class="section-title">🚀 Moon Mission · S1</h2>
+    <svg class="moonmap" viewBox="0 0 360 240" role="img" aria-label="Community progress ${(p * 100).toFixed(1)} percent of the way to the Moon">
+      <g fill="#fff" opacity=".7">${Array.from({ length: 40 }, (_, i) => `<circle cx="${(i * 97) % 360}" cy="${(i * 53) % 240}" r="${i % 3 ? 1 : 1.8}"/>`).join('')}</g>
+      <path id="mpath" d="M48 200 C 120 200, 140 120, 200 110 S 290 60, 312 44" fill="none" stroke="#ffffff55" stroke-width="4" stroke-dasharray="6 8"/>
+      <circle cx="40" cy="204" r="26" fill="#3BA7FF" stroke="#05040C" stroke-width="4"/><path d="M24 196 q10 -8 18 2 q8 8 18 -2" stroke="#22C997" stroke-width="7" fill="none"/>
+      <circle cx="318" cy="40" r="24" fill="#E9E4FF" stroke="#05040C" stroke-width="4"/><circle cx="310" cy="34" r="5" fill="#C9C0F5"/><circle cx="326" cy="48" r="4" fill="#C9C0F5"/>
+      <g id="cps"></g><g id="rocket"><text font-size="26" text-anchor="middle" dominant-baseline="middle">🚀</text></g>
+    </svg>
+    <div class="card">
+      <div class="between"><span class="big">${(p * 100).toFixed(2)}%</span><span class="chip">🌕 ${fmt(384400 - S.moonKm)} km to go</span></div>
+      <div class="bar moon" style="margin:10px 0"><i style="width:${p * 100}%"></i></div>
+      <div class="grid2" style="margin-top:6px">
+        <div><div class="muted">Community</div><b>${fmt(S.moonKm)} km</b></div>
+        <div><div class="muted">You added</div><b>${S.myKm.toFixed(1)} km</b></div>
+        <div><div class="muted">Checkpoints</div><b>ISS ✓ · GEO ✓ · Moon …</b></div>
+        <div><div class="muted">Season ends</div><b>in 71 days</b></div>
+      </div>
+      <div class="banner" style="margin:12px 0 0">🎉 Landing = <b>Moon Party</b>: rewards ×2 for 24h + Moon Lander badge for every contributor.</div>
+    </div>
+    <div class="card tint">
+      <div class="ticker"><div class="clock blockClock">--:--</div><div><b>⛏️ Block #${fmt(currentBlock())} mining</b><div class="muted">Your steps are your hashrate · <span class="myHashes">${fmt(S.myHashes)}</span> hashes</div></div></div>
+    </div>
+    <div class="card feed"><h3>📜 Recent Walk Blocks</h3>
+      ${S.feed.slice(0, 8).map((b, i) => `<div class="blk ${b.me ? 'me' : ''} ${i === 0 && b.fresh ? 'new' : ''}"><span class="n">#${fmt(b.n)}</span><span style="flex:1">found by <b>@${b.who}</b>${b.me ? ' (you!)' : ''}<br><span class="muted">${fmt(b.h)} hashes · much luck</span></span><span class="chip gold">🦴 ${b.r}</span></div>`).join('')}
+    </div>
+    <p class="muted" style="text-align:center">A block every 10 minutes. The finder is drawn in proportion to verified steps, capped per walker, and anyone can verify the draw.</p>`;
+  const path = $('#mpath'), L = path.getTotalLength();
+  const cps = [['ISS', 408], ['GEO', 35786]].map(([n, km]) => { const pt = path.getPointAtLength(L * pos(km / 384400)); return `<circle cx="${pt.x}" cy="${pt.y}" r="7" fill="#22C997" stroke="#05040C" stroke-width="3"/><text x="${pt.x}" y="${pt.y - 14}" fill="#fff" font-size="12" font-weight="800" text-anchor="middle" font-family="Nunito">${n} ✓</text>`; }).join('');
+  $('#cps').innerHTML = cps;
+  const rp = path.getPointAtLength(L * pos(p)); $('#rocket').setAttribute('transform', `translate(${rp.x} ${rp.y}) rotate(-20)`);
+  tickBlock();
+}
+function tickBlock() {
+  const left = 600000 - (Date.now() % 600000), m = Math.floor(left / 60000), s = Math.floor(left % 60000 / 1000);
+  $$('.blockClock').forEach(el => el.textContent = `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`);
+  $$('.myHashes').forEach(el => el.textContent = fmt(S.myHashes));
+}
+function blockFound(me = false) {
+  const n = currentBlock();
+  S.feed.forEach(b => b.fresh = false);
+  S.feed.unshift({ n, who: me ? 'biscuit_walks' : pick(CHEER_FROM.concat(['noodle_legs', 'stride_doge'])), h: me ? S.myHashes : Math.round(rand(400, 2000)), r: 190, me, fresh: true });
+  if (me) {
+    S.wallet += 190; confetti(180); wowBurst(4); haptic(80);
+    toast(`⛏️ You found Block #${fmt(n)}! +190 TREAT`, 3000);
+    if (!S.badgesEarned.includes(401)) S.badgesEarned.push(401);
+  }
+  S.myHashes = me ? 0 : S.myHashes;
+  renderChrome(); if (S.view === 'moon') renderMoon();
+}
+
+/* ---------- Ranks ---------- */
+const NAMES = ['zoomie_queen', 'sesame_sprint', 'moonwalker42', 'noodle_legs', 'mochi_miles', 'stride_doge', 'very_cardio', 'lil_bork', 'treat_hunter', 'sir_wagsalot', 'biscuit_bolt', 'shibe_sensei', 'the_good_boi', 'doggo_dash', 'much_legs', 'paws_n_play', 'kibble_kid', 'sunny_shibe', 'trail_tail', 'bark_twain', 'woof_wanderer', 'snoot_scoot', 'fetch_fiend', 'loaf_mode', 'zoom_zoom', 'tiny_trot', 'hound_round', 'puplo_picasso', 'sleepy_shibe'];
+const OTHERS = NAMES.map((n, i) => ({ n, xp: Math.round(2600 - i * 88 - (i > 20 ? 120 : 0) + (i % 3) * 17), e: pick(['🐕', '🦊', '🐶', '🐺', '🌭', '🍙']) }));
+function renderRanks() {
+  const rows = OTHERS.concat([{ n: 'biscuit_walks', xp: S.weekXp, e: '⭐', me: true }]).sort((a, b) => b.xp - a.xp);
+  const myRank = rows.findIndex(r => r.me) + 1;
+  const tabs = ['League', 'Friends', 'Packs', 'City'];
+  $('[data-v=ranks]').innerHTML = `
+    <div class="tabs">${tabs.map(t => `<button class="${S.ranksTab === t ? 'on' : ''}" data-action="rtab" data-t="${t}">${t}</button>`).join('')}</div>
+    ${S.ranksTab !== 'League' ? `<div class="card tint" style="text-align:center"><div style="font-size:44px">${{ Friends: '🤝', Packs: '👯', City: '🏙️' }[S.ranksTab]}</div><b>${S.ranksTab} boards</b><p class="muted">${{ Friends: 'Your friends ranked by weekly XP.', Packs: 'Packs compete on combined steps. Pack Walks count double for team XP.', City: 'Opt-in only, coarse areas (about 250 km²). Never exact locations.' }[S.ranksTab]}</p></div>` : `
+    <div class="card" style="background:linear-gradient(135deg,var(--gold),var(--shiba));color:var(--onGold)">
+      <div class="between"><div><div style="font-weight:900;font-size:12px;letter-spacing:1px">WEEK 41 · 3d 14h LEFT</div><h2 style="font-size:30px">🦴 Bone League</h2></div><div class="big">#${myRank}</div></div>
+      <div style="font-weight:700;font-size:13px;margin-top:6px">Top 7 move up to <b>Bacon</b> ▲ · Bottom 5 drop ▼</div>
+    </div>
+    <div class="card" style="padding:8px">
+      ${rows.map((r, i) => {
+        const rank = i + 1, zone = rank <= 7 ? 'up' : rank > 25 ? 'down' : '';
+        const header = rank === 1 ? '<div class="zone">▲ Promotion zone</div>' : rank === 8 ? '<div class="zone">Safe zone</div>' : rank === 26 ? '<div class="zone">▼ Demotion zone</div>' : '';
+        return `${header}<div class="lrow ${r.me ? 'me' : zone}"><span class="rk">${rank <= 3 ? ['🥇', '🥈', '🥉'][rank - 1] : rank}</span><span class="av">${r.e}</span><span>@${r.n}${r.me ? ' (you)' : ''}</span><b>${fmt(r.xp)} XP</b></div>`;
+      }).join('')}
+    </div>`}`;
+}
+
+/* ---------- Pup ---------- */
+function renderPup() {
+  const p = S.pup, cap = STAGE_CAP[p.stage], atCap = p.level >= cap && p.stage < 3;
+  $('[data-v=pup]').innerHTML = `
+    <div class="card" style="text-align:center;padding-top:20px;background:radial-gradient(circle at 50% 40%, var(--surface2), var(--surface))">
+      <div class="mood">${moodText()}</div>
+      <div style="width:220px;height:220px;margin:0 auto">${pupSVG({ ...p, mood: pupMood() })}</div>
+      <h2 style="font-size:30px">${p.name}</h2>
+      <div class="muted">${STAGES[p.stage]} · Level ${p.level} · ${COATS[p.coat].name}</div>
+      <div class="stagetrack">${STAGES.map((s, i) => `<button class="${i === p.stage ? 'on' : ''} ${i > p.stage ? 'lock' : ''}" data-action="stagepreview" data-s="${i}">${i < p.stage ? '✓ ' : i > p.stage ? '🔒 ' : ''}${s}</button>`).join('')}</div>
+      <div class="between"><span class="muted">Pup XP</span><span class="muted">${atCap ? 'At stage cap!' : `Lv ${p.level} → ${p.level + 1}`}</span></div>
+      <div class="bar" style="margin:6px 0 14px"><i style="width:${atCap ? 100 : 62}%"></i></div>
+      ${p.stage < 3 ? `<button class="btn block ${atCap ? 'glow' : ''}" data-action="evolve" ${atCap ? '' : 'disabled'}>✨ Evolve to ${STAGES[p.stage + 1]} · burn ${fmt(EVOLVE_COST[p.stage])} 🦴</button>` : '<div class="chip gold">🌕 Max stage. Much legend.</div>'}
+    </div>
+    <div class="grid2">
+      <div class="card" style="margin:0"><div class="muted">Walk bonus</div><div class="big">+${pupBonus().toFixed(1)}%</div><div class="muted">max +20%</div></div>
+      <div class="card" style="margin:0"><div class="muted">Leash</div><div class="big">${p.level >= 5 ? '🔓' : '🔒'}</div><div class="muted">${p.level >= 5 ? 'Earned: tradable' : `Lv ${p.level}/5 to trade`}</div></div>
+    </div>
+    <div class="card" style="margin-top:16px"><h3>🎒 Gear</h3>
+      <div class="grid4">
+        <button class="tile" data-action="gear" data-g="hat" style="${p.hat ? 'background:var(--gold);color:var(--onGold)' : ''}"><span class="e">🧢</span>Beanie</button>
+        <button class="tile" data-action="gear" data-g="shades" style="${p.shades ? 'background:var(--gold);color:var(--onGold)' : ''}"><span class="e">🕶️</span>Deal w/ it</button>
+        <button class="tile" style="opacity:.5"><span class="e">📿</span>Collar 🔒</button>
+        <button class="tile" style="opacity:.5"><span class="e">👟</span>Shoes 🔒</button>
+      </div>
+      <p class="muted" style="margin:10px 0 0">Gear is cosmetic only. It never boosts rewards.</p></div>
+    <div class="card"><h3>🎨 Coat preview</h3>
+      <div class="swatches">${Object.entries(COATS).map(([k, c]) => `<button class="swatch ${p.coat === k ? 'on' : ''}" style="background:${c.fur}" data-action="coat" data-c="${k}" aria-label="${c.name}" title="${c.name}"></button>`).join('')}</div>
+      <p class="muted" style="margin:10px 0 0">Starter Pups choose from 4 common coats. ✦ Galaxy and Gold come from adoption or events.</p></div>
+    <div class="card"><h3>🧬 Traits</h3>
+      <div class="grid2 muted" style="font-size:14px"><div>Eyes: <b style="color:var(--text)">Sparkle</b></div><div>Markings: <b style="color:var(--text)">Sesame brows</b></div><div>Tail: <b style="color:var(--text)">Double curl</b></div><div>Token: <b style="color:var(--text)">#4,207</b></div></div></div>`;
+}
+
+/* ---------- Coach ---------- */
+const COACH_REPLIES = {
+  'Plan my week': { text: "Much plan! You've averaged 7.6k over 14 days, so let's nudge up gently:\n• Mon/Wed/Fri: brisk 25-min walk\n• Tue/Thu: easy day, 6k\n• Sat: Pack Walk with your crew 👯\n• Sun: rest or a stroll\nI'd bump your daily goal a little:", proposal: 8500 },
+  "I'm tired today": { text: "Totally valid. Rest is part of training. Try an easy 10–15 min stroll if you feel up to it, or log a Rest Day so your 9-day streak stays frozen. Biscuit loves naps too 💤" },
+  'Roast my steps 🔥': { text: "{steps} steps by now? Biscuit has walked further chasing his own tail. 😤 Kidding! You're at {pct}% of your goal. {goalLine}" },
+  'Should I buy more TREAT?': { text: "I'm a coach, not a financial advisor. No investment tips from this pup! 🐾 What I *can* do is help you earn treats the healthy way: {goalLine}" },
+};
+// Fills live numbers into scripted replies so they stay true after the demo state changes
+function fillReply(text) {
+  const left = Math.max(0, S.goal - S.steps);
+  return text.replace('{steps}', fmt(S.steps)).replace('{pct}', Math.round(pct() * 100))
+    .replace('{goalLine}', left ? `${fmt(left)} more steps and today's ring is done. Very doable.` : "Today's goal is already crushed, so maybe a victory stroll? 🏆");
+}
+function renderCoach() {
+  $('[data-v=coach]').innerHTML = `
+    <div class="row" style="margin:2px 0 12px"><div style="width:52px;height:52px;border:3px solid var(--outline);border-radius:50%;overflow:hidden;background:var(--moon)">${pupSVG({ coat: 'gold', stage: 1, mood: 'happy', bob: false })}</div>
+      <div><h2 style="font-size:24px">Coach Bark</h2><div class="muted">● online · much ready · not a doctor</div></div></div>
+    <div class="chat" id="chat">${S.chat.map(m => m.proposal ? proposalCard(m.proposal, m.decided) : `<div class="msg ${m.from} ${m.safety ? 'safety' : ''}">${m.text}</div>`).join('')}</div>
+    <div class="qr">${Object.keys(COACH_REPLIES).map(q => `<button data-action="ask" data-q="${q}">${q}</button>`).join('')}</div>
+    <form class="composer" id="composer"><input id="chatIn" placeholder="Ask Coach Bark…" maxlength="800" autocomplete="off" aria-label="Message Coach Bark"><button class="btn" aria-label="Send">➤</button></form>`;
+  $('#composer').addEventListener('submit', e => { e.preventDefault(); const v = $('#chatIn').value.trim(); if (v) ask(v); });
+  scrollChat();
+}
+function proposalCard(goal, decided) {
+  return `<div class="proposal"><b>🎯 Proposed daily goal: ${fmt(goal)} steps</b><div class="muted" style="margin:4px 0 10px">Coach suggests. You decide.</div>
+    ${decided ? `<span class="chip">${decided}</span>` : `<div class="row"><button class="btn sm mint" data-action="goal" data-g="${goal}">Confirm</button><button class="btn sm sec" data-action="goal" data-g="0">No thanks</button></div>`}</div>`;
+}
+function scrollChat() { const sc = $('#screen'); sc.scrollTop = sc.scrollHeight; }
+function coachReplyFor(q) {
+  if (COACH_REPLIES[q]) return COACH_REPLIES[q];
+  const t = q.toLowerCase();
+  if (/(chest pain|faint|can'?t breathe|dizzy|heart)/.test(t)) return { safety: true, text: "⚠️ Please stop exercising now. Chest pain, fainting or trouble breathing need urgent medical help, so contact your local emergency number. I'm a coach, not a doctor, and your safety comes first." };
+  if (/(buy|sell|price|invest|moon soon|pump)/.test(t)) return COACH_REPLIES['Should I buy more TREAT?'];
+  if (/(run|5k|pace|faster)/.test(t)) return { text: "For a smoother 5K: keep easy runs truly easy (you can talk), add one session of 6×1-min faster efforts per week, and grow weekly distance about 10% at most. Very sustainable, wow." };
+  if (/(tired|sore|rest)/.test(t)) return COACH_REPLIES["I'm tired today"];
+  return { text: "Good question! Short version: a little more movement than last week, done consistently, beats any heroic one-off. Want me to plan your week? 🐾" };
+}
+function ask(q) {
+  S.chat.push({ from: 'me', text: q }); renderCoach();
+  const chat = $('#chat'); const typing = document.createElement('div');
+  typing.className = 'msg coach typing'; typing.innerHTML = '<span></span><span></span><span></span>'; chat.appendChild(typing); scrollChat();
+  const base = coachReplyFor(q), r = { ...base, text: fillReply(base.text) };
+  setTimeout(() => {
+    typing.remove();
+    const m = { from: 'coach', text: '', safety: r.safety }; S.chat.push(m);
+    const el = document.createElement('div'); el.className = 'msg coach' + (r.safety ? ' safety' : ''); chat.appendChild(el);
+    let i = 0;
+    const stream = setInterval(() => {
+      i += 3; m.text = r.text.slice(0, i); el.textContent = m.text; scrollChat();
+      if (i >= r.text.length) {
+        clearInterval(stream);
+        if (r.proposal) { S.chat.push({ proposal: r.proposal }); renderCoach(); }
+      }
+    }, 18);
+  }, 700);
+}
+
+/* ---------- Bets ---------- */
+const BETS = [
+  { id: 1, name: '7-Day 8K Club', rule: '8,000 steps/day for 7 days', stake: 50, joined: 124, days: 7, starts: 'in 1d 4h', emoji: '🗓️' },
+  { id: 2, name: 'Weekend Warrior', rule: '25,000 steps Sat + Sun', stake: 20, joined: 311, days: 2, starts: 'in 3d', emoji: '⚔️' },
+  { id: 3, name: '30-Day Streak Legend', rule: 'Daily goal every day for 30 days', stake: 200, joined: 58, days: 30, starts: 'in 5d', emoji: '👑' },
+];
+function renderBets() {
+  $('[data-v=bets]').innerHTML = `
+    <h2 class="section-title">🎲 Walk Bets</h2>
+    <div class="banner">Stake on yourself. Finishers split the stakes of those who don't (10% fee). If nobody finishes, <b>the shelter dogs win 🐶</b>.</div>
+    <div class="card tint"><h3>📌 My bet: 5-Day 6K</h3>
+      <div class="row" style="gap:6px">${['✓', '✓', '✓', '·', '·'].map((d, i) => `<span class="chip ${d === '✓' ? 'gold' : ''}" style="flex:1;justify-content:center">D${i + 1} ${d}</span>`).join('')}</div>
+      <div class="muted" style="margin-top:8px">3/5 days done · 41 of 96 still in · est. payout 🦴 63</div></div>
+    ${BETS.map(b => `<div class="card"><div class="between"><h3 style="margin:0">${b.emoji} ${b.name}</h3><span class="chip gold">🦴 ${b.stake}</span></div>
+      <div class="muted" style="margin:6px 0 10px">${b.rule}</div>
+      <div class="between"><span class="muted">👥 ${b.joined} joined · pool 🦴 ${fmt(b.joined * b.stake)} · starts ${b.starts}</span><button class="btn sm" data-action="bet" data-id="${b.id}">Join</button></div></div>`).join('')}`;
+}
+function joinBet(id) {
+  const b = BETS.find(x => x.id === +id);
+  openSheet(`<h2 style="font-size:26px">${b.emoji} ${b.name}</h2><p class="muted" style="font-size:14px">${b.rule}. Only verified steps count. Results post 6h after the end, followed by a 24h dispute window.</p>
+    <div class="card tint"><div class="between"><span>Your stake</span><b>🦴 ${b.stake}</b></div><div class="between"><span>If you finish</span><b>stake + share of forfeits</b></div><div class="between"><span>If nobody finishes</span><b>pool → Shelter Fund 🐶</b></div></div>
+    <div class="grid2"><button class="btn sec" data-action="close">Not now</button><button class="btn" data-action="betok" data-id="${b.id}">Stake ${b.stake} 🦴</button></div>
+    <p class="muted" style="text-align:center">Testnet: treats have no value.</p>`);
+}
+
+/* ---------- Badges ---------- */
+const BADGES = [
+  [101, '👣', 'First Paw', 'C'], [102, '🔟', 'Ten-K Club', 'C'], [103, '💯', '100K Paws', 'C'], [104, '💰', 'Millionaire Paws', 'R'], [106, '🏅', 'Marathon Doge', 'E'],
+  [201, '📅', 'Week Streak', 'C'], [202, '🗓️', 'Month Streak', 'R'], [203, '💎', 'Century Streak', 'E'], [204, '🐉', 'Year of the Doge', 'L'],
+  [301, '🛰️', 'ISS Reached', 'C'], [302, '📡', 'Geo Reached', 'R'], [303, '🌕', 'Moon Lander', 'E'],
+  [401, '⛏️', 'Block Finder', 'R'], [402, '🍀', 'Lucky Shibe', 'E'], [501, '👯', 'Pack Pup', 'C'], [601, '📣', 'First Cheer', 'C'],
+  [701, '🎲', 'Bet on Me', 'C'], [703, '🐶', 'Shelter Hero', 'R'], [851, '🌏', 'Chikyū Pioneer', 'L'], [901, '♿', 'Rolling Thunder', 'R'], [199, '🚀', 'Moon Walker', 'M'],
+];
+const RARITY = { C: 'Common', R: 'Rare', E: 'Epic', L: 'Legendary', M: 'Much Wow' };
+function renderBadges() {
+  const earned = BADGES.filter(b => S.badgesEarned.includes(b[0])).length;
+  $('[data-v=badges]').innerHTML = `
+    <div class="row" style="margin-bottom:14px"><div class="avatar" style="width:64px;height:64px">${pupSVG({ ...S.pup, bob: false })}</div>
+      <div><h2 style="font-size:24px">@biscuit_walks</h2><div class="muted">Lv ${S.level} ${titleFor(S.level)} · 🔥 ${S.streak} · ${earned}/${BADGES.length} badges</div></div></div>
+    <div class="banner">🏅 Badges are soulbound (non-transferable) on DogeOS. Proof you actually did the thing.</div>
+    <div class="badges">${BADGES.map(([id, e, n, r]) => `<div class="badge ${S.badgesEarned.includes(id) ? '' : 'lock'}"><span class="e">${e}</span><b>${n}</b><small class="r-${r}">${RARITY[r]}</small></div>`).join('')}</div>`;
+}
+
+/* ---------- Wallet ---------- */
+function renderWallet() {
+  $('[data-v=wallet]').innerHTML = `
+    <h2 class="section-title">🦴 Treats</h2>
+    <div class="banner">🧪 DogeOS Chikyū testnet (chain 6281971). Treats have no value.</div>
+    <div class="card" style="background:var(--gold);color:var(--onGold)">
+      <div style="font-weight:900;font-size:12px;letter-spacing:1px">READY TO CLAIM</div>
+      <div class="big" style="font-size:44px">${fmt(S.claimable)} 🦴</div>
+      <div style="font-weight:700;font-size:13px">Epoch #41 · posted 06:31 UTC · verified on-chain</div>
+      ${S.connected ? `<div class="grid2" style="margin-top:12px"><button class="btn sec" data-action="claim" ${S.claimable ? '' : 'disabled'}>Claim (sign)</button><button class="btn mint" data-action="claim" ${S.claimable ? '' : 'disabled'}>⚡ Gasless claim</button></div>`
+      : `<button class="btn block sec" style="margin-top:12px" data-action="connect">Connect wallet to claim</button>`}
+    </div>
+    <div class="grid2">
+      <div class="card" style="margin:0"><div class="muted">In wallet</div><div class="big">${fmt(S.wallet)}</div></div>
+      <div class="card" style="margin:0"><div class="muted">Today (est.)</div><div class="big">≈${fmt(S.steps * 0.066)}</div></div>
+    </div>
+    <div class="card" style="margin-top:16px"><h3>${S.connected ? '✅ Connected' : '🔌 Connect'}</h3>
+      ${S.connected ? `<div class="between"><span class="chip">🟢 0x9f3a…b21c</span><span class="chip ghost">DogeOS Chikyū</span></div>`
+      : `<div class="grid2"><button class="btn sec" data-action="connect">🐕 MyDoge</button><button class="btn sec" data-action="connect">🦊 MetaMask</button></div>
+         <button class="btn sec block" style="margin-top:10px" data-action="connect">🔗 WalletConnect</button>
+         <p class="muted" style="margin:10px 0 0">Walk first, wallet later: your treats wait for you. We never ask for seed phrases.</p>`}
+    </div>`;
+}
+
+/* ---------- Onboarding ---------- */
+let onbStep = 0;
+function renderOnb() {
+  const steps = [
+    { art: pupSVG({ coat: S.pup.coat, stage: 1, mood: 'happy' }), h: 'Much walk. Very health.', p: 'Walk, run or roll. Earn treats. Raise a Shibe that grows with every step.', btn: 'Wow, next' },
+    { art: pupSVG({ coat: S.pup.coat, stage: 0, mood: 'happy' }), h: 'Pick your Pup', p: `<div class="swatches" style="justify-content:center;margin-bottom:12px">${Object.entries(COATS).slice(0, 4).map(([k, c]) => `<button class="swatch ${S.pup.coat === k ? 'on' : ''}" style="background:${c.fur}" data-action="onbcoat" data-c="${k}" aria-label="${c.name}"></button>`).join('')}</div>Name: <b>${S.pup.name}</b> · ${COATS[S.pup.coat].name}`, btn: 'This one!' },
+    { art: '<div style="font-size:110px">❤️‍🩹</div>', h: 'Your steps, privately', p: 'We read step counts from Apple Health or Health Connect. GPS is only used during walks you start, and your map is never public.', btn: 'Allow health access' },
+    { art: '<div style="font-size:110px">🦴</div>', h: 'Walk first, wallet later', p: 'No wallet needed today. Treats pile up, and you connect MyDoge or MetaMask only when you want to claim.', btn: "Let's go! 🐾" },
+  ];
+  const s = steps[onbStep];
+  $('#onb').innerHTML = `<div style="text-align:right"><button class="btn sm sec" data-action="onbskip">Skip</button></div>
+    <div class="art">${s.art}</div><h2>${s.h}</h2><p>${s.p}</p>
+    <div class="dots">${steps.map((_, i) => `<i class="${i === onbStep ? 'on' : ''}"></i>`).join('')}</div>
+    <button class="btn block" data-action="onbnext">${s.btn}</button>`;
+}
+function showOnb() { onbStep = 0; renderOnb(); $('#onb').classList.add('show'); }
+function hideOnb() { $('#onb').classList.remove('show'); renderChrome(); if (S.view === 'home') renderHome(); }
+
+/* ---------- Event delegation ---------- */
+document.addEventListener('click', e => {
+  const a = e.target.closest('[data-action]'); if (!a) return;
+  const d = a.dataset;
+  switch (d.action) {
+    case 'go': closeSheet(); go(d.view); break;
+    case 'theme': setTheme(); break;
+    case 'steps': addSteps(1000); break;
+    case 'chest': {
+      S.chestOpened = true; confetti(80);
+      const loot = pick(['+50 XP', '+12 🦴 treats', '1 Gear Shard 🧩', '🛡️ Streak Shield', '✨ Rare cosmetic: Party Hat']);
+      if (loot === '+50 XP') addXp(50); if (loot.includes('treats')) S.wallet += 12; if (loot.includes('Shield')) S.shields = Math.min(2, S.shields + 1);
+      toast(`🎁 Chest: ${loot}`, 2800); renderChrome(); renderHome(); break;
+    }
+    case 'mode': S.walk.mode = d.mode; renderWalk(); break;
+    case 'start': startWalk(); break;
+    case 'stop': stopWalk(); break;
+    case 'live': S.walk.live = !S.walk.live; renderWalk(); renderChrome(); if (S.walk.live) { toast('📡 Live! 6 friends notified'); scheduleCheer(); } else clearTimeout(cheerTimer); break;
+    case 'voice': S.voice = !S.voice; renderWalk(); toast(S.voice ? '🔊 Coach voice on' : '🔈 Coach voice off'); if (S.voice) speak('Much ready. Let us walk!'); break;
+    case 'qr': openSheet(`<h2 style="font-size:24px;text-align:center">Pack QR</h2><div class="fakeqr">${Array.from({ length: 441 }, (_, i) => (((i * 7919) % 13) < 6 || [0, 1, 2, 21, 23, 42, 43, 44].includes(i % 63)) ? '<i></i>' : '<b></b>').join('')}</div><p class="muted" style="text-align:center">Friends scan to join. Expires in 9:58. We check GPS overlap to verify the pack walk.</p><button class="btn block" data-action="close">Done</button>`); break;
+    case 'share': toast('📤 Recap card saved (demo)'); closeSheet(); break;
+    case 'close': closeSheet(); break;
+    case 'rtab': S.ranksTab = d.t; renderRanks(); break;
+    case 'evolve': {
+      if (S.wallet < EVOLVE_COST[S.pup.stage]) { toast('Not enough treats. Claim some first! 🦴'); break; }
+      S.wallet -= EVOLVE_COST[S.pup.stage]; S.pup.stage++; S.pup.level++;
+      confetti(180); wowBurst(4); haptic(60); renderPup(); renderChrome();
+      openSheet(`<div style="width:200px;margin:0 auto">${pupSVG({ ...S.pup, mood: 'happy' })}</div><h2 style="font-size:28px">${S.pup.name} evolved into a ${STAGES[S.pup.stage]}!</h2><p class="muted">Burned ${fmt(EVOLVE_COST[S.pup.stage - 1])} TREAT. Such glow up.</p><button class="btn block" data-action="close">Much wow</button>`, true);
+      break;
+    }
+    case 'stagepreview': {
+      const st = +d.s;
+      openSheet(`<div style="width:200px;margin:0 auto">${pupSVG({ ...S.pup, stage: st, mood: 'happy' })}</div><h2 style="font-size:26px">${STAGES[st]}</h2><p class="muted">${st <= S.pup.stage ? 'Unlocked.' : `Reach Pup level ${STAGE_CAP[st - 1]} and evolve to unlock.`} ${st === 2 ? 'Yes, the side-eye is canon.' : ''}</p><button class="btn block" data-action="close">Close</button>`, true);
+      break;
+    }
+    case 'gear': S.pup[d.g] = !S.pup[d.g]; renderPup(); renderChrome(); haptic(); break;
+    case 'coat': S.pup.coat = d.c; renderPup(); renderChrome(); break;
+    case 'ask': ask(d.q); break;
+    case 'goal': {
+      const last = [...S.chat].reverse().find(m => m.proposal);
+      if (+d.g) { S.goal = +d.g; S.goalHit = S.steps >= S.goal; last.decided = `✅ Goal set to ${fmt(+d.g)}`; toast(`🎯 Daily goal: ${fmt(+d.g)}`); }
+      else last.decided = 'Kept current goal';
+      renderCoach(); break;
+    }
+    case 'bet': joinBet(d.id); break;
+    case 'betok': closeSheet(); toast('🎲 Joined! Stake locked in WalkBetPool (testnet)'); confetti(60); break;
+    case 'connect': S.connected = true; toast('🔗 Wallet connected (demo) · SIWE signed'); renderWallet(); break;
+    case 'claim': {
+      const amt = S.claimable; S.wallet += amt; S.claimable = 0;
+      toast(`🦴 Claimed ${fmt(amt)} TREAT`); confetti(100); renderWallet(); renderChrome(); break;
+    }
+    case 'blockme': blockFound(true); break;
+    case 'onboarding': showOnb(); break;
+    case 'onbnext': if (onbStep < 3) { onbStep++; renderOnb(); } else hideOnb(); break;
+    case 'onbskip': hideOnb(); break;
+    case 'onbcoat': S.pup.coat = d.c; renderOnb(); break;
+    case 'reset': clearInterval(walkTimer); clearTimeout(cheerTimer); S = initialState(); closeSheet(); go('home'); toast('↺ Demo reset'); break;
+  }
+});
+$('#modal').addEventListener('click', e => { if (e.target.id === 'modal') closeSheet(); });
+
+/* ---------- Clocks ---------- */
+let lastWindow = Math.floor(Date.now() / 600000);
+setInterval(() => {
+  const d = new Date(); $('#clock').textContent = d.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' }).replace(/\s*[AP]M/, '');
+  tickBlock();
+  const w = Math.floor(Date.now() / 600000);
+  if (w !== lastWindow) { lastWindow = w; blockFound(false); if (S.view === 'home') renderHome(); }
+  if (Math.random() < 0.3) { S.moonKm += rand(0.2, 0.8); S.miners += Math.round(rand(-2, 4)); }
+}, 1000);
+
+/* ---------- Boot ---------- */
+{ const t = document.documentElement.dataset.theme || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'); $('#themeBtn').textContent = t === 'dark' ? '☀️' : '🌙'; }
+go('home');
+showOnb();
+</script>
+</body>
+</html>
