@@ -1,0 +1,40 @@
+# deps & builds
+node_modules/
+.pnpm-store/
+dist/
+build/
+.next/
+.turbo/
+.expo/
+out/
+coverage/
+*.tsbuildinfo
+
+# foundry
+packages/contracts/cache/
+packages/contracts/out/
+packages/contracts/broadcast/*/31337/
+packages/contracts/lcov.info
+
+# env & secrets (never commit)
+.env
+.env.*
+!.env.example
+*.pem
+*.p8
+*.p12
+*.keystore
+*.jks
+google-services.json
+GoogleService-Info.plist
+keys/
+secrets/
+
+# local tooling
+.claude/settings.local.json
+.DS_Store
+Thumbs.db
+*.log
+.idea/
+.vscode/*
+!.vscode/extensions.json
