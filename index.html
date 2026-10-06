@@ -221,7 +221,7 @@ h1,h2,h3{font-family:var(--f-display);margin:0;line-height:1.05}
 .badge small{font-size:10px;font-weight:900;text-transform:uppercase}
 .badge.lock{filter:grayscale(1);opacity:.5}
 .badge small{display:inline-block;margin-top:6px;padding:2px 7px;border:2px solid var(--outline);border-radius:999px;color:var(--onGold);letter-spacing:.4px}
-.r-C{background:var(--mint)}.r-R{background:var(--sky)}.r-E{background:var(--moon);color:#fff !important}.r-L{background:var(--gold)}.r-M{background:var(--pink);color:#fff !important}
+.r-N{background:var(--mint)}.r-R{background:var(--sky)}.r-SR{background:var(--moon);color:#fff !important}.r-L{background:var(--gold)}.r-M{background:var(--pink);color:#fff !important}
 
 /* Overlays */
 .toast{position:absolute;left:50%;bottom:104px;transform:translateX(-50%) translateY(20px);opacity:0;background:var(--outline);color:var(--gold);font-weight:800;font-size:14px;padding:12px 16px;border-radius:16px;z-index:20;transition:all .25s;pointer-events:none;max-width:88%;text-align:center}
@@ -248,6 +248,60 @@ canvas#confetti{position:absolute;inset:0;width:100%;height:100%;pointer-events:
 .fakeqr{display:grid;grid-template-columns:repeat(21,1fr);width:210px;height:210px;margin:10px auto;border:6px solid #fff;outline:3px solid var(--outline);background:#fff}
 .fakeqr i{background:#1F1A33}
 .fakeqr b{background:#fff}
+/* ===== Den, Play, Market, Loot, Games ===== */
+.back{display:inline-flex;align-items:center;gap:6px;border:3px solid var(--outline);background:var(--surface);border-radius:999px;padding:6px 12px;font-weight:800;font-size:13px;box-shadow:0 3px 0 var(--outline);margin-bottom:12px}
+.rar{border:2px solid var(--outline);border-radius:999px;padding:1px 7px;font-size:10px;font-weight:900;text-transform:uppercase;letter-spacing:.4px;color:var(--onGold);display:inline-block;white-space:nowrap}
+.rar-N{background:var(--mint)}.rar-R{background:var(--sky)}.rar-SR{background:var(--moon);color:#fff}.rar-L{background:var(--gold)}.rar-M{background:linear-gradient(90deg,#FF5C8A,#FFC531,#22C997,#3BA7FF,#6C5CE7);color:#fff}
+.den-stage{position:relative;height:210px;border:3px solid var(--outline);border-radius:24px;background:linear-gradient(var(--surface2) 74%, color-mix(in srgb, var(--mint) 45%, var(--surface2)) 74%);overflow:hidden;margin-bottom:16px;box-shadow:var(--shadow)}
+.den-stage .walker{position:absolute;left:16%;bottom:8px;width:104px;animation:stride .9s ease-in-out infinite}
+.den-stage .pupw{position:absolute;left:54%;bottom:8px;width:108px;animation:stride .9s ease-in-out infinite .45s}
+.den-stage .leash{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+@keyframes stride{50%{transform:translateY(-5px)}}
+.tiles3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px}
+.grow-row{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:2px dashed color-mix(in srgb, var(--outline) 25%, transparent)}
+.grow-row:last-child{border-bottom:0}
+.thumb{width:52px;height:52px;flex-shrink:0;border:3px solid var(--outline);border-radius:14px;background:var(--surface2);display:grid;place-items:center;font-size:26px;overflow:hidden}
+.thumb svg{width:50px;height:50px}
+.itemgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.item{border:3px solid var(--outline);border-radius:18px;background:var(--surface);padding:8px 4px;text-align:center;font-weight:800;font-size:11px;box-shadow:0 3px 0 var(--outline);position:relative;line-height:1.3}
+.item .art{height:66px;display:grid;place-items:center;margin-bottom:4px}
+.item .art svg{height:66px;width:auto}
+.item.on{background:var(--gold);color:var(--onGold)}
+.item.lock{opacity:.55}
+.item .lk{position:absolute;top:4px;right:6px;font-size:10px}
+.slot-tabs{display:flex;gap:6px;overflow-x:auto;padding:2px 0 8px;margin-bottom:6px}
+.slot-tabs::-webkit-scrollbar{height:0}
+.slot-tabs button{flex-shrink:0;border:3px solid var(--outline);border-radius:999px;padding:6px 12px;font-weight:800;font-size:12px;background:var(--surface)}
+.slot-tabs button.on{background:var(--outline);color:var(--gold)}
+.box-ico{font-size:34px;width:58px;height:58px;display:grid;place-items:center;border:3px solid var(--outline);border-radius:16px;background:var(--surface2);flex-shrink:0}
+.bigbox{font-size:96px;text-align:center;margin:10px 0;display:block}
+.bigbox.shake{animation:shake .5s ease-in-out 3}
+@keyframes shake{0%,100%{transform:rotate(0)}25%{transform:rotate(-12deg) scale(1.06)}75%{transform:rotate(12deg) scale(1.06)}}
+.reveal{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:12px 0}
+.rcard{border:3px solid var(--outline);border-radius:18px;padding:12px 6px;text-align:center;font-weight:800;font-size:12px;background:var(--surface);animation:flip .5s ease both;line-height:1.3}
+.rcard .e{font-size:30px;display:block;margin-bottom:4px}
+@keyframes flip{from{transform:rotateY(90deg);opacity:0}to{transform:none;opacity:1}}
+.gcard{border:3px solid var(--outline);border-radius:20px;background:var(--surface);box-shadow:0 4px 0 var(--outline);padding:10px;text-align:center;display:flex;flex-direction:column;gap:6px;min-width:0}
+.gcard .art{height:104px;display:grid;place-items:center;background:var(--surface2);border-radius:14px;font-size:50px;overflow:hidden}
+.gcard .art svg{height:100px;width:auto}
+.gcard b{font-size:13px}
+.gcard .meta{font-size:11px;color:var(--text2);font-weight:700}
+.gcard.sel{background:var(--gold);color:var(--onGold)}
+.oddsT{width:100%;border-collapse:collapse;font-size:13px;font-weight:700}
+.oddsT th,.oddsT td{padding:6px 4px;border-bottom:2px dashed color-mix(in srgb, var(--outline) 25%, transparent);text-align:right}
+.oddsT th:first-child,.oddsT td:first-child{text-align:left}
+.game{position:relative;border:3px solid var(--outline);border-radius:22px;overflow:hidden;background:#2b2452;touch-action:none;box-shadow:var(--shadow)}
+.game canvas{display:block;width:100%;height:auto;aspect-ratio:360/440}
+.hud{position:absolute;top:8px;left:8px;right:8px;display:flex;justify-content:space-between;gap:6px;pointer-events:none}
+.hud span{background:rgba(0,0,0,.55);color:#FFC531;font-weight:900;font-size:13px;padding:4px 10px;border-radius:999px}
+.track{position:relative;border:3px solid var(--outline);border-radius:20px;background:color-mix(in srgb, var(--mint) 28%, var(--surface2));overflow:hidden;padding:4px 0}
+.lane{position:relative;height:42px;border-bottom:2px dashed color-mix(in srgb, var(--outline) 30%, transparent)}
+.lane:last-of-type{border-bottom:0}
+.lane .runner{position:absolute;left:4px;top:1px;width:40px;height:40px;will-change:transform}
+.lane .runner svg{width:40px;height:40px}
+.lane .nm{position:absolute;right:52px;top:12px;font-size:11px;font-weight:800;color:var(--text2)}
+.lane.me{background:color-mix(in srgb, var(--gold) 35%, transparent)}
+.finish{position:absolute;top:0;bottom:0;right:44px;width:6px;background:repeating-linear-gradient(#1F1A33 0 6px,#fff 6px 12px)}
 @media (prefers-reduced-motion: reduce){
   *,*::before,*::after{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.001ms !important}
 }
@@ -260,11 +314,11 @@ canvas#confetti{position:absolute;inset:0;width:100%;height:100%;pointer-events:
     <h1>MuchWalk <span class="wow">much walk. very health. wow.</span></h1>
     <p>Clickable prototype of the DogeOS move-to-earn dapp. Everything is fake data, running in your browser. Open this link on a phone for the full-screen app.</p>
     <ol>
-      <li>Tap <b>🐾 +1,000 steps</b> twice for the goal confetti. Tap once more to level up.</li>
-      <li><b>Pup</b> tab: Evolve Biscuit and try on gear.</li>
-      <li><b>Walk</b>: start a run, flip <b>Go Live</b>, and turn on 🔊 to hear Coach Bark read tips aloud.</li>
-      <li>Ask Coach: <i>"Should I buy more TREAT?"</i></li>
-      <li><b>Moon</b>: the live Walk Block feed (real 10-minute windows).</li>
+      <li>Tap <b>🐾 +1,000 steps</b> twice for the goal confetti and a Daily Box. Tap once more to level up.</li>
+      <li><b>Den → Loot</b>: open your boxes, then run tonight's <b>Genesis Draw</b>.</li>
+      <li><b>Den → Closet</b>: dress your Walker (try the wheelchair base). <b>Market</b>: buy, sell, trade or rent Genesis NFTs.</li>
+      <li><b>Play</b>: run <b>Fetch Frenzy</b> (arrow keys or tap) and watch a <b>Doge Derby</b> race.</li>
+      <li><b>Walk</b>: start a run, flip <b>Go Live</b> and turn on 🔊. Ask Coach <i>"Should I buy more TREAT?"</i></li>
     </ol>
     <div class="ctrls">
       <button class="btn sm sec" data-action="theme">🌗 Theme</button>
@@ -296,6 +350,14 @@ canvas#confetti{position:absolute;inset:0;width:100%;height:100%;pointer-events:
         <section class="view" data-v="bets"></section>
         <section class="view" data-v="badges"></section>
         <section class="view" data-v="wallet"></section>
+        <section class="view" data-v="play"></section>
+        <section class="view" data-v="den"></section>
+        <section class="view" data-v="closet"></section>
+        <section class="view" data-v="loot"></section>
+        <section class="view" data-v="forge"></section>
+        <section class="view" data-v="market"></section>
+        <section class="view" data-v="frenzy"></section>
+        <section class="view" data-v="derby"></section>
       </main>
 
       <button class="fab" id="fab" data-action="go" data-view="coach" aria-label="Open Coach Bark"><span class="bub">1</span></button>
@@ -303,10 +365,10 @@ canvas#confetti{position:absolute;inset:0;width:100%;height:100%;pointer-events:
 
       <nav class="tabbar" aria-label="Main">
         <button class="tab" data-action="go" data-view="home"><span class="ti">🏠</span>Home</button>
-        <button class="tab" data-action="go" data-view="moon"><span class="ti">🌙</span>Moon</button>
-        <button class="tab-walk" id="walkTab" data-action="go" data-view="walk" aria-label="Walk">🐾</button>
         <button class="tab" data-action="go" data-view="ranks"><span class="ti">🏆</span>Ranks</button>
-        <button class="tab" data-action="go" data-view="pup"><span class="ti">🐕</span>Pup</button>
+        <button class="tab-walk" id="walkTab" data-action="go" data-view="walk" aria-label="Walk">🐾</button>
+        <button class="tab" data-action="go" data-view="play"><span class="ti">🎮</span>Play</button>
+        <button class="tab" data-action="go" data-view="den"><span class="ti">🐕</span>Den</button>
       </nav>
 
       <div class="toast" id="toast" role="status"></div>
@@ -378,8 +440,20 @@ const initialState = () => ({
   chat: [{ from: 'coach', text: "Wow, good to see you! You're at 78% of today's goal. Want a quick plan for the rest of the day?" }],
   ranksTab: 'League',
   badgesEarned: [101, 102, 103, 201, 202, 301, 302, 501, 601, 701, 851],
+  walker: { base: 'standing', skin: 2, hair: 'spiky', top: 'hoodie', bottom: 'shorts', shoes: 'runners', hat: 'cap' },
+  inv: ['spiky', 'bob', 'curly', 'hoodie', 'tee', 'shorts', 'joggers', 'leggings', 'runners', 'hightops', 'cap', 'beanie'],
+  closetSlot: 'hair', extras: [],
+  shards: 260, boxes: [{ id: 1, type: 'daily' }, { id: 2, type: 'streak' }], boxSeq: 3, pity: { rare: 7, sr: 31 },
+  entries: 0, wonDraw: false, questBoxGiven: false,
+  tickets: 3, ticketsToday: 3, frenzyBest: 0, weekSteps: 58400,
+  genesis: [
+    { id: 207, name: 'Comet', kind: 'Pup', r: 'SR', coat: 'galaxy', status: 'owned' },
+    { id: 642, name: 'Moon Boots', kind: 'Relic', r: 'L', emoji: '🥾', status: 'rented', left: '2d 6h' },
+  ],
+  equipped: { pup: null, walker: null, relics: [] },
+  moonSet: 5, doge: 120, mtab: 'Buy', listings: LISTINGS(), rentDays: 3, tradePick: { mine: null, theirs: null },
 });
-let S = initialState();
+let S; // created at boot, once every constant below exists
 let walkTimer = null, cheerTimer = null;
 
 /* ---------- Pup renderer (reference for packages/shared/src/pup/render.ts) ---------- */
@@ -431,11 +505,118 @@ function pupSVG({ coat = 'classic', stage = 0, mood = 'content', hat = false, sh
     </g></svg>`;
 }
 
+/* ---------- Walker avatar, items, rarity (docs/02 §15–§19) ---------- */
+const RAR = { N: 'Normal', R: 'Rare', SR: 'Super Rare', L: 'Legendary', M: 'Much Wow' };
+const RAR_BONUS = { N: 2, R: 4, SR: 7, L: 10, M: 15 };
+const SKINS = ['#FFE0C2', '#F5C9A0', '#E0A878', '#C68A5A', '#8D5A3B', '#5E3A26'];
+const SLOTS = { hair: '💇 Hair', top: '👕 Top', bottom: '👖 Bottom', shoes: '👟 Shoes', hat: '🧢 Hat' };
+const ITEMS = [
+  { id: 'spiky', slot: 'hair', name: 'Spiky', r: 'N', how: 'starter' }, { id: 'bob', slot: 'hair', name: 'Bob', r: 'N', how: 'starter' },
+  { id: 'curly', slot: 'hair', name: 'Curly', r: 'R', how: 'loot' }, { id: 'bun', slot: 'hair', name: 'Top Bun', r: 'R', how: 'lv', lv: 20 },
+  { id: 'mohawk', slot: 'hair', name: 'Mohawk', r: 'SR', how: 'lv', lv: 50 },
+  { id: 'hoodie', slot: 'top', name: 'Gold Hoodie', r: 'N', how: 'starter' }, { id: 'tee', slot: 'top', name: 'Pink Tee', r: 'N', how: 'starter' },
+  { id: 'jersey', slot: 'top', name: 'Sky Jersey', r: 'R', how: 'lv', lv: 22 }, { id: 'dogetee', slot: 'top', name: 'Such Tee', r: 'SR', how: 'loot' },
+  { id: 'rainbow', slot: 'top', name: 'Rainbow Hoodie', r: 'M', how: 'loot' },
+  { id: 'shorts', slot: 'bottom', name: 'Navy Shorts', r: 'N', how: 'starter' }, { id: 'joggers', slot: 'bottom', name: 'Joggers', r: 'N', how: 'starter' },
+  { id: 'leggings', slot: 'bottom', name: 'Galaxy Leggings', r: 'R', how: 'loot' },
+  { id: 'runners', slot: 'shoes', name: 'Runners', r: 'N', how: 'starter' }, { id: 'hightops', slot: 'shoes', name: 'High-tops', r: 'N', how: 'starter' },
+  { id: 'boots', slot: 'shoes', name: 'Trail Boots', r: 'R', how: 'lv', lv: 30 }, { id: 'moonboots', slot: 'shoes', name: 'Moon Boots', r: 'L', how: 'set' },
+  { id: 'cap', slot: 'hat', name: 'Cap', r: 'N', how: 'starter' }, { id: 'beanie', slot: 'hat', name: 'Beanie', r: 'N', how: 'starter' },
+  { id: 'visor', slot: 'hat', name: 'Visor', r: 'R', how: 'loot' }, { id: 'goldvisor', slot: 'hat', name: 'Gold Visor', r: 'L', how: 'loot' },
+  { id: 'crown', slot: 'hat', name: 'Doge Crown', r: 'L', how: 'lv', lv: 90 }, { id: 'astro', slot: 'hat', name: 'Astro Helmet', r: 'M', how: 'lv', lv: 100 },
+];
+const ownsItem = it => !it.id || S.inv.includes(it.id) || (it.how === 'lv' && S.level >= it.lv);
+
+// Reference for packages/shared/src/avatar/render.ts
+function walkerSVG(w = {}) {
+  const ink = '#1F1A33', sk = SKINS[w.skin ?? 2], hairC = '#3A2A1E';
+  const TOP = { hoodie: '#FFC531', tee: '#FF5C8A', jersey: '#3BA7FF', dogetee: '#FFF1DA', rainbow: 'url(#mwRainbow)', astro: '#E9E4FF' }[w.top] || '#FFC531';
+  const BOT = { shorts: '#2E3A6E', joggers: '#8A8FA3', leggings: '#6C5CE7' }[w.bottom] || '#2E3A6E';
+  const SHOE = { runners: '#FFFFFF', hightops: '#FF5C8A', boots: '#8A5A2B', moonboots: '#C9D6FF' }[w.shoes] || '#FFFFFF';
+  const st = `stroke="${ink}" stroke-width="3" stroke-linejoin="round"`;
+  const HAIR = {
+    spiky: `<path d="M36 46 L40 28 L48 36 L54 22 L62 34 L70 22 L74 36 L84 30 L84 46 Q60 34 36 46 Z" fill="${hairC}" ${st}/>`,
+    bob: `<path d="M34 56 Q32 24 60 24 Q88 24 86 56 L80 56 Q78 36 60 36 Q42 36 40 56 Z" fill="${hairC}" ${st}/>`,
+    curly: `<g fill="#5A3A22" ${st}><circle cx="42" cy="36" r="9"/><circle cx="54" cy="28" r="10"/><circle cx="68" cy="28" r="10"/><circle cx="79" cy="37" r="9"/></g>`,
+    bun: `<path d="M36 46 Q38 26 60 26 Q82 26 84 46 Q60 36 36 46 Z" fill="${hairC}" ${st}/><circle cx="60" cy="20" r="9" fill="${hairC}" ${st}/>`,
+    mohawk: `<path d="M53 32 L55 8 L60 18 L64 6 L67 32 Z" fill="#FF5C8A" ${st}/>`,
+  }[w.hair] || '';
+  const HAT = {
+    cap: `<path d="M36 40 Q38 22 60 22 Q82 22 84 40 Z" fill="#3BA7FF" ${st}/><path d="M80 40 L100 42 Q98 47 82 45 Z" fill="#3BA7FF" ${st}/>`,
+    beanie: `<path d="M36 42 Q36 18 60 18 Q84 18 84 42 Z" fill="#FF5C8A" ${st}/><rect x="34" y="38" width="52" height="8" rx="4" fill="#FFC531" ${st}/><circle cx="60" cy="15" r="6" fill="#FFC531" ${st}/>`,
+    visor: `<rect x="37" y="33" width="46" height="8" rx="3" fill="#22C997" ${st}/><path d="M82 35 L102 43 L82 43 Z" fill="#22C997" ${st}/>`,
+    goldvisor: `<rect x="37" y="33" width="46" height="8" rx="3" fill="#FFC531" ${st}/><path d="M82 35 L102 43 L82 43 Z" fill="#FFC531" ${st}/><path d="M60 14 l3 7 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z" fill="#FFC531" ${st}/>`,
+    crown: `<path d="M38 36 L42 16 L52 28 L60 12 L68 28 L78 16 L82 36 Z" fill="#FFC531" ${st}/><circle cx="60" cy="26" r="3" fill="#FF5C8A"/>`,
+    astro: `<circle cx="60" cy="50" r="33" fill="rgba(170,215,255,.28)" stroke="${ink}" stroke-width="4"/><path d="M38 36 Q46 24 60 21" stroke="#fff" stroke-width="5" fill="none" opacity=".8" stroke-linecap="round"/>`,
+  }[w.hat] || '';
+  const head = `<circle cx="60" cy="50" r="24" fill="${sk}" stroke="${ink}" stroke-width="4"/>
+    <circle cx="52" cy="52" r="3" fill="${ink}"/><circle cx="68" cy="52" r="3" fill="${ink}"/>
+    <path d="M53 61 q7 6 14 0" stroke="${ink}" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <ellipse cx="45" cy="60" rx="5" ry="3" fill="#FF8FA3" opacity=".6"/><ellipse cx="75" cy="60" rx="5" ry="3" fill="#FF8FA3" opacity=".6"/>`;
+  const deco = w.top === 'dogetee' ? `<text x="60" y="105" text-anchor="middle" font-family="Comic Neue, Comic Sans MS, cursive" font-weight="700" font-size="14" fill="#FF5C8A">wow</text>`
+    : w.top === 'jersey' ? `<rect x="36" y="94" width="48" height="7" fill="#fff" opacity=".85"/>` : '';
+  let body;
+  if (w.base === 'wheelchair') {
+    body = `<ellipse cx="62" cy="184" rx="40" ry="5" fill="rgba(0,0,0,.15)"/>
+      <circle cx="54" cy="150" r="30" fill="none" stroke="${ink}" stroke-width="5"/>
+      <path d="M54 120 V180 M24 150 H84 M33 129 L75 171 M75 129 L33 171" stroke="#8A8FA3" stroke-width="2"/><circle cx="54" cy="150" r="4" fill="${ink}"/>
+      <circle cx="98" cy="174" r="8" fill="none" stroke="${ink}" stroke-width="4"/>
+      <path d="M38 126 H88 L98 166" stroke="${ink}" stroke-width="5" fill="none" stroke-linecap="round"/>
+      <rect x="48" y="112" width="42" height="14" rx="7" fill="${BOT}" ${st}/><rect x="80" y="118" width="13" height="36" rx="6" fill="${BOT}" ${st}/>
+      <ellipse cx="92" cy="158" rx="11" ry="6" fill="${SHOE}" ${st}/>
+      <rect x="34" y="72" width="48" height="50" rx="16" fill="${TOP}" stroke="${ink}" stroke-width="4"/>${deco}
+      <rect x="42" y="84" width="13" height="40" rx="6" fill="${TOP}" ${st}/><circle cx="48" cy="128" r="6" fill="${sk}" ${st}/>`;
+  } else {
+    body = `<ellipse cx="60" cy="184" rx="34" ry="5" fill="rgba(0,0,0,.15)"/>
+      <rect x="45" y="118" width="13" height="50" rx="6" fill="${BOT}" ${st}/><rect x="62" y="118" width="13" height="50" rx="6" fill="${BOT}" ${st}/>
+      <ellipse cx="50" cy="172" rx="12" ry="7" fill="${SHOE}" ${st}/><ellipse cx="71" cy="172" rx="12" ry="7" fill="${SHOE}" ${st}/>
+      <rect x="24" y="80" width="13" height="40" rx="6" fill="${TOP}" ${st}/><rect x="83" y="80" width="13" height="40" rx="6" fill="${TOP}" ${st}/>
+      <circle cx="30" cy="124" r="6" fill="${sk}" ${st}/><circle cx="90" cy="124" r="6" fill="${sk}" ${st}/>
+      <rect x="34" y="74" width="52" height="54" rx="16" fill="${TOP}" stroke="${ink}" stroke-width="4"/>${deco}`;
+  }
+  return `<svg viewBox="0 0 120 190" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Walker avatar">
+    <defs><linearGradient id="mwRainbow" x1="0" x2="1"><stop offset="0" stop-color="#FF5C8A"/><stop offset=".25" stop-color="#FFC531"/><stop offset=".5" stop-color="#22C997"/><stop offset=".75" stop-color="#3BA7FF"/><stop offset="1" stop-color="#6C5CE7"/></linearGradient></defs>
+    ${body}${head}${HAIR}${HAT}</svg>`;
+}
+// Genesis NFT art: Pups use the Pup renderer, Walkers the Walker renderer, Relics a sticker emoji
+function nftArt(g) {
+  if (g.kind === 'Pup') return pupSVG({ coat: g.coat, stage: ['L', 'M'].includes(g.r) ? 2 : 1, mood: 'happy', bob: false });
+  if (g.kind === 'Walker') return walkerSVG(g.walker);
+  return `<span>${g.emoji}</span>`;
+}
+const BOX_TYPES = {
+  daily: { name: 'Daily Box', e: '🎁', rolls: 1, table: 'D', entries: 1 },
+  quest: { name: 'Quest Box', e: '🧰', rolls: 2, table: 'Q', entries: 2 },
+  streak: { name: 'Streak Box', e: '💝', rolls: 3, table: 'S', entries: 5 },
+  season: { name: 'Season Box', e: '🏆', rolls: 3, table: 'S', entries: 20 },
+  forge: { name: 'Forge Box', e: '🔨', rolls: 2, table: 'Q', entries: 2 },
+};
+const LOOT = {
+  D: [['xp', 45], ['shards', 27], ['N', 18], ['R', 7], ['SR', 2.5], ['L', 0.45], ['M', 0.05]],
+  Q: [['xp', 35], ['shards', 30], ['N', 18], ['R', 12], ['SR', 4], ['L', 0.9], ['M', 0.1]],
+  S: [['xp', 20], ['shards', 25], ['R', 38], ['SR', 13], ['L', 3.5], ['M', 0.5]],
+};
+const DUP_SHARDS = { N: 5, R: 15, SR: 40, L: 100, M: 300 };
+const EXTRA_COSMETICS = { N: 'Paw Socks', R: 'Rocket Scarf', SR: 'Comet Trail', L: 'Golden Collar', M: 'Rainbow Aura' };
+const MOON_SET = ['Crater Bowl', 'Star Collar', 'Rocket Pack', 'Moon Flag', 'Comet Scarf', 'Orbit Visor'];
+const LISTINGS = () => [
+  { id: 31, name: 'Sesame Sprinter', kind: 'Pup', r: 'N', coat: 'sesame', price: 120, token: 'TREAT', seller: 'lil_bork', rent: 8 },
+  { id: 118, name: 'Trail Ranger', kind: 'Walker', r: 'R', walker: { base: 'standing', skin: 4, hair: 'curly', top: 'jersey', bottom: 'joggers', shoes: 'boots', hat: 'visor' }, price: 45, token: 'DOGE', seller: 'zoomie_queen', rent: 12 },
+  { id: 355, name: 'Golden Goodboi', kind: 'Pup', r: 'L', coat: 'gold', price: 2400, token: 'TREAT', seller: 'moonwalker42', rent: 60 },
+  { id: 712, name: 'Golden Leash', kind: 'Relic', r: 'SR', emoji: '🦮', price: 300, token: 'TREAT', seller: 'mochi_miles', rent: 15 },
+  { id: 480, name: 'Space Cadet', kind: 'Walker', r: 'SR', walker: { base: 'wheelchair', skin: 1, hair: 'bob', top: 'astro', bottom: 'leggings', shoes: 'moonboots', hat: 'astro' }, price: 90, token: 'DOGE', seller: 'very_cardio', rent: 25 },
+  { id: 903, name: 'Rocket Pack', kind: 'Relic', r: 'R', emoji: '🎒', price: 140, token: 'TREAT', seller: 'noodle_legs', rent: 10 },
+];
+const FRIEND_NFTS = [
+  { id: 77, name: 'Biscotti', kind: 'Pup', r: 'R', coat: 'cream' },
+  { id: 505, name: 'Comet Scarf', kind: 'Relic', r: 'N', emoji: '🧣' },
+];
+
 /* ---------- Derived ---------- */
 const pct = () => S.steps / S.goal;
 const pupMood = () => pct() >= 1 ? 'happy' : pct() >= 0.5 ? 'content' : 'sleepy';
 const moodText = () => ({ happy: 'Happy 🤩 Goal met!', content: 'Content 😊 Keep going', sleepy: 'Sleepy 😴 Walk me?' })[pupMood()];
-const pupBonus = () => Math.min(20, 0.4 * S.pup.level);
+const pupBonus = () => Math.min(30, 0.4 * S.pup.level + (RAR_BONUS[S.pup.rarity] || 0));
 const currentBlock = () => S.blocksBase + Math.floor(Date.now() / 600000) - BOOT_WINDOW;
 const BOOT_WINDOW = Math.floor(Date.now() / 600000);
 
@@ -511,16 +692,26 @@ function addSteps(n, { quiet = false } = {}) {
   S.steps += n; S.myHashes += n; S.myKm += n * 0.00072; S.moonKm += n * 0.00072;
   const stepXp = Math.floor(S.steps / 100) - Math.floor(before / 100);
   if (stepXp > 0) addXp(stepXp);
+  const newTickets = Math.min(5 - S.ticketsToday, Math.floor(S.steps / 2000) - Math.floor(before / 2000));
+  if (newTickets > 0) { S.ticketsToday += newTickets; S.tickets = Math.min(10, S.tickets + newTickets); }
   const q = S.quests.find(x => x.id === 'Q_GOAL_120');
   q.prog = S.steps;
-  if (!q.done && q.prog >= q.target) { q.done = true; setTimeout(() => addXp(q.xp, 'Quest done: 120% of goal'), 900); }
+  if (!q.done && q.prog >= q.target) { q.done = true; setTimeout(() => { addXp(q.xp, 'Quest done: 120% of goal'); checkQuestBox(); }, 900); }
   if (!S.goalHit && S.steps >= S.goal) {
     S.goalHit = true; S.streak += 1;
     addXp(50, 'Goal crushed! Much walk 🎉');
+    S.boxes.push({ id: S.boxSeq++, type: 'daily' });
+    setTimeout(() => toast('🎁 Daily Box earned! Open it in your Den'), 2400);
     confetti(); wowBurst(3); haptic(40);
     const ring = $('.ringwrap'); ring && ring.classList.add('ring-pulse');
   } else if (!quiet) haptic();
   renderChrome(); if (S.view === 'home') renderHome();
+}
+function checkQuestBox() {
+  if (S.questBoxGiven || !S.quests.every(q => q.done)) return;
+  S.questBoxGiven = true; S.boxes.push({ id: S.boxSeq++, type: 'quest' }); S.tickets = Math.min(10, S.tickets + 1);
+  setTimeout(() => toast('🧰 Quest Box earned (+1 game ticket)!'), 1600);
+  if (S.view === 'home') renderHome();
 }
 function showLevelUp() {
   confetti(160); wowBurst(4); haptic(60);
@@ -528,7 +719,7 @@ function showLevelUp() {
     <div class="muted" style="font-size:14px;font-weight:800;letter-spacing:1px">LEVEL UP</div>
     <div class="num">${S.level}</div>
     <h2 style="font-size:26px;margin:6px 0">You're a ${titleFor(S.level)}!</h2>
-    <p class="muted" style="font-size:14px">+1 chest unlocked. ${S.level % 5 === 0 ? 'Bonus cosmetic added to your Pup closet. ' : ''}Very proud of you.</p>
+    <p class="muted" style="font-size:14px">+1 Closet item unlocked. ${S.level % 5 === 0 ? 'Bonus cosmetic for your Pup too. ' : ''}Very proud of you.</p>
     <button class="btn block" data-action="close">Such wow, continue</button></div>`, true);
 }
 function setTheme(next) {
@@ -544,15 +735,18 @@ function renderChrome() {
   $('#lvlTop').innerHTML = `Lv ${S.level} <small>${titleFor(S.level)}</small>`;
   $('#streakChip').textContent = `🔥 ${S.streak}`;
   $('#treatChip').textContent = `🦴 ${fmt(S.wallet)}`;
-  $$('.tab').forEach(t => t.classList.toggle('on', t.dataset.view === S.view));
+  const parent = PARENT_TAB[S.view] || S.view;
+  $$('.tab').forEach(t => t.classList.toggle('on', t.dataset.view === parent));
   $('#walkTab').classList.toggle('live', S.walk.active && S.walk.live);
-  $('#fab').classList.toggle('hide', ['coach', 'walk'].includes(S.view));
+  $('#fab').classList.toggle('hide', ['coach', 'walk', 'frenzy', 'derby'].includes(S.view));
   $('#fab').innerHTML = `<span class="bub">1</span>` + pupSVG({ coat: 'gold', stage: 1, mood: 'happy', bob: false });
 }
+const PARENT_TAB = { moon: 'play', bets: 'play', frenzy: 'play', derby: 'play', closet: 'den', loot: 'den', forge: 'den', market: 'den', pup: 'den', badges: 'home', wallet: 'home', coach: 'home' };
 function go(view) {
   S.view = view;
   $$('.view').forEach(v => v.classList.toggle('active', v.dataset.v === view));
-  ({ home: renderHome, walk: renderWalk, moon: renderMoon, ranks: renderRanks, pup: renderPup, coach: renderCoach, bets: renderBets, badges: renderBadges, wallet: renderWallet })[view]();
+  ({ home: renderHome, walk: renderWalk, moon: renderMoon, ranks: renderRanks, pup: renderPup, coach: renderCoach, bets: renderBets, badges: renderBadges, wallet: renderWallet,
+     play: renderPlay, den: renderDen, closet: renderCloset, loot: renderLoot, forge: renderForge, market: renderMarket, frenzy: renderFrenzy, derby: renderDerby })[view]();
   renderChrome();
   $('#screen').scrollTop = 0;
 }
@@ -605,13 +799,14 @@ function renderHome() {
         <div class="chk">${q.done ? '✓' : ''}</div>
         <div style="flex:1;min-width:0"><div class="between"><span class="qt">${q.text}</span><span class="tag ${q.tier}">${q.xp} XP</span></div>
         ${q.done ? '' : `<div class="bar mint" style="height:10px;margin-top:6px"><i style="width:${clamp(q.prog / q.target * 100, 2, 100)}%"></i></div>`}</div></div>`).join('')}
-      <button class="btn block ${allDone && !S.chestOpened ? 'glow' : 'sec'}" style="margin-top:10px" data-action="chest" ${allDone && !S.chestOpened ? '' : 'disabled'}>${S.chestOpened ? '🎁 Chest opened, come back tomorrow' : allDone ? '🎁 Open daily chest!' : '🔒 Daily chest (finish all 3)'}</button>
+      <button class="btn block ${allDone ? 'glow' : 'sec'}" style="margin-top:10px" data-action="go" data-view="loot" ${allDone ? '' : 'disabled'}>${allDone ? '🧰 Quest Box earned: open it in your Den' : '🔒 Quest Box (finish all 3)'}</button>
     </div>
 
-    <div class="card click" data-action="go" data-view="pup" style="padding:12px 16px">
+    <div class="card click" data-action="go" data-view="den" style="padding:12px 16px">
       <div class="row">
-        <div style="width:86px;height:86px;flex-shrink:0">${pupSVG({ ...S.pup, mood: pupMood() })}</div>
-        <div style="flex:1"><b style="font-family:var(--f-display);font-size:20px">${S.pup.name}</b> <span class="muted">· ${STAGES[S.pup.stage]} Lv ${S.pup.level}</span>
+        <div style="width:50px;flex-shrink:0">${walkerSVG(S.walker)}</div>
+        <div style="width:78px;height:78px;flex-shrink:0;margin-left:-8px">${pupSVG({ ...S.pup, mood: pupMood() })}</div>
+        <div style="flex:1;min-width:0"><b style="font-family:var(--f-display);font-size:20px">You & ${S.pup.name}</b> <span class="muted">· ${STAGES[S.pup.stage]} Lv ${S.pup.level}</span>
           <div class="muted">${moodText()}</div>
           ${atCap ? '<span class="chip gold" style="margin-top:6px">✨ Ready to evolve!</span>' : `<span class="chip ghost" style="margin-top:6px">+${pupBonus().toFixed(1)}% walk bonus</span>`}
         </div>
@@ -625,9 +820,9 @@ function renderHome() {
     </div>
 
     <div class="grid4">
-      <button class="tile" data-action="go" data-view="bets"><span class="e">🎲</span>Walk Bets</button>
-      <button class="tile" data-action="go" data-view="badges"><span class="e">🏅</span>Badges</button>
-      <button class="tile" data-action="go" data-view="coach"><span class="e">💬</span>Coach</button>
+      <button class="tile" data-action="go" data-view="loot"><span class="e">🎁</span>Loot · ${S.boxes.length}</button>
+      <button class="tile" data-action="go" data-view="market"><span class="e">🏪</span>Market</button>
+      <button class="tile" data-action="go" data-view="play"><span class="e">🎮</span>Games</button>
       <button class="tile" data-action="go" data-view="wallet"><span class="e">🦴</span>Claim</button>
     </div>`;
   tickBlock();
@@ -681,7 +876,7 @@ function startWalk() {
       w.cue = pick([`${km} km down! Much stride. 🐾`, `Kilometre ${km}! Very consistent pace, wow.`, `${km} km. Shoulders relaxed, keep it smooth.`]);
       speak(w.cue);
     }
-    if (w.t >= 900) { const q = S.quests.find(x => x.id === 'Q_SESSION_15'); q.prog = 15; if (!q.done) { q.done = true; addXp(q.xp, 'Quest done: 15-min session'); } }
+    if (w.t >= 900) { const q = S.quests.find(x => x.id === 'Q_SESSION_15'); q.prog = 15; if (!q.done) { q.done = true; addXp(q.xp, 'Quest done: 15-min session'); checkQuestBox(); } }
     addSteps(d, { quiet: true });
     if (S.view === 'walk') renderWalk();
   }, 1000);
@@ -734,6 +929,7 @@ function renderMoon() {
   const p = S.moonKm / 384400;
   const pos = t => Math.sqrt(t); // sqrt scale so the checkpoints are visible
   $('[data-v=moon]').innerHTML = `
+    <button class="back" data-action="go" data-view="play">‹ Play</button>
     <h2 class="section-title">🚀 Moon Mission · S1</h2>
     <svg class="moonmap" viewBox="0 0 360 240" role="img" aria-label="Community progress ${(p * 100).toFixed(1)} percent of the way to the Moon">
       <g fill="#fff" opacity=".7">${Array.from({ length: 40 }, (_, i) => `<circle cx="${(i * 97) % 360}" cy="${(i * 53) % 240}" r="${i % 3 ? 1 : 1.8}"/>`).join('')}</g>
@@ -811,6 +1007,7 @@ function renderRanks() {
 function renderPup() {
   const p = S.pup, cap = STAGE_CAP[p.stage], atCap = p.level >= cap && p.stage < 3;
   $('[data-v=pup]').innerHTML = `
+    <button class="back" data-action="go" data-view="den">‹ Den</button>
     <div class="card" style="text-align:center;padding-top:20px;background:radial-gradient(circle at 50% 40%, var(--surface2), var(--surface))">
       <div class="mood">${moodText()}</div>
       <div style="width:220px;height:220px;margin:0 auto">${pupSVG({ ...p, mood: pupMood() })}</div>
@@ -822,8 +1019,8 @@ function renderPup() {
       ${p.stage < 3 ? `<button class="btn block ${atCap ? 'glow' : ''}" data-action="evolve" ${atCap ? '' : 'disabled'}>✨ Evolve to ${STAGES[p.stage + 1]} · burn ${fmt(EVOLVE_COST[p.stage])} 🦴</button>` : '<div class="chip gold">🌕 Max stage. Much legend.</div>'}
     </div>
     <div class="grid2">
-      <div class="card" style="margin:0"><div class="muted">Walk bonus</div><div class="big">+${pupBonus().toFixed(1)}%</div><div class="muted">max +20%</div></div>
-      <div class="card" style="margin:0"><div class="muted">Leash</div><div class="big">${p.level >= 5 ? '🔓' : '🔒'}</div><div class="muted">${p.level >= 5 ? 'Earned: tradable' : `Lv ${p.level}/5 to trade`}</div></div>
+      <div class="card" style="margin:0"><div class="muted">Companion bonus</div><div class="big">+${pupBonus().toFixed(1)}%</div><div class="muted">level + rarity · max +30%</div></div>
+      <div class="card" style="margin:0"><div class="muted">${p.rarity ? 'Genesis Pup' : 'Starter Pup'}</div><div class="big">${p.rarity ? '💎' : '🐶'}</div><div class="muted">${p.rarity ? `${RAR[p.rarity]}: +${RAR_BONUS[p.rarity]}%` : 'Equip a Genesis Pup in your Den for a rarity bonus'}</div></div>
     </div>
     <div class="card" style="margin-top:16px"><h3>🎒 Gear</h3>
       <div class="grid4">
@@ -905,6 +1102,7 @@ const BETS = [
 ];
 function renderBets() {
   $('[data-v=bets]').innerHTML = `
+    <button class="back" data-action="go" data-view="play">‹ Play</button>
     <h2 class="section-title">🎲 Walk Bets</h2>
     <div class="banner">Stake on yourself. Finishers split the stakes of those who don't (10% fee). If nobody finishes, <b>the shelter dogs win 🐶</b>.</div>
     <div class="card tint"><h3>📌 My bet: 5-Day 6K</h3>
@@ -924,18 +1122,18 @@ function joinBet(id) {
 
 /* ---------- Badges ---------- */
 const BADGES = [
-  [101, '👣', 'First Paw', 'C'], [102, '🔟', 'Ten-K Club', 'C'], [103, '💯', '100K Paws', 'C'], [104, '💰', 'Millionaire Paws', 'R'], [106, '🏅', 'Marathon Doge', 'E'],
-  [201, '📅', 'Week Streak', 'C'], [202, '🗓️', 'Month Streak', 'R'], [203, '💎', 'Century Streak', 'E'], [204, '🐉', 'Year of the Doge', 'L'],
-  [301, '🛰️', 'ISS Reached', 'C'], [302, '📡', 'Geo Reached', 'R'], [303, '🌕', 'Moon Lander', 'E'],
-  [401, '⛏️', 'Block Finder', 'R'], [402, '🍀', 'Lucky Shibe', 'E'], [501, '👯', 'Pack Pup', 'C'], [601, '📣', 'First Cheer', 'C'],
-  [701, '🎲', 'Bet on Me', 'C'], [703, '🐶', 'Shelter Hero', 'R'], [851, '🌏', 'Chikyū Pioneer', 'L'], [901, '♿', 'Rolling Thunder', 'R'], [199, '🚀', 'Moon Walker', 'M'],
+  [101, '👣', 'First Paw', 'N'], [102, '🔟', 'Ten-K Club', 'N'], [103, '💯', '100K Paws', 'N'], [104, '💰', 'Millionaire Paws', 'R'], [106, '🏅', 'Marathon Doge', 'SR'],
+  [201, '📅', 'Week Streak', 'N'], [202, '🗓️', 'Month Streak', 'R'], [203, '💎', 'Century Streak', 'SR'], [204, '🐉', 'Year of the Doge', 'L'],
+  [301, '🛰️', 'ISS Reached', 'N'], [302, '📡', 'Geo Reached', 'R'], [303, '🌕', 'Moon Lander', 'SR'],
+  [401, '⛏️', 'Block Finder', 'R'], [402, '🍀', 'Lucky Shibe', 'SR'], [501, '👯', 'Pack Pup', 'N'], [601, '📣', 'First Cheer', 'N'],
+  [701, '🎲', 'Bet on Me', 'N'], [703, '🐶', 'Shelter Hero', 'R'], [851, '🌏', 'Chikyū Pioneer', 'L'], [901, '♿', 'Rolling Thunder', 'R'], [199, '🚀', 'Moon Walker', 'M'],
 ];
-const RARITY = { C: 'Common', R: 'Rare', E: 'Epic', L: 'Legendary', M: 'Much Wow' };
+const RARITY = RAR;
 function renderBadges() {
   const earned = BADGES.filter(b => S.badgesEarned.includes(b[0])).length;
   $('[data-v=badges]').innerHTML = `
     <div class="row" style="margin-bottom:14px"><div class="avatar" style="width:64px;height:64px">${pupSVG({ ...S.pup, bob: false })}</div>
-      <div><h2 style="font-size:24px">@biscuit_walks</h2><div class="muted">Lv ${S.level} ${titleFor(S.level)} · 🔥 ${S.streak} · ${earned}/${BADGES.length} badges</div></div></div>
+      <div><button class="back" data-action="go" data-view="den" style="margin-bottom:6px">‹ Den</button><h2 style="font-size:24px">@biscuit_walks</h2><div class="muted">Lv ${S.level} ${titleFor(S.level)} · 🔥 ${S.streak} · ${earned}/${BADGES.length} badges</div></div></div>
     <div class="banner">🏅 Badges are soulbound (non-transferable) on DogeOS. Proof you actually did the thing.</div>
     <div class="badges">${BADGES.map(([id, e, n, r]) => `<div class="badge ${S.badgesEarned.includes(id) ? '' : 'lock'}"><span class="e">${e}</span><b>${n}</b><small class="r-${r}">${RARITY[r]}</small></div>`).join('')}</div>`;
 }
@@ -943,6 +1141,7 @@ function renderBadges() {
 /* ---------- Wallet ---------- */
 function renderWallet() {
   $('[data-v=wallet]').innerHTML = `
+    <button class="back" data-action="go" data-view="home">‹ Home</button>
     <h2 class="section-title">🦴 Treats</h2>
     <div class="banner">🧪 DogeOS Chikyū testnet (chain 6281971). Treats have no value.</div>
     <div class="card" style="background:var(--gold);color:var(--onGold)">
@@ -962,6 +1161,389 @@ function renderWallet() {
          <button class="btn sec block" style="margin-top:10px" data-action="connect">🔗 WalletConnect</button>
          <p class="muted" style="margin:10px 0 0">Walk first, wallet later: your treats wait for you. We never ask for seed phrases.</p>`}
     </div>`;
+}
+
+/* ---------- Play hub ---------- */
+function renderPlay() {
+  const p = S.moonKm / 384400;
+  $('[data-v=play]').innerHTML = `
+    <h2 class="section-title">🎮 Play</h2>
+    <div class="card click" data-action="go" data-view="moon" style="background:linear-gradient(135deg,#1b1640,#3b2f7a);color:#fff">
+      <div class="between"><b style="font-family:var(--f-display);font-size:20px">🚀 Moon Mission · S1</b><span class="chip gold">${(p * 100).toFixed(1)}%</span></div>
+      <div class="bar moon" style="margin:10px 0"><i style="width:${p * 100}%"></i></div>
+      <div style="font-weight:700;font-size:13px;opacity:.9">⛏️ Block #${fmt(currentBlock())} closes in <span class="blockClock">--:--</span> · tap for the map and block feed</div>
+    </div>
+    <div class="card tint"><div class="between"><div><b>🎟️ Game tickets</b><div class="muted">+1 per 2,000 steps (max 5/day) · +1 per Quest Box</div></div><span class="big">${S.tickets}<span class="muted">/10</span></span></div></div>
+    <div class="card"><div class="row"><div class="box-ico">🦴</div><div style="flex:1;min-width:0"><h3 style="margin:0">Fetch Frenzy</h3><div class="muted">Dash through Doge City with your Pup. The weekly top 100 share the Games pool.</div></div></div>
+      <button class="btn block" style="margin-top:12px" data-action="go" data-view="frenzy">Play · uses 1 🎟️</button></div>
+    <div class="card"><div class="row"><div class="box-ico">🏁</div><div style="flex:1;min-width:0"><h3 style="margin:0">Doge Derby</h3><div class="muted">Sunday 18:00 UTC. Your real steps this week are your Pup's training.</div></div></div>
+      <button class="btn block sec" style="margin-top:12px" data-action="go" data-view="derby">Watch a demo race</button></div>
+    <div class="card click" data-action="go" data-view="bets"><div class="row"><div class="box-ico">🎲</div><div><h3 style="margin:0">Walk Bets</h3><div class="muted">Stake on yourself. Quitters fund finishers.</div></div></div></div>`;
+  tickBlock();
+}
+
+/* ---------- Den ---------- */
+function genesisStatus(g) {
+  if (g.status === 'rented') return `<span class="chip ghost">⏳ Rented · ${g.left} left</span>`;
+  if (g.status === 'listed') return '<span class="chip ghost">🏷️ Listed</span>';
+  if (g.lock) return `<span class="chip ghost">🔒 Leash ${g.lock}</span>`;
+  return '<span class="chip ghost">✅ Owned</span>';
+}
+function isEquipped(g) { return S.equipped.pup === g.id || S.equipped.walker === g.id || S.equipped.relics.includes(g.id); }
+function renderDen() {
+  $('[data-v=den]').innerHTML = `
+    <h2 class="section-title">🐕 Den</h2>
+    <div class="den-stage">
+      <svg class="leash" viewBox="0 0 340 210" preserveAspectRatio="none" aria-hidden="true"><path d="M86 140 Q150 104 205 150" stroke="#FF5C8A" stroke-width="3" fill="none" stroke-linecap="round"/></svg>
+      <div class="walker">${walkerSVG(S.walker)}</div>
+      <div class="pupw">${pupSVG({ ...S.pup, mood: pupMood() })}</div>
+      <span class="chip" style="position:absolute;top:10px;left:10px">You & ${S.pup.name}</span>
+      <span class="chip gold" style="position:absolute;top:10px;right:10px">+${pupBonus().toFixed(1)}%</span>
+    </div>
+    <div class="tiles3">
+      <button class="tile" data-action="go" data-view="closet"><span class="e">👕</span>Closet</button>
+      <button class="tile" data-action="go" data-view="loot"><span class="e">🎁</span>Loot · ${S.boxes.length}</button>
+      <button class="tile" data-action="go" data-view="forge"><span class="e">🔨</span>Forge</button>
+      <button class="tile" data-action="go" data-view="market"><span class="e">🏪</span>Market</button>
+      <button class="tile" data-action="go" data-view="pup"><span class="e">🐶</span>${S.pup.name}</button>
+      <button class="tile" data-action="go" data-view="badges"><span class="e">🏅</span>Badges</button>
+    </div>
+    <div class="card"><h3>💎 My Genesis NFTs <span class="muted" style="margin-left:auto">${S.genesis.length} of 1,000</span></h3>
+      ${S.genesis.map(g => `<div class="grow-row"><div class="thumb">${nftArt(g)}</div>
+        <div style="flex:1;min-width:0"><b>#${g.id} ${g.name}</b><div class="row" style="gap:6px;margin-top:4px;flex-wrap:wrap"><span class="rar rar-${g.r}">${RAR[g.r]}</span><span class="muted">${g.kind}</span>${genesisStatus(g)}</div></div>
+        <button class="btn sm ${isEquipped(g) ? 'mint' : 'sec'}" data-action="equipg" data-id="${g.id}">${isEquipped(g) ? 'Equipped' : 'Equip'}</button></div>`).join('')}
+    </div>
+    <div class="card tint"><div class="between"><div><b>🌙 Tonight's Genesis Draw</b><div class="muted">Each box you open = entries. 75 NFTs drop this season.</div></div><span class="big">${S.entries}</span></div>
+      <button class="btn block moon" style="margin-top:12px" data-action="draw">Run tonight's draw (demo)</button></div>`;
+}
+function equipGenesis(id) {
+  const g = S.genesis.find(x => x.id === +id); if (!g) return;
+  if (g.kind === 'Pup') {
+    if (!S.starterPup) S.starterPup = { name: S.pup.name, coat: S.pup.coat };
+    if (S.equipped.pup === g.id) { S.equipped.pup = null; Object.assign(S.pup, S.starterPup, { rarity: undefined }); toast(`🐶 ${S.pup.name} is back on the leash`); }
+    else { S.equipped.pup = g.id; Object.assign(S.pup, { name: g.name, coat: g.coat, rarity: g.r }); toast(`💎 ${g.name} equipped: +${RAR_BONUS[g.r]}% rarity bonus`); }
+  } else if (g.kind === 'Walker') {
+    if (!S.myWalker) S.myWalker = { ...S.walker };
+    if (S.equipped.walker === g.id) { S.equipped.walker = null; S.walker = { ...S.myWalker }; }
+    else { S.equipped.walker = g.id; S.walker = { ...g.walker }; toast(`🧍 Wearing the ${g.name} look`); }
+  } else {
+    const i = S.equipped.relics.indexOf(g.id);
+    if (i >= 0) S.equipped.relics.splice(i, 1);
+    else if (S.equipped.relics.length >= 2) { toast('Two Relics max. Unequip one first.'); return; }
+    else { S.equipped.relics.push(g.id); toast(`✨ ${g.name} equipped: game perk active`); }
+  }
+  renderDen(); renderChrome(); haptic();
+}
+
+/* ---------- Closet (avatar studio) ---------- */
+function renderCloset() {
+  const slot = S.closetSlot;
+  const list = (slot === 'hat' ? [{ id: null, slot: 'hat', name: 'None', r: 'N' }] : []).concat(ITEMS.filter(i => i.slot === slot));
+  $('[data-v=closet]').innerHTML = `
+    <button class="back" data-action="go" data-view="den">‹ Den</button>
+    <h2 class="section-title">👕 Closet</h2>
+    <div class="den-stage" style="height:200px">
+      <div class="walker" style="left:22%">${walkerSVG(S.walker)}</div>
+      <div class="pupw" style="left:56%">${pupSVG({ ...S.pup, mood: 'happy' })}</div>
+    </div>
+    ${S.equipped.walker ? '<div class="banner">You\'re wearing a Genesis Walker look. Unequip it in the Den to edit your own outfit.</div>' : ''}
+    <div class="card"><div class="between" style="flex-wrap:wrap"><b>Base</b><div class="row" style="gap:6px">
+      <button class="mode ${S.walker.base !== 'wheelchair' ? 'on' : ''}" data-action="wbase" data-b="standing">🧍 Standing</button>
+      <button class="mode ${S.walker.base === 'wheelchair' ? 'on' : ''}" data-action="wbase" data-b="wheelchair">♿ Wheelchair</button></div></div>
+      <div class="swatches" style="margin-top:12px">${SKINS.map((c, i) => `<button class="swatch ${S.walker.skin === i ? 'on' : ''}" style="background:${c}" data-action="skin" data-i="${i}" aria-label="Skin tone ${i + 1}"></button>`).join('')}</div></div>
+    <div class="slot-tabs">${Object.entries(SLOTS).map(([k, v]) => `<button class="${slot === k ? 'on' : ''}" data-action="cslot" data-s="${k}">${v}</button>`).join('')}</div>
+    <div class="itemgrid">${list.map(it => {
+      const owned = ownsItem(it), on = (S.walker[slot] || null) === it.id;
+      const lock = it.how === 'lv' ? `Lv ${it.lv}` : it.how === 'set' ? 'Set' : 'Loot';
+      return `<button class="item ${on ? 'on' : ''} ${owned ? '' : 'lock'}" data-action="wear" data-slot="${slot}" data-id="${it.id || ''}">${owned ? '' : `<span class="lk">🔒 ${lock}</span>`}<div class="art">${walkerSVG({ ...S.walker, [slot]: it.id })}</div>${it.name}<br><span class="rar rar-${it.r}">${RAR[it.r]}</span></button>`;
+    }).join('')}</div>
+    ${S.extras.length ? `<div class="card" style="margin-top:16px"><h3>✨ Extras from loot</h3><div class="muted">${S.extras.join(' · ')}</div></div>` : ''}
+    <p class="muted" style="margin-top:14px">One item unlocks every level. The rest drop from loot boxes or the Forge. Duplicates turn into shards.</p>`;
+}
+
+/* ---------- Loot ---------- */
+function rollOutcome(table) {
+  let pickR;
+  if (S.pity.sr >= 50) pickR = 'SR'; else if (S.pity.rare >= 10) pickR = 'R';
+  if (!pickR) {
+    let r = Math.random() * 100;
+    for (const [k, w] of LOOT[table]) { if ((r -= w) < 0) { pickR = k; break; } }
+    pickR = pickR || 'xp';
+  }
+  const isRarePlus = ['R', 'SR', 'L', 'M'].includes(pickR), isSrPlus = ['SR', 'L', 'M'].includes(pickR);
+  S.pity.rare = isRarePlus ? 0 : S.pity.rare + 1; S.pity.sr = isSrPlus ? 0 : S.pity.sr + 1;
+  if (pickR === 'xp') { const xp = { D: 30, Q: 50, S: 100 }[table]; addXp(xp); return { e: '⭐', label: `+${xp} XP`, r: 'N' }; }
+  if (pickR === 'shards') { const n = Math.round(rand(...{ D: [5, 15], Q: [10, 25], S: [25, 60] }[table])); S.shards += n; return { e: '🧩', label: `+${n} shards`, r: 'N' }; }
+  const pool = ITEMS.filter(i => i.r === pickR && ['loot', 'starter'].includes(i.how));
+  const it = pool.length ? pick(pool) : null;
+  if (it && !S.inv.includes(it.id)) { S.inv.push(it.id); return { e: SLOTS[it.slot].split(' ')[0], label: it.name, r: pickR, isNew: true }; }
+  if (!it && !S.extras.includes(EXTRA_COSMETICS[pickR])) { S.extras.push(EXTRA_COSMETICS[pickR]); return { e: '✨', label: EXTRA_COSMETICS[pickR], r: pickR, isNew: true }; }
+  S.shards += DUP_SHARDS[pickR];
+  return { e: '♻️', label: `${it ? it.name : EXTRA_COSMETICS[pickR]} (dupe) → +${DUP_SHARDS[pickR]} shards`, r: pickR };
+}
+function renderLoot() {
+  $('[data-v=loot]').innerHTML = `
+    <button class="back" data-action="go" data-view="den">‹ Den</button>
+    <div class="between"><h2 class="section-title">🎁 Loot</h2><button class="btn sm sec" data-action="odds">📊 Odds</button></div>
+    <div class="banner">Boxes are earned by walking, never sold. Odds are published, and every roll can be verified once the daily seed is revealed.</div>
+    ${S.boxes.length ? S.boxes.map(b => { const t = BOX_TYPES[b.type]; return `<div class="card"><div class="row"><div class="box-ico">${t.e}</div>
+      <div style="flex:1;min-width:0"><b>${t.name}</b><div class="muted">${t.rolls} roll${t.rolls > 1 ? 's' : ''} · table ${t.table} · +${t.entries} Genesis Draw entr${t.entries > 1 ? 'ies' : 'y'}</div></div>
+      <button class="btn sm" data-action="openbox" data-id="${b.id}">Open</button></div></div>`; }).join('')
+      : '<div class="card tint" style="text-align:center"><div style="font-size:40px">📭</div><b>No boxes right now</b><p class="muted">Hit your daily goal, finish quests or keep your streak to earn more.</p></div>'}
+    <div class="card"><h3>🍀 Pity meter</h3>
+      <div class="between muted"><span>Rare+ guaranteed in</span><b style="color:var(--text)">${Math.max(0, 10 - S.pity.rare)} boxes</b></div><div class="bar" style="margin:6px 0 12px"><i style="width:${S.pity.rare * 10}%"></i></div>
+      <div class="between muted"><span>Super Rare+ guaranteed in</span><b style="color:var(--text)">${Math.max(0, 50 - S.pity.sr)} boxes</b></div><div class="bar moon" style="margin-top:6px"><i style="width:${S.pity.sr * 2}%"></i></div></div>
+    <div class="card tint"><div class="between"><div><b>🌙 Genesis Draw entries</b><div class="muted">Drawn nightly. Max 1 win per season.</div></div><span class="big">${S.entries}</span></div></div>`;
+}
+function openBox(id) {
+  const idx = S.boxes.findIndex(b => b.id === +id); if (idx < 0) return;
+  const b = S.boxes.splice(idx, 1)[0], t = BOX_TYPES[b.type];
+  openSheet(`<span class="bigbox ${reduceMotion ? '' : 'shake'}">${t.e}</span><h2 style="font-size:24px">Opening ${t.name}…</h2>`, true);
+  haptic(30);
+  setTimeout(() => {
+    const out = Array.from({ length: t.rolls }, () => rollOutcome(t.table));
+    if (b.type === 'streak' && !out.some(o => ['R', 'SR', 'L', 'M'].includes(o.r))) out[out.length - 1] = rollOutcome('S');
+    S.entries += t.entries;
+    const best = out.some(o => ['L', 'M'].includes(o.r)) ? 'big' : out.some(o => ['R', 'SR'].includes(o.r)) ? 'mid' : 'small';
+    confetti(best === 'big' ? 200 : best === 'mid' ? 110 : 50); if (best === 'big') wowBurst(4);
+    openSheet(`<h2 style="font-size:24px">${t.e} ${t.name}</h2>
+      <div class="reveal">${out.map((o, i) => `<div class="rcard" style="animation-delay:${i * 0.25}s"><span class="e">${o.e}</span>${o.label}<br><span class="rar rar-${o.r}" style="margin-top:6px">${RAR[o.r]}</span>${o.isNew ? '<br><span class="muted">NEW</span>' : ''}</div>`).join('')}</div>
+      <p class="muted">+${t.entries} entries into tonight's Genesis Draw · roll proof saved in your box history</p>
+      <button class="btn block" data-action="closeloot">Much loot, wow</button>`, true);
+    renderChrome();
+  }, reduceMotion ? 200 : 1500);
+}
+function oddsSheet() {
+  const rows = ['xp', 'shards', 'N', 'R', 'SR', 'L', 'M'];
+  const val = (t, k) => { const f = LOOT[t].find(x => x[0] === k); return f ? f[1] + '%' : '—'; };
+  const name = k => k === 'xp' ? 'XP' : k === 'shards' ? 'Shards' : `${RAR[k]} item`;
+  openSheet(`<h2 style="font-size:24px">📊 Published odds (per roll)</h2>
+    <table class="oddsT"><tr><th>Outcome</th><th>Daily</th><th>Quest</th><th>Streak/Season</th></tr>
+    ${rows.map(k => `<tr><td>${name(k)}</td><td>${val('D', k)}</td><td>${val('Q', k)}</td><td>${val('S', k)}</td></tr>`).join('')}</table>
+    <p class="muted">Pity: Rare+ after 10 dry boxes, Super Rare+ after 50. Streak Boxes always contain at least one Rare+.</p>
+    <button class="btn block" data-action="close">Got it</button>`);
+}
+function genesisReveal(kindWeights, rarWeights, source) {
+  const wpick = obj => { let r = Math.random() * Object.values(obj).reduce((a, b) => a + b, 0); for (const [k, w] of Object.entries(obj)) if ((r -= w) < 0) return k; return Object.keys(obj)[0]; };
+  const kind = wpick(kindWeights), r = wpick(rarWeights);
+  let id; do { id = 1 + Math.floor(Math.random() * 1000); } while (S.genesis.some(g => g.id === id));
+  const coats = { N: 'classic', R: 'blacktan', SR: 'galaxy', L: 'gold', M: 'gold' };
+  const g = kind === 'Pup' ? { id, kind, r, name: pick(['Mochi', 'Nova', 'Pretzel', 'Kibo', 'Zoomie']), coat: coats[r] }
+    : kind === 'Walker' ? { id, kind, r, name: pick(['Night Runner', 'Trail Scout', 'Sky Strider']), walker: { base: Math.random() < 0.3 ? 'wheelchair' : 'standing', skin: Math.floor(Math.random() * 6), hair: pick(['bob', 'curly', 'spiky']), top: pick(['jersey', 'dogetee', 'rainbow']), bottom: 'leggings', shoes: 'moonboots', hat: pick(['goldvisor', 'crown', 'visor']) } }
+      : { id, kind, r, name: pick(['Orbit Visor', 'Comet Collar', 'Star Bowl']), emoji: pick(['🛰️', '☄️', '🥣']) };
+  g.status = 'owned'; g.lock = '14d';
+  return { g, source };
+}
+function showGenesisWin({ g, source }) {
+  openSheet(`<div class="lvlup"><div class="muted" style="font-weight:900;letter-spacing:1px">${source}</div>
+    <div class="gcard" style="max-width:220px;margin:12px auto"><div class="art" style="height:150px">${nftArt(g)}</div><b>#${g.id} ${g.name}</b><span class="rar rar-${g.r}" style="align-self:center">${RAR[g.r]}</span><div class="meta">Genesis ${g.kind} · 1 of 1,000</div></div>
+    <p class="muted">A 14-day leash lock applies before it can be sold or rented.</p>
+    <button class="btn block" data-action="claimg" data-id="${g.id}">⚡ Claim (gasless)</button></div>`, true);
+  S.pendingGenesis = g;
+}
+
+/* ---------- Forge ---------- */
+function renderForge() {
+  const full = S.moonSet >= 6;
+  $('[data-v=forge]').innerHTML = `
+    <button class="back" data-action="go" data-view="den">‹ Den</button>
+    <h2 class="section-title">🔨 Forge</h2>
+    <div class="card" style="background:var(--gold);color:var(--onGold)"><div class="between"><b>🧩 Shards</b><span class="big">${fmt(S.shards)}</span></div><div style="font-weight:700;font-size:13px">Duplicates melt into shards automatically.</div></div>
+    <div class="card"><h3>Recipes</h3>
+      <div class="grow-row"><div class="thumb">🔷</div><div style="flex:1"><b>Random Rare item</b><div class="muted">75 shards</div></div><button class="btn sm" data-action="forgeitem" data-r="R" ${S.shards >= 75 ? '' : 'disabled'}>Forge</button></div>
+      <div class="grow-row"><div class="thumb">🟣</div><div style="flex:1"><b>Random Super Rare item</b><div class="muted">200 shards</div></div><button class="btn sm" data-action="forgeitem" data-r="SR" ${S.shards >= 200 ? '' : 'disabled'}>Forge</button></div>
+      <div class="grow-row"><div class="thumb">🔨</div><div style="flex:1"><b>Forge Box</b><div class="muted">100 shards</div></div><button class="btn sm" data-action="forgebox" ${S.shards >= 100 ? '' : 'disabled'}>Forge</button></div>
+    </div>
+    <div class="card"><h3>🌕 Moon Set <span class="muted" style="margin-left:auto">${Math.min(6, S.moonSet)}/6</span></h3>
+      <div class="itemgrid">${MOON_SET.map((n, i) => `<div class="item ${i < S.moonSet ? '' : 'lock'}"><div class="art" style="font-size:28px">${i < S.moonSet ? '✅' : '❔'}</div>${n}</div>`).join('')}</div>
+      ${full ? '' : `<button class="btn block sec" style="margin-top:12px" data-action="forgepiece" ${S.shards >= 200 ? '' : 'disabled'}>Forge the missing piece · 200 shards</button>`}
+      <button class="btn block ${full ? 'glow' : ''}" style="margin-top:10px" data-action="forgegenesis" ${full ? '' : 'disabled'}>💎 Genesis Forge: Relic · consumes set + burns 2,000 🦴</button>
+      <p class="muted" style="margin:10px 0 0">63 Genesis NFTs can be forged this season. Rarity is drawn from what's left in the collection.</p></div>`;
+}
+
+/* ---------- Market ---------- */
+function renderMarket() {
+  const tab = S.mtab, tabs = ['Buy', 'Sell', 'Trade', 'Rent'];
+  const mine = S.genesis.filter(g => g.status === 'owned');
+  const card = (g, extra) => `<div class="gcard ${extra.sel ? 'sel' : ''}"><div class="art">${nftArt(g)}</div><b>#${g.id} ${g.name}</b><span class="rar rar-${g.r}" style="align-self:center">${RAR[g.r]}</span><div class="meta">${g.kind}${extra.meta ? ' · ' + extra.meta : ''}</div>${extra.btn || ''}</div>`;
+  let body = '';
+  if (tab === 'Buy') body = `<div class="grid2">${S.listings.map(g => card(g, { meta: '@' + g.seller, btn: `<button class="btn sm" data-action="buy" data-id="${g.id}">${fmt(g.price)} ${g.token === 'DOGE' ? 'Ð' : '🦴'}</button>` })).join('')}</div>`;
+  if (tab === 'Sell') body = mine.length ? `<div class="grid2">${mine.map(g => card(g, { meta: g.lock ? `🔒 leash ${g.lock}` : 'ready to list', btn: `<button class="btn sm ${g.lock ? 'sec' : ''}" data-action="sell" data-id="${g.id}" ${g.lock ? 'disabled' : ''}>${g.lock ? 'Locked' : 'List for sale'}</button>` })).join('')}</div>`
+    : '<div class="card tint">Nothing to sell yet. Win the Genesis Draw, forge a set, or buy one.</div>';
+  if (tab === 'Trade') body = `<div class="card tint"><b>🤝 Swap with @sesame_sprint</b><div class="muted">Pick one of yours and one of theirs. Both NFTs move at once, or nothing does.</div></div>
+    <div class="muted" style="font-weight:800;margin:4px 0 8px">YOURS</div>
+    <div class="grid2">${mine.filter(g => !g.lock).map(g => card(g, { sel: S.tradePick.mine === g.id, btn: `<button class="btn sm sec" data-action="tpick" data-side="mine" data-id="${g.id}">${S.tradePick.mine === g.id ? 'Selected' : 'Pick'}</button>` })).join('') || '<div class="muted">No unlocked NFTs to trade.</div>'}</div>
+    <div class="muted" style="font-weight:800;margin:14px 0 8px">THEIRS</div>
+    <div class="grid2">${FRIEND_NFTS.map(g => card(g, { sel: S.tradePick.theirs === g.id, btn: `<button class="btn sm sec" data-action="tpick" data-side="theirs" data-id="${g.id}">${S.tradePick.theirs === g.id ? 'Selected' : 'Pick'}</button>` })).join('')}</div>
+    <button class="btn block" style="margin-top:14px" data-action="propose" ${S.tradePick.mine && S.tradePick.theirs ? '' : 'disabled'}>Propose swap</button>`;
+  if (tab === 'Rent') body = `<div class="card tint"><b>⏳ Rent a Genesis NFT</b><div class="muted">You get its perks and bonus for the rental. The owner keeps it and earns rent. Nothing can be taken.</div>
+      <div class="row" style="gap:6px;margin-top:10px">${[1, 3, 7].map(d => `<button class="mode ${S.rentDays === d ? 'on' : ''}" data-action="rentdays" data-d="${d}">${d} day${d > 1 ? 's' : ''}</button>`).join('')}</div></div>
+    <div class="grid2">${S.listings.map(g => card(g, { meta: `${g.rent} 🦴/day`, btn: `<button class="btn sm" data-action="rentok" data-id="${g.id}">Rent · ${fmt(g.rent * S.rentDays)} 🦴</button>` })).join('')}</div>`;
+  $('[data-v=market]').innerHTML = `
+    <button class="back" data-action="go" data-view="den">‹ Den</button>
+    <div class="between"><h2 class="section-title">🏪 Market</h2><span class="chip">🦴 ${fmt(S.wallet)} · Ð ${S.doge}</span></div>
+    <div class="tabs">${tabs.map(t => `<button class="${tab === t ? 'on' : ''}" data-action="mtab" data-t="${t}">${t}</button>`).join('')}</div>
+    ${body}
+    <p class="muted" style="margin-top:14px">5% fee on sales and rentals: half is burned (or goes to the treasury for DOGE) and half goes to the Shelter Fund. On iOS this tab is view-only; trading happens in the web app.</p>`;
+}
+
+/* ---------- Fetch Frenzy (canvas mini-game) ---------- */
+let F = null;
+const LANE_X = [60, 180, 300];
+const imgCache = {};
+function svgImg(key, svg) {
+  if (!imgCache[key]) { const im = new Image(); im.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg); imgCache[key] = im; }
+  return imgCache[key];
+}
+function mulberry32(a) { return () => { a |= 0; a = a + 0x6D2B79F5 | 0; let t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+function renderFrenzy() {
+  const running = F && F.running;
+  $('[data-v=frenzy]').innerHTML = `
+    <button class="back" data-action="go" data-view="play">‹ Play</button>
+    <div class="between"><h2 class="section-title">🦴 Fetch Frenzy</h2><span class="chip">🎟️ ${S.tickets}</span></div>
+    <div class="game" id="frenzyBox"><canvas id="frenzy" width="360" height="440" aria-label="Fetch Frenzy game"></canvas>
+      <div class="hud"><span id="fScore">🦴 0</span><span id="fTime">45s</span><span id="fLives">❤️❤️❤️</span></div></div>
+    <div class="row" style="margin-top:12px">
+      <button class="btn sec" data-action="lane" data-d="-1" aria-label="Move left">◀</button>
+      <button class="btn block" data-action="frenzy-start" ${running ? 'disabled' : ''}>${running ? 'Running…' : S.tickets ? 'Start run · 1 🎟️' : 'No tickets: go walk 🐾'}</button>
+      <button class="btn sec" data-action="lane" data-d="1" aria-label="Move right">▶</button></div>
+    <p class="muted">Tap the left or right side, swipe, or use the arrow keys. Bones score points, and catching them in a row builds a combo. Dodge puddles and squirrels. Best: ${fmt(S.frenzyBest)}</p>`;
+  const cv = $('#frenzy');
+  let sx = null;
+  cv.addEventListener('pointerdown', e => { sx = e.clientX; });
+  cv.addEventListener('pointerup', e => {
+    if (!F || !F.running) return;
+    const dx = e.clientX - (sx ?? e.clientX), r = cv.getBoundingClientRect();
+    moveLane(Math.abs(dx) > 30 ? Math.sign(dx) : (e.clientX - r.left < r.width / 2 ? -1 : 1));
+  });
+  drawFrenzy();
+}
+function moveLane(d) { if (F && F.running) { F.lane = clamp(F.lane + d, 0, 2); haptic(8); } }
+function frenzyStart() {
+  if (F && F.running) return;
+  if (S.tickets <= 0) { toast('No tickets left. Walk 2,000 steps for one! 🐾'); return; }
+  S.tickets--;
+  const extraLife = S.genesis.some(g => g.kind === 'Walker' && S.equipped.walker === g.id && ['L', 'M'].includes(g.r)) ? 1 : 0;
+  F = { running: true, lane: 1, t: 0, score: 0, bones: 0, combo: 1, lives: 3 + extraLife, objs: [], rng: mulberry32(Date.now() >>> 0), last: performance.now(), spawn: 0.4, speed: 190, hit: 0 };
+  renderFrenzy();
+  requestAnimationFrame(frenzyTick);
+}
+function frenzyTick(now) {
+  if (!F || !F.running) return;
+  if (S.view !== 'frenzy') { F.running = false; return; }
+  const dt = Math.min(0.05, (now - F.last) / 1000); F.last = now; F.t += dt;
+  F.speed = 190 + F.t * 7; F.spawn -= dt;
+  if (F.spawn <= 0) {
+    F.spawn = Math.max(0.32, 0.75 - F.t * 0.01);
+    const r = F.rng();
+    F.objs.push({ lane: Math.floor(F.rng() * 3), y: -30, kind: r < 0.62 ? 'bone' : r < 0.84 ? 'puddle' : 'squirrel' });
+  }
+  for (const o of F.objs) {
+    o.y += F.speed * dt * (o.kind === 'squirrel' ? 1.3 : 1);
+    if (!o.done && o.lane === F.lane && o.y > 352 && o.y < 408) {
+      o.done = true;
+      if (o.kind === 'bone') { F.bones++; F.score += 10 * F.combo; F.combo = Math.min(8, F.combo + 1); }
+      else { F.lives--; F.combo = 1; F.hit = 0.3; haptic(40); }
+    }
+  }
+  F.objs = F.objs.filter(o => o.y < 480 && !(o.done && o.kind === 'bone'));
+  F.hit = Math.max(0, F.hit - dt);
+  drawFrenzy();
+  if (F.lives <= 0 || F.t >= 45) return frenzyEnd();
+  requestAnimationFrame(frenzyTick);
+}
+function drawFrenzy() {
+  const cv = $('#frenzy'); if (!cv) return;
+  const c = cv.getContext('2d'), t = F ? F.t : 0, speed = F ? F.speed : 190;
+  c.fillStyle = '#2b2452'; c.fillRect(0, 0, 360, 440);
+  c.fillStyle = '#3a3170'; for (let i = 0; i < 3; i++) c.fillRect(i * 120 + 8, 0, 104, 440);
+  c.strokeStyle = 'rgba(255,255,255,.25)'; c.lineWidth = 4; c.setLineDash([18, 22]); c.lineDashOffset = -t * speed;
+  for (const x of [120, 240]) { c.beginPath(); c.moveTo(x, 0); c.lineTo(x, 440); c.stroke(); }
+  c.setLineDash([]);
+  c.textAlign = 'center'; c.textBaseline = 'middle'; c.font = '34px "Segoe UI Emoji","Apple Color Emoji","Noto Color Emoji",sans-serif';
+  if (F) for (const o of F.objs) {
+    const x = LANE_X[o.lane];
+    if (o.kind === 'puddle') { c.fillStyle = o.done ? 'rgba(59,167,255,.3)' : '#3BA7FF'; c.beginPath(); c.ellipse(x, o.y, 40, 14, 0, 0, 6.283); c.fill(); }
+    else c.fillText(o.kind === 'bone' ? '🦴' : '🐿️', x, o.y);
+  }
+  const lane = F ? F.lane : 1, px = LANE_X[lane], bob = Math.sin(t * 14) * 3;
+  const w = svgImg('w' + JSON.stringify(S.walker), walkerSVG(S.walker));
+  const p = svgImg('p' + S.pup.coat + S.pup.stage, pupSVG({ ...S.pup, mood: 'happy', bob: false }));
+  if (w.complete) c.drawImage(w, px - 38, 322 + bob, 46, 73); else w.onload = () => !(F && F.running) && drawFrenzy();
+  if (p.complete) c.drawImage(p, px + 2, 356 - bob, 42, 42); else p.onload = () => !(F && F.running) && drawFrenzy();
+  if (F && F.hit > 0) { c.fillStyle = 'rgba(255,77,79,.25)'; c.fillRect(0, 0, 360, 440); }
+  if (!F || !F.running) {
+    c.fillStyle = 'rgba(0,0,0,.45)'; c.fillRect(0, 150, 360, 110);
+    c.fillStyle = '#FFC531'; c.font = '800 28px "Baloo 2", Nunito, sans-serif'; c.fillText('FETCH FRENZY', 180, 190);
+    c.fillStyle = '#fff'; c.font = '700 15px Nunito, sans-serif'; c.fillText('Press Start · 45-second run', 180, 225);
+  }
+  const hs = $('#fScore'); if (hs && F) { hs.textContent = `🦴 ${fmt(F.score)} ×${F.combo}`; $('#fTime').textContent = `${Math.max(0, Math.ceil(45 - F.t))}s`; $('#fLives').textContent = '❤️'.repeat(Math.max(0, F.lives)) || '💔'; }
+}
+function frenzyEnd() {
+  F.running = false;
+  const xp = Math.min(50, Math.floor(F.score / 100)), shards = F.score >= 10000 ? 6 : F.score >= 5000 ? 4 : F.score >= 2000 ? 2 : 0;
+  const best = F.score > S.frenzyBest; S.frenzyBest = Math.max(S.frenzyBest, F.score); S.shards += shards;
+  if (xp) addXp(xp);
+  if (best) confetti(90);
+  renderFrenzy();
+  openSheet(`<h2 style="font-size:26px">${F.lives <= 0 ? '💦 Splash! Run over' : '⏱️ Time!'}</h2>
+    <div class="grid2" style="margin:12px 0"><div class="card" style="margin:0"><div class="muted">Score</div><div class="big">${fmt(F.score)}</div></div><div class="card" style="margin:0"><div class="muted">Bones</div><div class="big">${F.bones}</div></div></div>
+    <p class="muted">+${xp} XP · +${shards} shards${best ? ' · 🏆 New best!' : ''}. In the real app, the server replays your inputs to verify every score.</p>
+    <button class="btn block" data-action="close">Such run</button>`, true);
+}
+
+/* ---------- Doge Derby ---------- */
+let derbyField = null;
+function makeDerbyField() {
+  const others = ['zoomie_queen', 'lil_bork', 'mochi_miles', 'noodle_legs', 'very_cardio', 'stride_doge', 'sir_wagsalot'];
+  const coats = ['classic', 'sesame', 'blacktan', 'cream', 'classic', 'sesame', 'cream'];
+  const rars = [null, 'N', null, 'R', null, 'SR', null];
+  const field = others.map((n, i) => ({ name: n, coat: coats[i], r: rars[i], steps: Math.round(rand(30000, 80000) / 100) * 100 }));
+  field.push({ name: 'You · ' + S.pup.name, coat: S.pup.coat, r: S.pup.rarity || null, steps: S.weekSteps, me: true });
+  const sorted = [...field].sort((a, b) => a.steps - b.steps);
+  const FLAIR = { N: 5, R: 10, SR: 15, L: 20, M: 25 };
+  field.forEach(e => { e.stepsPts = Math.floor(400 * sorted.indexOf(e) / 7); e.flair = FLAIR[e.r] || 0; });
+  return field.sort(() => Math.random() - 0.5);
+}
+function renderDerby() {
+  // Rebuild the heat if the equipped Pup changed since it was drawn
+  if (!derbyField || !derbyField.some(e => e.me && e.name === 'You · ' + S.pup.name)) derbyField = makeDerbyField();
+  $('[data-v=derby]').innerHTML = `
+    <button class="back" data-action="go" data-view="play">‹ Play</button>
+    <h2 class="section-title">🏁 Doge Derby</h2>
+    <div class="muted" style="margin-bottom:10px">Heat 3 · Bone League · speed = 1000 + steps (0–400) + rarity flair (0–25) + luck (0–60)</div>
+    <div class="track" id="track">${derbyField.map((e, i) => `<div class="lane ${e.me ? 'me' : ''}"><div class="runner" id="dr${i}">${pupSVG({ coat: e.coat, stage: 1, mood: 'happy', bob: false })}</div><span class="nm">${e.name}</span></div>`).join('')}<div class="finish"></div></div>
+    <div class="row" style="margin-top:12px"><button class="btn block" data-action="derby-run">▶ Start race</button><button class="btn sec" data-action="derby-cheer">📣 Cheer</button></div>
+    <div class="card" style="margin-top:14px" id="derbyRes"><h3>📋 Line-up</h3>
+      ${[...derbyField].sort((a, b) => b.steps - a.steps).map(e => `<div class="between" style="padding:5px 0;font-size:13px;font-weight:700${e.me ? ';color:var(--goldDeep)' : ''}"><span>${e.name}</span><span class="muted">${fmt(e.steps)} steps · +${e.stepsPts}${e.flair ? ` · flair +${e.flair}` : ''}</span></div>`).join('')}</div>`;
+}
+function runDerby() {
+  const track = $('#track'); if (!track || track.dataset.running) return;
+  track.dataset.running = '1';
+  derbyField.forEach(e => { e.luck = Math.floor(Math.random() * 61); e.speed = 1000 + e.stepsPts + e.flair + e.luck; e.phase = Math.random() * 6; });
+  const max = Math.max(...derbyField.map(e => e.speed)), min = Math.min(...derbyField.map(e => e.speed));
+  const width = track.clientWidth - 44 - 48, start = performance.now(), dur = reduceMotion ? 300 : 7000;
+  (function frame(now) {
+    const t = Math.min(1, (now - start) / dur), ease = 1 - Math.pow(1 - t, 2);
+    derbyField.forEach((e, i) => {
+      const finalP = 0.55 + 0.45 * (e.speed - min) / Math.max(1, max - min);
+      const wobble = Math.sin(t * 9 + e.phase) * 0.06 * (1 - t);
+      const el = $('#dr' + i); if (el) el.style.transform = `translateX(${Math.max(0, (ease * finalP + wobble) * width)}px)`;
+    });
+    if (t < 1) requestAnimationFrame(frame); else derbyDone();
+  })(start);
+  setTimeout(() => { if ($('#track') && $('#track').dataset.running) derbyDone(); }, dur + 1500);
+}
+function derbyDone() {
+  const track = $('#track'); if (!track || !track.dataset.running) return;
+  delete track.dataset.running;
+  const order = [...derbyField].sort((a, b) => b.speed - a.speed), place = order.findIndex(e => e.me) + 1;
+  const prize = { 1: 'season', 2: 'streak', 3: 'quest' }[place];
+  if (prize) { S.boxes.push({ id: S.boxSeq++, type: prize }); confetti(150); wowBurst(3); }
+  addXp(20);
+  $('#derbyRes').innerHTML = `<h3>🏆 Results</h3>${order.map((e, i) => `<div class="between" style="padding:5px 0;font-size:13px;font-weight:700${e.me ? ';color:var(--goldDeep)' : ''}"><span>${['🥇', '🥈', '🥉'][i] || (i + 1) + '.'} ${e.name}</span><span class="muted">speed ${e.speed} (luck +${e.luck})</span></div>`).join('')}
+    <div class="banner" style="margin:10px 0 0">${prize ? `You placed #${place}! ${BOX_TYPES[prize].e} ${BOX_TYPES[prize].name} added to your Den.` : `You placed #${place}. More steps this week = more speed next Sunday.`} +20 XP.</div>`;
+  derbyField = null;
 }
 
 /* ---------- Onboarding ---------- */
@@ -1038,10 +1620,105 @@ document.addEventListener('click', e => {
     case 'onbnext': if (onbStep < 3) { onbStep++; renderOnb(); } else hideOnb(); break;
     case 'onbskip': hideOnb(); break;
     case 'onbcoat': S.pup.coat = d.c; renderOnb(); break;
-    case 'reset': clearInterval(walkTimer); clearTimeout(cheerTimer); S = initialState(); closeSheet(); go('home'); toast('↺ Demo reset'); break;
+    case 'equipg': equipGenesis(d.id); break;
+    case 'draw': {
+      if (S.wonDraw) { toast('One Genesis win per season. You already won this one! 🌙'); break; }
+      if (!S.entries) { toast('Open a loot box first: each box gives draw entries 🎁'); break; }
+      S.wonDraw = true; confetti(200); wowBurst(4); haptic(80);
+      showGenesisWin(genesisReveal({ Pup: 5, Walker: 3.5, Relic: 1.5 }, { N: 50, R: 28, SR: 15, L: 6, M: 1 }, "🎟️ YOU WON TONIGHT'S GENESIS DRAW"));
+      break;
+    }
+    case 'claimg': {
+      if (S.pendingGenesis) { S.genesis.unshift(S.pendingGenesis); toast(`💎 #${S.pendingGenesis.id} ${S.pendingGenesis.name} claimed, gas on us`); S.pendingGenesis = null; }
+      closeSheet(); if (['den', 'forge'].includes(S.view)) go(S.view); break;
+    }
+    case 'openbox': openBox(d.id); break;
+    case 'closeloot': closeSheet(); renderLoot(); break;
+    case 'odds': oddsSheet(); break;
+    case 'wbase': S.walker.base = d.b; renderCloset(); renderChrome(); break;
+    case 'skin': S.walker.skin = +d.i; renderCloset(); break;
+    case 'cslot': S.closetSlot = d.s; renderCloset(); break;
+    case 'wear': {
+      const it = ITEMS.find(x => x.id === d.id) || { id: null };
+      if (!ownsItem(it)) { toast(it.how === 'lv' ? `🔒 Unlocks at level ${it.lv}` : it.how === 'set' ? '🔒 Comes from the Moon Set' : '🔒 Drops from loot boxes'); break; }
+      S.walker[d.slot] = it.id; renderCloset(); haptic(); break;
+    }
+    case 'forgeitem': {
+      const cost = d.r === 'SR' ? 200 : 75; if (S.shards < cost) break;
+      S.shards -= cost;
+      const pool = ITEMS.filter(i => i.r === d.r && i.how === 'loot' && !S.inv.includes(i.id));
+      if (pool.length) { const it = pick(pool); S.inv.push(it.id); toast(`🔨 Forged: ${it.name} (${RAR[d.r]})`); }
+      else { S.shards += cost; toast('You already own every item of that rarity. Shards refunded.'); }
+      confetti(60); renderForge(); break;
+    }
+    case 'forgebox': if (S.shards >= 100) { S.shards -= 100; S.boxes.push({ id: S.boxSeq++, type: 'forge' }); toast('🔨 Forge Box ready in Loot'); renderForge(); } break;
+    case 'forgepiece': if (S.shards >= 200) { S.shards -= 200; S.moonSet = 6; toast('🌕 Orbit Visor forged: Moon Set complete!'); confetti(80); renderForge(); } break;
+    case 'forgegenesis': {
+      if (S.moonSet < 6) break;
+      if (S.wallet < 2000) { toast(`Needs 2,000 🦴 (you have ${fmt(S.wallet)}). Claim your treats first!`); break; }
+      S.wallet -= 2000; S.moonSet = 0; renderChrome(); confetti(200); wowBurst(4);
+      showGenesisWin(genesisReveal({ Relic: 1 }, { N: 55, R: 30, SR: 12, L: 3 }, '💎 GENESIS FORGE · 2,000 TREAT BURNED'));
+      break;
+    }
+    case 'mtab': S.mtab = d.t; renderMarket(); break;
+    case 'buy': {
+      const g = S.listings.find(x => x.id === +d.id); const fee = g.price * 0.05;
+      openSheet(`<h2 style="font-size:24px">Buy #${g.id} ${g.name}</h2><div class="gcard" style="max-width:200px;margin:10px auto"><div class="art">${nftArt(g)}</div><span class="rar rar-${g.r}" style="align-self:center">${RAR[g.r]}</span></div>
+        <div class="card tint"><div class="between"><span>Price</span><b>${fmt(g.price)} ${g.token}</b></div><div class="between muted"><span>Fee 5% (${g.token === 'TREAT' ? 'burn' : 'treasury'} + Shelter Fund)</span><span>${fee.toFixed(1)}</span></div><div class="between muted"><span>Seller @${g.seller} receives</span><span>${(g.price - fee).toFixed(1)}</span></div></div>
+        <div class="grid2"><button class="btn sec" data-action="close">Cancel</button><button class="btn" data-action="buyok" data-id="${g.id}">Confirm buy</button></div>`);
+      break;
+    }
+    case 'buyok': {
+      const g = S.listings.find(x => x.id === +d.id);
+      const bal = g.token === 'TREAT' ? S.wallet : S.doge;
+      if (bal < g.price) { toast(`Not enough ${g.token}. ${g.token === 'TREAT' ? 'Claim treats in the wallet first.' : 'Top up testnet DOGE from the faucet.'}`); break; }
+      if (g.token === 'TREAT') S.wallet -= g.price; else S.doge -= g.price;
+      S.listings = S.listings.filter(x => x.id !== g.id);
+      S.genesis.unshift({ ...g, status: 'owned' }); closeSheet(); confetti(120); toast(`💎 You own #${g.id} ${g.name}!`); renderChrome(); renderMarket(); break;
+    }
+    case 'sell': {
+      const g = S.genesis.find(x => x.id === +d.id);
+      openSheet(`<h2 style="font-size:24px">List #${g.id} ${g.name}</h2>
+        <label class="muted" for="sellPrice">Price</label>
+        <div class="row" style="margin:6px 0 12px"><input id="sellPrice" type="number" min="1" value="500" style="flex:1;min-width:0;border:3px solid var(--outline);border-radius:14px;padding:10px;font:700 16px var(--f-body);background:var(--surface);color:var(--text)">
+        <select id="sellToken" aria-label="Payment token" style="border:3px solid var(--outline);border-radius:14px;padding:10px;font:700 15px var(--f-body);background:var(--surface);color:var(--text)"><option>TREAT</option><option>DOGE</option></select></div>
+        <p class="muted">Listings expire in 30 days. You keep the NFT until someone buys it.</p>
+        <div class="grid2"><button class="btn sec" data-action="close">Cancel</button><button class="btn" data-action="sellok" data-id="${g.id}">List it</button></div>`);
+      break;
+    }
+    case 'sellok': {
+      const g = S.genesis.find(x => x.id === +d.id), price = Math.max(1, +$('#sellPrice').value || 0), token = $('#sellToken').value;
+      g.status = 'listed'; closeSheet(); toast(`🏷️ Listed #${g.id} for ${fmt(price)} ${token}`); renderMarket(); break;
+    }
+    case 'tpick': S.tradePick[d.side] = S.tradePick[d.side] === +d.id ? null : +d.id; renderMarket(); break;
+    case 'propose': {
+      const mine = S.genesis.find(x => x.id === S.tradePick.mine), theirs = FRIEND_NFTS.find(x => x.id === S.tradePick.theirs);
+      S.tradePick = { mine: null, theirs: null };
+      toast(`🤝 Swap proposed: ${mine.name} ⇄ ${theirs.name}. @sesame_sprint has 7 days to accept.`, 3200); renderMarket(); break;
+    }
+    case 'rentdays': S.rentDays = +d.d; renderMarket(); break;
+    case 'rentok': {
+      const g = S.listings.find(x => x.id === +d.id), cost = g.rent * S.rentDays;
+      if (S.wallet < cost) { toast('Not enough treats for that rental.'); break; }
+      S.wallet -= cost; S.genesis.unshift({ ...g, status: 'rented', left: `${S.rentDays}d` });
+      toast(`⏳ Rented ${g.name} for ${S.rentDays} day${S.rentDays > 1 ? 's' : ''}. Equip it in your Den!`); confetti(60); renderChrome(); renderMarket(); break;
+    }
+    case 'frenzy-start': frenzyStart(); break;
+    case 'lane': moveLane(+d.d); break;
+    case 'derby-run': if (!derbyField) renderDerby(); runDerby(); break;
+    case 'derby-cheer': {
+      const el = document.createElement('div'); el.className = 'cheer'; el.textContent = `📣 You cheered for ${S.pup.name}! Much speed!`;
+      $('#cheers').appendChild(el); setTimeout(() => el.remove(), 4200); haptic(15); break;
+    }
+    case 'reset': clearInterval(walkTimer); clearTimeout(cheerTimer); if (F) F.running = false; S = initialState(); closeSheet(); go('home'); toast('↺ Demo reset'); break;
   }
 });
 $('#modal').addEventListener('click', e => { if (e.target.id === 'modal') closeSheet(); });
+document.addEventListener('keydown', e => {
+  if (S.view !== 'frenzy' || !F || !F.running) return;
+  if (e.key === 'ArrowLeft') { moveLane(-1); e.preventDefault(); }
+  if (e.key === 'ArrowRight') { moveLane(1); e.preventDefault(); }
+});
 
 /* ---------- Clocks ---------- */
 let lastWindow = Math.floor(Date.now() / 600000);
@@ -1055,6 +1732,7 @@ setInterval(() => {
 
 /* ---------- Boot ---------- */
 { const t = document.documentElement.dataset.theme || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'); $('#themeBtn').textContent = t === 'dark' ? '☀️' : '🌙'; }
+S = initialState();
 go('home');
 showOnb();
 </script>
