@@ -20,6 +20,7 @@ Walk, run or roll (wheelchair pushes count). Your verified steps **mine Walk Blo
 | **Market: sell, trade, rent** | Fixed-price sales, NFT↔NFT swaps, and rentals that never take custody of your NFT (ERC-4907) |
 | **Loot you earn** | Daily, quest, streak and season boxes with published odds and verifiable rolls. A nightly Genesis Draw. Never sold |
 | **Walk-to-play games** | Fetch Frenzy (runner) and Doge Derby (weekly Pup race), with tickets earned by walking |
+| **Wild: Sniffari** (concept test) | Meet dogs on your walks (6k ★ Golden Hour), befriend them with a trust meter, fill the 18-breed Pawdex, and battle in the Arena. See [`docs/13`](docs/13-CONCEPT-SNIFFARI.md) |
 | **Walk first, wallet later** | Day 1 needs no wallet. Connect one only when you want to claim |
 | **Roll Mode** | Wheelchair pushes earn the same as steps, and Walkers have a wheelchair base |
 

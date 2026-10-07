@@ -11,3 +11,5 @@ Agents add a concern here when a spec looks wrong, then keep building to the spe
 | 5 | PLAN | App Store / Play policies on NFT perks and in-app trading: which feature flags can be on per platform at launch? (09 §11) | open |
 | 6 | PLAN | Who hand-draws the 70 Legendary / Much Wow Genesis pieces (artist budget, licence)? | open |
 | 7 | PLAN | Mainnet Genesis mint-sale price and which shelter partner runs the Shelter Pup auction | open |
+| 8 | TEAM | Concept A (loot + Genesis draw), B (Sniffari: meet/befriend/battle dogs) or Hybrid? Name and positioning (walk-to-play)? See 13 §7 | open |
+| 9 | TEAM | Mainnet: turn on the patient-claim option and the circuit-breaker thresholds in 03 §14? | open |
