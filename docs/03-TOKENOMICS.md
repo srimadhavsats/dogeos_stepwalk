@@ -131,3 +131,23 @@ Challenge limits (testnet): `S ∈ [10, 1_000]` TREAT, `N ∈ [2, 500]`, duratio
 
 ## 13. ⚠️ Before mainnet (needs a human, not code)
 Get legal review covering: token classification; Walk Bets (contest and skill-game rules vary by jurisdiction); Walk Blocks and the Genesis Draw as free-entry prize draws; loot boxes (earned only, odds published, but some prizes are tradable); the NFT marketplace and rentals; tipping and money-transmission; and health-data law (GDPR Art. 9 and others). Geo-fence features where needed. These are flagged for counsel, and these docs are not legal advice.
+
+## 14. Anti-death-spiral safeguards (why TREAT is not built to be "down only")
+**What killed STEPN's GST:**
+- Every step minted new GST, with no cap. More users meant more printing.
+- New users had to buy sneaker NFTs to earn, so demand depended on a constant stream of newcomers.
+- Rewards were fixed in tokens regardless of price. When growth stopped, sell pressure had no floor.
+
+| Lever | Rule | Effect |
+|---|---|---|
+| **Fixed daily pool** (§3) | Steps earn a *share* of the pool, never newly minted tokens per step. The pool shrinks 20% a year, and anything not allocated is never minted | More users or bots never means more printing |
+| **Emission circuit breaker** | Every week the epoch planner checks the 7-day burned ÷ minted ratio. Under 25%, next week's mint is cut 15%. Each further week under 25% cuts it another 15%, down to a **floor of 40% of the schedule**. The cut is lifted once the ratio is above 35% | Issuance follows real demand automatically. It's off-chain policy: the contract only ever allows minting *less* than its cap |
+| **Revenue buyback and burn** | **50% of protocol revenue in DOGE** (DOGE market fees, mint sale, sponsor quests, battle pass, B2B challenges) buys TREAT on the DEX every week and burns it. A public dashboard shows it | Demand from outside the system, not from new players |
+| **Treat Jar (lock for perks, no yield)** | Lock claimed TREAT for 30, 90 or 180 days. You get cosmetics, +5/10/15% XP and higher coach limits, but **never more TREAT** | Less circulating supply without paying people to stay |
+| **Patient claim** (decide before C-02 is built) | Claimers choose: **instant** with a 10% fee (burned), or **free** but unlocked after 7 days. This needs a small RewardsDistributor change | Softens the daily "claim and dump" and adds a sink. A sell fee alone could be bypassed by trading on any other DEX |
+| **Bones (soft currency)** | Most everyday rewards are **Bones**: off-chain, can't be traded, and spent in the app on snacks, cosmetics and rerolls. Only the pool share is TREAT | Fewer tokens to sell, and nothing tradable that can crash in price the way GST did |
+| **Spend reasons that aren't "earn more"** | Cosmetics, battle pass, Pup evolution, Walk Bet stakes, tipping, Arena seasons, sponsored challenges | People spend TREAT for fun and status, not only to farm |
+| **Supply hygiene** | No private or VC sale. Team tokens unlock only after a 1-year cliff (then 3-year linear). LP tokens are burned at launch (like our Kennel launchpad). The treasury keeps **24 months of runway in DOGE/stables** so the team keeps shipping through a bear market | No cliff dumps, no rug-pulled liquidity |
+| **Health metrics in public** | A live dashboard of minted, burned, net issuance, revenue, buybacks, active earners and rewards per user | Trust comes from showing the numbers |
+
+**What this can't promise:** no token design can guarantee the price. These rules remove the *mechanical* reasons STEPN-style tokens fall. Everything else depends on the product being fun with TREAT at zero.
