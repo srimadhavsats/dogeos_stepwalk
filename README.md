@@ -20,11 +20,22 @@ Walk, run or roll (wheelchair pushes count). Your verified steps **mine Walk Blo
 | **Market: sell, trade, rent** | Fixed-price sales, NFT↔NFT swaps, and rentals that never take custody of your NFT (ERC-4907) |
 | **Loot you earn** | Daily, quest, streak and season boxes with published odds and verifiable rolls. A nightly Genesis Draw. Never sold |
 | **Walk-to-play games** | Fetch Frenzy (runner) and Doge Derby (weekly Pup race), with tickets earned by walking |
+| **Pack Battles** (concept test) | Dog card battler: 5v5 teams, Bronze → Silver → Gold → Diamond cards, fusion F0–F10, level 100, support cards, gear, a 10-hour shop and a season pass. See [`docs/14`](docs/14-CONCEPT-PACK-BATTLES.md) |
 | **Wild: Sniffari** (concept test) | Meet dogs on your walks (6k ★ Golden Hour), befriend them with a trust meter, fill the 18-breed Pawdex, and battle in the Arena. See [`docs/13`](docs/13-CONCEPT-SNIFFARI.md) |
 | **Walk first, wallet later** | Day 1 needs no wallet. Connect one only when you want to claim |
 | **Roll Mode** | Wheelchair pushes earn the same as steps, and Walkers have a wheelchair base |
 
 Full details: [`docs/01-VISION-AND-INNOVATIONS.md`](docs/01-VISION-AND-INNOVATIONS.md).
+
+## Builds (switch any time)
+| Build | Live link | Git tag |
+|---|---|---|
+| **v4 · Pack Battles** (latest) | [open](https://srimadhavsats.github.io/dogeos_stepwalk/builds/v4/) | `v0.4-pack-battles` |
+| v3 · Sniffari | [open](https://srimadhavsats.github.io/dogeos_stepwalk/builds/v3/) | `v0.3-sniffari` |
+| v2 · Collect & Play | [open](https://srimadhavsats.github.io/dogeos_stepwalk/builds/v2/) | `v0.2-collect-and-play` |
+| v1 · First prototype | [open](https://srimadhavsats.github.io/dogeos_stepwalk/builds/v1/) | `v0.1-first-prototype` |
+
+All builds: https://srimadhavsats.github.io/dogeos_stepwalk/builds/ · To get an older build's code and docs locally, run `git checkout v0.3-sniffari` (and `git checkout main` to come back).
 
 ## Repo map
 ```
