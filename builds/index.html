@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MuchWalk Builds</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800&family=Nunito:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#FFF6E5;--surface:#FFFFFF;--text:#1F1A33;--text2:#5B5470;--outline:#1F1A33;--gold:#FFC531;--mint:#22C997;color-scheme:light}
+@media (prefers-color-scheme: dark){:root{--bg:#14112A;--surface:#221D40;--text:#FFF6E5;--text2:#B9B2D9;--outline:#05040C;color-scheme:dark}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:"Nunito",system-ui,sans-serif;padding:32px 16px}
+main{max-width:640px;margin:0 auto}
+h1{font-family:"Baloo 2","Nunito",sans-serif;font-size:40px;margin:0 0 4px;line-height:1.05}
+p{color:var(--text2);font-weight:600;line-height:1.5}
+.list{display:grid;gap:14px;margin-top:20px}
+a.build{display:block;text-decoration:none;color:inherit;background:var(--surface);border:3px solid var(--outline);border-radius:22px;box-shadow:0 5px 0 var(--outline);padding:16px 18px}
+a.build:active{transform:translateY(3px);box-shadow:0 2px 0 var(--outline)}
+a.build:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+.top{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.name{font-family:"Baloo 2","Nunito",sans-serif;font-weight:800;font-size:22px}
+.tag{font-size:12px;font-weight:800;border:2px solid var(--outline);border-radius:999px;padding:2px 10px;background:var(--gold);color:#1F1A33;white-space:nowrap}
+.tag.old{background:transparent;color:var(--text)}
+.desc{color:var(--text2);font-weight:700;font-size:14px;margin-top:6px;line-height:1.45}
+code{font-size:13px;background:var(--surface);border:2px solid var(--outline);border-radius:8px;padding:1px 6px}
+</style>
+</head>
+<body>
+<main>
+  <h1>🐕 MuchWalk builds</h1>
+  <p>Every prototype build stays online, so you can switch between concepts any time. All data is fake and nothing connects to a wallet.</p>
+  <div class="list">
+    <a class="build" href="v4/"><div class="top"><span class="name">v4 · Pack Battles</span><span class="tag">Latest</span></div>
+      <div class="desc">Dog card battler: Bronze → Silver → Gold → Diamond cards, fusion F0–F10, levels to 100, support cards, gear, 5v5 battles with league caps, Challenge Tower, a 10-hour shop and a season pass. Wild encounters give cards.</div></a>
+    <a class="build" href="v3/"><div class="top"><span class="name">v3 · Sniffari</span><span class="tag old">Oct 8</span></div>
+      <div class="desc">Wild tab: meet dogs at step milestones, befriend them with a trust meter, fill the 18-breed Pawdex and battle 1v1 in the Arena.</div></a>
+    <a class="build" href="v2/"><div class="top"><span class="name">v2 · Collect &amp; Play</span><span class="tag old">Oct 6</span></div>
+      <div class="desc">Den with Walker avatars, loot boxes and the Genesis Draw, Forge, a market to buy, sell, trade and rent Genesis NFTs, Fetch Frenzy and Doge Derby.</div></a>
+    <a class="build" href="v1/"><div class="top"><span class="name">v1 · First prototype</span><span class="tag old">Oct 5</span></div>
+      <div class="desc">The original: Home with the steps ring, walks with Go Live cheers, Moon Mission and Walk Blocks, leagues, Pup evolution, Coach Bark, Walk Bets and badges.</div></a>
+  </div>
+  <p style="margin-top:24px">Code for each build is tagged in the repo: <code>v0.1-first-prototype</code> · <code>v0.2-collect-and-play</code> · <code>v0.3-sniffari</code> · <code>v0.4-pack-battles</code></p>
+</main>
+</body>
+</html>
