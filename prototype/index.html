@@ -7,7 +7,7 @@
 <meta name="description" content="Clickable UI prototype for MuchWalk, a move-to-earn dapp on DogeOS. All data is fake.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Comic+Neue:wght@700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Comic+Neue:wght@700&family=Nunito:wght@400;600;700;800&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">
 <style>
 /* ===== Tokens (mirror of docs/10-UI-UX.md §2) ===== */
 :root{
@@ -379,6 +379,25 @@ a{color:var(--sky);font-weight:800}
 .plv{font-family:var(--f-display);font-weight:800;font-size:18px;display:grid;place-items:center;border:2px solid var(--outline);border-radius:12px;background:var(--surface2)}
 .plv.on{background:var(--gold);color:var(--onGold)}
 .builds{margin-top:14px;padding:10px 12px;border:3px dashed var(--outline);border-radius:14px;font-size:13px;font-weight:700;line-height:1.7}
+/* ===== Grand Heist alignment (v5) ===== */
+:root{--demo:#3B8BFF;--kernel:#16B364;--barki:#FF4D4F;--f-pixel:"Silkscreen","Courier New",monospace}
+.pixel{font-family:var(--f-pixel);letter-spacing:.5px}
+.f-demo{--fc:var(--demo)}.f-kernel{--fc:var(--kernel)}.f-barki{--fc:var(--barki)}.f-cats{--fc:#8A8FA3}
+.fchip{display:inline-flex;align-items:center;gap:4px;border:2px solid var(--outline);border-radius:999px;padding:1px 8px;font-size:10px;font-weight:900;text-transform:uppercase;letter-spacing:.3px;background:var(--fc);color:#fff;white-space:nowrap}
+.heistbar{background:#0B0A12;color:#E8E6F0;border:3px solid var(--outline);border-radius:18px;padding:12px 14px;font-family:var(--f-pixel);font-size:12px;box-shadow:var(--shadow);margin-bottom:16px;line-height:1.6;display:block;width:100%;text-align:left}
+.heistbar .prompt{color:#FFC531}
+.heistbar .ok{color:#22C55E}
+.heistbar b{color:var(--fc)}
+.fcard{display:block;border:3px solid var(--outline);border-top:10px solid var(--fc);border-radius:20px;padding:12px 14px;background:var(--surface);box-shadow:0 4px 0 var(--outline);margin-bottom:12px;text-align:left;width:100%;color:var(--text)}
+.fcard.on{outline:4px solid var(--fc);outline-offset:2px}
+.fcard h3{font-family:var(--f-pixel);color:var(--fc);font-size:17px;margin:0 0 4px}
+.fbars{display:grid;gap:8px;margin:10px 0}
+.fbar{display:grid;grid-template-columns:118px 1fr 40px;gap:8px;align-items:center;font-size:12px;font-weight:800}
+.fbar .bar{height:12px}
+.fbar .bar i{background:var(--fc)}
+.pc-fac{position:absolute;left:10px;right:10px;top:-3px;height:6px;border-radius:0 0 6px 6px;background:var(--fc)}
+.onb{overflow-y:auto}
+.onb .fcard p,.onb .fcard div{margin:0}
 @media (prefers-reduced-motion: reduce){
   *,*::before,*::after{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.001ms !important}
 }
@@ -391,17 +410,19 @@ a{color:var(--sky);font-weight:800}
     <h1>MuchWalk <span class="wow">much walk. very health. wow.</span></h1>
     <p>Clickable prototype of the DogeOS move-to-earn dapp. Everything is fake data, running in your browser. Open this link on a phone for the full-screen app.</p>
     <ol>
-      <li><b>Battle</b>: check your team (5 dogs + 1 support, 30 Bark Points), then climb the <b>Challenge Tower</b> or play <b>Ranked</b>.</li>
-      <li><b>Cards</b>: open a card to train it, fuse duplicates (F0 → F10), equip gear, or mint it as an NFT.</li>
-      <li><b>Shop</b>: deals refresh every 10 hours. <b>Season Pass</b>: free and premium tracks.</li>
-      <li><b>Wild</b>: befriend the dogs on your trail. Each one becomes a card.</li>
-      <li>Tap <b>🐾 +1,000 steps</b> on Home for Training Treats, pass XP, snacks and new encounters.</li>
+      <li><b>Pick a faction</b> in onboarding (or on Home → the Heist bar): Demolition Dogs, Kernel Crew or Barkitects.</li>
+      <li><b>Home</b>: faction missions and the weekly signal standings. Tap <b>🐾 +1,000 steps</b> to push your faction up.</li>
+      <li><b>Battle</b>: break into the <b>Fat Cat Vault</b> (10 floors, Fat Cat boss on floor 10). Watch out for squirrels.</li>
+      <li><b>Cards</b>: every dog now shows its faction stripe and role. Train, fuse, gear up or mint.</li>
+      <li><b>Wild</b>: befriend the dogs on your trail to grow your crew.</li>
     </ol>
-    <div class="builds"><b>Builds:</b> v4 Pack Battles (this one) ·
+    <div class="builds"><b>Builds:</b> v5 Grand Heist (this one) ·
+      <a href="https://srimadhavsats.github.io/dogeos_stepwalk/builds/v4/" target="_blank" rel="noopener">v4 Pack Battles</a> ·
       <a href="https://srimadhavsats.github.io/dogeos_stepwalk/builds/v3/" target="_blank" rel="noopener">v3 Sniffari</a> ·
       <a href="https://srimadhavsats.github.io/dogeos_stepwalk/builds/v2/" target="_blank" rel="noopener">v2 Collect &amp; Play</a> ·
       <a href="https://srimadhavsats.github.io/dogeos_stepwalk/builds/v1/" target="_blank" rel="noopener">v1 First prototype</a> ·
       <a href="https://srimadhavsats.github.io/dogeos_stepwalk/builds/" target="_blank" rel="noopener">all builds</a></div>
+    <p style="font-size:12px;margin-top:10px">Community concept built around the DogeOS Grand Heist. Not affiliated with or endorsed by DogeOS, MyDoge or Layer 69 Foundation.</p>
     <div class="ctrls">
       <button class="btn sm sec" data-action="theme">🌗 Theme</button>
       <button class="btn sm sec" data-action="onboarding">🎬 Onboarding</button>
@@ -452,6 +473,7 @@ a{color:var(--sky);font-weight:800}
         <section class="view" data-v="pbfight"></section>
         <section class="view" data-v="shop"></section>
         <section class="view" data-v="pass"></section>
+        <section class="view" data-v="heist"></section>
       </main>
 
       <button class="fab" id="fab" data-action="go" data-view="coach" aria-label="Open Coach Bark"><span class="bub">1</span></button>
@@ -549,6 +571,7 @@ const initialState = () => ({
   snacks: 6, kennel: [], lead: null, seen: [], encounters: [], encSeq: 1, encDone: [], ladder: 1240, wins: 0,
   cards: [], gear: [], supports: [], team: [], teamSupport: null, openCard: null, cardTab: 'Dogs', tierFilter: 'All',
   bones: 2400, pawprints: 320, trainTreats: 12, tower: 1, pbLadder: 1180, pbWins: 0, fusedToday: 0, foundersMinted: 412,
+  faction: 'barki', facXp: 120, facDone: [], facClaimed: [],
   passXp: 1300, passPremium: false, passClaimed: [], questsClaimed: [], shopBought: [], powerBuys: 0, skins: [],
 });
 let S; // created at boot, once every constant below exists
@@ -602,7 +625,7 @@ function pupSVG({ coat = 'classic', stage = 0, mood = 'content', hat = false, sh
       <path d="M89 124 Q100 117 111 124 Q109 133 100 135 Q91 133 89 124 Z" fill="${ink}"/>
       ${mouth}
       <ellipse cx="56" cy="130" rx="10" ry="6" fill="#FF8FA3" opacity=".55"/><ellipse cx="144" cy="130" rx="10" ry="6" fill="#FF8FA3" opacity=".55"/>
-      ${shadesSvg}${hatSvg}${helmet}
+      ${c.cat ? catBits(c) : ''}${shadesSvg}${hatSvg}${helmet}
     </g></svg>`;
 }
 
@@ -848,14 +871,14 @@ function renderChrome() {
   $('#fab').classList.toggle('hide', ['coach', 'walk', 'frenzy', 'derby', 'battle', 'pbfight', 'team'].includes(S.view));
   $('#fab').innerHTML = `<span class="bub">1</span>` + pupSVG({ coat: 'gold', stage: 1, mood: 'happy', bob: false });
 }
-const PARENT_TAB = { play: 'home', den: 'home', card: 'cards', team: 'cards', pbfight: 'pbhub', shop: 'pbhub', pass: 'pbhub', ranks: 'play', pawdex: 'wild', kennel: 'wild', arena: 'wild', battle: 'wild', moon: 'play', bets: 'play', frenzy: 'play', derby: 'play', closet: 'den', loot: 'den', forge: 'den', market: 'den', pup: 'den', badges: 'home', wallet: 'home', coach: 'home' };
+const PARENT_TAB = { heist: 'home', play: 'home', den: 'home', card: 'cards', team: 'cards', pbfight: 'pbhub', shop: 'pbhub', pass: 'pbhub', ranks: 'play', pawdex: 'wild', kennel: 'wild', arena: 'wild', battle: 'wild', moon: 'play', bets: 'play', frenzy: 'play', derby: 'play', closet: 'den', loot: 'den', forge: 'den', market: 'den', pup: 'den', badges: 'home', wallet: 'home', coach: 'home' };
 function go(view) {
   S.view = view;
   $$('.view').forEach(v => v.classList.toggle('active', v.dataset.v === view));
   ({ home: renderHome, walk: renderWalk, moon: renderMoon, ranks: renderRanks, pup: renderPup, coach: renderCoach, bets: renderBets, badges: renderBadges, wallet: renderWallet,
      play: renderPlay, den: renderDen, closet: renderCloset, loot: renderLoot, forge: renderForge, market: renderMarket, frenzy: renderFrenzy, derby: renderDerby,
      wild: renderWild, pawdex: renderPawdex, kennel: renderKennel, arena: renderArena, battle: renderBattle,
-     pbhub: renderPBHub, cards: renderCards, card: renderCard, team: renderTeam, pbfight: renderPBFight, shop: renderShop, pass: renderPass })[view]();
+     pbhub: renderPBHub, cards: renderCards, card: renderCard, team: renderTeam, pbfight: renderPBFight, shop: renderShop, pass: renderPass, heist: renderHeist })[view]();
   renderChrome();
   $('#screen').scrollTop = 0;
 }
@@ -893,6 +916,8 @@ function renderHome() {
         <button class="btn sec" data-action="go" data-view="walk" aria-label="Start a walk">▶︎</button>
       </div>
     </div>
+
+    ${heistHomeCards()}
 
     <div class="card tint click" data-action="go" data-view="moon">
       <div class="ticker">
@@ -934,7 +959,7 @@ function renderHome() {
       <button class="tile" data-action="go" data-view="play"><span class="e">🎮</span>Play</button>
       <button class="tile" data-action="go" data-view="den"><span class="e">🐕</span>Den</button>
     </div>
-    <p class="muted" style="text-align:center;margin-top:18px">Prototype build v4 · Pack Battles · <a href="https://srimadhavsats.github.io/dogeos_stepwalk/builds/" target="_blank" rel="noopener">switch build</a></p>`;
+    <p class="muted" style="text-align:center;margin-top:18px">Prototype build v5 · Grand Heist · Community concept built around the DogeOS Grand Heist. Not affiliated with or endorsed by DogeOS, MyDoge or Layer 69 Foundation. · <a href="https://srimadhavsats.github.io/dogeos_stepwalk/builds/" target="_blank" rel="noopener">switch build</a></p>`;
   tickBlock();
 }
 
@@ -1697,7 +1722,7 @@ const CLASS_ORDER = ['Guardian', 'Tracker', 'Sprinter', 'Trekker', 'Charmer', 'L
 const MAIN_STAT = { Guardian: 'POW', Tracker: 'SNF', Sprinter: 'SPD', Trekker: 'STA', Charmer: 'LCK' };
 const RAR_MULT = { N: 1, R: 1.06, SR: 1.12, L: 1.18, M: 1.25 };
 const MILESTONES = [2000, 4000, 6000, 9000, 12000];
-const breedOf = id => BREEDS.find(b => b.id === id);
+const breedOf = id => BREEDS.find(b => b.id === id) || CATS.find(b => b.id === id);
 const eff = (d, k) => d.stats[k] + d.lvl * 2;
 function makeDog(breedId, r, lvl, name) {
   const b = breedOf(breedId), main = MAIN_STAT[b.cls], stats = {};
@@ -1763,7 +1788,7 @@ function meet(id) {
       <div class="muted" style="font-weight:900;letter-spacing:1px">${e.golden ? '★ GOLDEN HOUR' : 'A WILD DOG APPEARED'}</div>
       <div style="width:150px;margin:6px auto">${dogArt(d, { bob: true })}</div>
       <h2 style="font-size:26px">${b.name}</h2>
-      <div class="row" style="justify-content:center;gap:6px;margin:6px 0;flex-wrap:wrap"><span class="clsChip">${c.e} ${b.cls}</span><span class="tierChip ${TIERS[TIER_FROM_RAR[d.r]].cls}">${TIERS[TIER_FROM_RAR[d.r]].name} card</span><span class="clsChip">Lv ${d.lvl}</span></div>
+      <div class="row" style="justify-content:center;gap:6px;margin:6px 0;flex-wrap:wrap"><span class="fchip f-${facOf(b.cls)}">${FACTIONS[facOf(b.cls)].name}</span><span class="clsChip">${c.e} ${ROLE[b.cls][0]}</span><span class="tierChip ${TIERS[TIER_FROM_RAR[d.r]].cls}">${TIERS[TIER_FROM_RAR[d.r]].name} card</span><span class="clsChip">Lv ${d.lvl}</span></div>
       <div class="muted">Power-up: <b>${c.ability}</b>, ${c.desc}</div></div>
     ${statBars(d)}
     <div class="trust" id="trustBar"><i class="zone" style="left:${trust.zone}%;width:${width}%"></i><b class="needle" id="needle"></b></div>
@@ -1792,7 +1817,7 @@ function offerSnack() {
     confetti(genesis ? 220 : 110); haptic(60); if (['SR', 'L', 'M'].includes(d.r)) wowBurst(3);
     openSheet(`<div style="text-align:center"><div style="width:150px;margin:0 auto">${dogArt(d, { bob: true })}</div>
       <h2 style="font-size:26px">${b.name} joined your pack!</h2>
-      <p class="muted">${got.dupe ? `You already had this card, so it's now a copy for fusion (×${got.card.copies + 1}).` : `New card: ${TIERS[got.card.t].name} ${cardName(got.card)} (${b.cls}).`}${genesis ? '<br>✨ <b>Genesis tracks found!</b> +5 entries in tonight\'s Genesis draw.' : ''}</p>
+      <p class="muted">${got.dupe ? `You already had this card, so it's now a copy for fusion (×${got.card.copies + 1}).` : `New card: ${TIERS[got.card.t].name} ${cardName(got.card)} (${ROLE[b.cls][0]}, ${FACTIONS[facOf(b.cls)].name}).`}${genesis ? '<br>✨ <b>Genesis tracks found!</b> +5 entries in tonight\'s Genesis draw.' : ''}</p>
       <div class="grid2"><button class="btn sec" data-action="opencard" data-uid="${got.card.uid}">See card</button><button class="btn" data-action="go" data-view="wild">Back to trail</button></div></div>`, true);
   } else if (trust.tries <= 0 || S.snacks <= 0) {
     trust.done = true; resolveEncounter(e);
@@ -1809,10 +1834,10 @@ function renderPawdex() {
   $('[data-v=pawdex]').innerHTML = `
     <button class="back" data-action="go" data-view="wild">‹ Wild</button>
     <div class="between"><h2 class="section-title">📖 Pawdex</h2><span class="chip gold">${owned.size}/18 · ${Math.round(owned.size / 18 * 100)}%</span></div>
-    <div class="banner">Befriend every breed in a class to earn its Captain badge and a Season Box.</div>
+    <div class="banner">Befriend every breed in a role to earn its Captain badge and a Season Box.</div>
     ${CLASS_ORDER.map(cls => {
       const list = BREEDS.filter(b => b.cls === cls), have = list.filter(b => owned.has(b.id)).length;
-      return `<div class="card"><h3>${CLASSES[cls].e} ${cls}s <span class="muted" style="margin-left:auto">${have}/3</span></h3><div class="pawgrid">${list.map(b => {
+      return `<div class="card"><h3>${CLASSES[cls].e} ${ROLE[cls][0]}s <span class="fchip f-${ROLE[cls][1]}">${FACTIONS[ROLE[cls][1]].name}</span><span class="muted" style="margin-left:auto">${have}/3</span></h3><div class="pawgrid">${list.map(b => {
         const st = owned.has(b.id) ? 'own' : S.seen.includes(b.id) ? 'seen' : 'sil';
         return `<div class="item ${st === 'own' ? '' : st}"><div class="art">${pupSVG({ coat: 'b_' + b.id, stage: 1, mood: 'happy', bob: false })}</div>${st === 'sil' ? '???' : b.name}<br><span class="muted">${st === 'own' ? '✅ Friend' : st === 'seen' ? '👀 Seen' : 'Not met'}</span></div>`;
       }).join('')}</div></div>`;
@@ -1851,7 +1876,7 @@ function renderArena() {
     <p class="muted">No token wagering. PvP resolves on the server with a committed seed, so every result can be verified.</p>`;
 }
 let B = null;
-function typeMult(a, b) { if (CLASSES[a].beats === b) return 1.5; if (CLASSES[b].beats === a) return 0.67; return 1; }
+function typeMult(a, b) { return facMult(facOf(a), facOf(b)); }
 function startBattle(mode) {
   if (mode !== 'friendly') { if (S.tickets <= 0) { toast('No tickets. Walk 2,000 steps for one! 🐾'); return; } S.tickets--; }
   const me = leadDog();
@@ -1989,7 +2014,7 @@ function cardStats(c, cap) {
   const b = breedOf(c.breed), base = CLASS_BASE[b.cls], T = TIERS[c.t];
   const lvl = cap ? Math.min(c.lvl, cap.lvl) : c.lvl, f = cap ? Math.min(c.f, cap.f) : c.f;
   const gear = { ATK: 0, HP: 0, SPD: 0, RCV: 0 };
-  (S.gear || []).filter(g => g.on === c.uid).forEach(g => { gear[GEAR_SLOT[g.slot][0]] += (GEAR_TIERS[g.t][1] + g.plus) / 100; });
+  (S.gear || []).filter(g => g.on === c.uid).forEach(g => { gear[GEAR_SLOT[g.slot][0]] += (GEAR_TIERS[g.t][1] + g.plus) / 100 * (facOf(b.cls) === 'barki' ? 1.5 : 1); });
   const out = {};
   for (const k of ['ATK', 'HP', 'SPD', 'RCV']) {
     const silver = c.t === 'S' && MAIN_PB[b.cls] === k ? 0.05 : 0;
@@ -2006,6 +2031,7 @@ function cardEl(c, o = {}) {
   const b = breedOf(c.breed), T = TIERS[c.t], s = cardStats(c);
   return `<button class="pcard ${T.cls} ${o.small ? 'small' : ''} ${o.dim ? 'dim' : ''}" data-action="${o.action || 'opencard'}" data-uid="${c.uid}" aria-label="${cardName(c)}, ${T.name}, level ${c.lvl}">
     ${c.copies && !o.small ? `<span class="pc-copies">×${c.copies + 1}</span>` : ''}
+    <span class="pc-fac f-${facOf(b.cls)}"></span>
     <div class="pc-top"><span>${CLASSES[b.cls].e}</span><span>Lv ${c.lvl}</span></div>
     <div class="pc-art">${cardArt(c)}</div>
     <div class="pc-name">${cardName(c)}</div>
@@ -2019,7 +2045,7 @@ function passiveText(c) {
   if (c.t === 'B') return '<div class="muted">No passive (Bronze).</div>';
   if (c.t === 'S') return `<div class="muted"><b>Basic passive:</b> +5% ${MAIN_PB[cls]}</div>`;
   let s = `<div class="muted"><b>${p[1]}:</b> ${p[2]}</div>`;
-  if (c.t === 'D') s += `<div class="muted"><b>Pack Bond</b> (dual synergy): +12% all stats when 2+ allies share its class</div><div class="muted"><b>Doge Trinity</b> (triple synergy): team +10% ATK and RCV with a Legend, a Guardian and a Charmer</div>`;
+  if (c.t === 'D') s += `<div class="muted"><b>Pack Bond</b> (dual synergy): +12% all stats when 2+ allies share its role</div><div class="muted"><b>Heist Trinity</b> (triple synergy): team +10% ATK and RCV with an Operator, a Breacher and an Amplifier</div>`;
   return s;
 }
 function seedCards() {
@@ -2043,20 +2069,20 @@ function renderPBHub() {
   const lg = leagueOf(S.pbLadder), pts = teamPts(), team = S.team.map(cardBy).filter(Boolean), sup = S.supports.find(s => s.id === S.teamSupport);
   $('[data-v=pbhub]').innerHTML = `
     <div class="between"><h2 class="section-title">⚔️ Pack Battles</h2><span class="chip gold">${lg.name} · ${fmt(S.pbLadder)}</span></div>
-    <div class="banner">Concept test: a dog card battler. Walk to find cards, then battle with 5 dogs + 1 support. League caps keep it fair: in ${lg.name} League every card fights at most Lv ${lg.lvl} / F${lg.f}.</div>
+    <div class="heistbar f-${S.faction}"><span class="prompt">root@muchwalk:~$</span> crew --ready<br>5 dogs + 1 support · ${lg.name} League caps cards at Lv ${lg.lvl} / F${lg.f} · ignore the squirrels</div>
     <div class="card"><div class="between"><b>Your team</b><span class="muted">Bark Points ${pts}/30</span></div>
       <div class="pbrow" style="margin:10px 0">${team.map(miniUnit).join('')}</div>
       <div class="between"><span class="muted">Support: <b style="color:var(--text)">${sup ? supName(sup) + ' F' + sup.f : 'none'}</b></span><button class="btn sm sec" data-action="go" data-view="team">Edit team</button></div></div>
-    <div class="card"><div class="row"><div class="box-ico">🗼</div><div style="flex:1;min-width:0"><h3 style="margin:0">Challenge Tower · Floor ${Math.min(10, S.tower)}/10</h3>
-      <div class="muted">${S.tower > 10 ? 'Cleared this week!' : TOWER_RULE[S.tower] || 'No special rule on this floor'} · Gold Challenge cards at floors 5 and 10</div></div></div>
-      <button class="btn block" style="margin-top:10px" data-action="pbstart" data-mode="tower" ${S.tower > 10 ? 'disabled' : ''}>${S.tower > 10 ? 'Tower cleared 🏆' : 'Climb'}</button></div>
+    <div class="card"><div class="row"><div class="box-ico">🏦</div><div style="flex:1;min-width:0"><h3 style="margin:0">Fat Cat Vault · Floor ${Math.min(10, S.tower)}/10</h3>
+      <div class="muted">${S.tower > 10 ? 'Vault cracked this week!' : TOWER_RULE[S.tower] || 'Fat Cat security on patrol'} · Gold Challenge cards at floors 5 and 10</div></div></div>
+      <button class="btn block" style="margin-top:10px" data-action="pbstart" data-mode="tower" ${S.tower > 10 ? 'disabled' : ''}>${S.tower > 10 ? 'Vault cracked 🏆' : 'Break in'}</button></div>
     <div class="grid2">
       <div class="card" style="margin:0"><h3 style="margin:0 0 4px">🤝 Friendly</h3><div class="muted">vs @sesame_sprint's pack</div><button class="btn sm sec block" style="margin-top:8px" data-action="pbstart" data-mode="friendly">Battle</button></div>
       <div class="card" style="margin:0"><h3 style="margin:0 0 4px">🏆 Ranked</h3><div class="muted">Async PvP · ${lg.name} League</div><button class="btn sm block" style="margin-top:8px" data-action="pbstart" data-mode="ranked">Battle</button></div>
     </div>
     <div class="grid2" style="margin-top:16px">
       <button class="card click" style="margin:0;text-align:left" data-action="go" data-view="shop"><b>🛒 Shop</b><div class="muted">New deals in <span class="shopClock">--</span></div></button>
-      <button class="card click" style="margin:0;text-align:left" data-action="go" data-view="pass"><b>🎫 Season Pass</b><div class="muted">Tier ${passLevel()}/30 · ${S.passPremium ? 'Premium' : 'Free track'}</div></button>
+      <button class="card click" style="margin:0;text-align:left" data-action="go" data-view="pass"><b>🎫 Heist Pass</b><div class="muted">Tier ${passLevel()}/30 · ${S.passPremium ? 'Premium' : 'Free track'}</div></button>
     </div>`;
   tickShop();
 }
@@ -2105,7 +2131,7 @@ function renderCard() {
     <div class="row" style="align-items:flex-start;gap:14px;margin-bottom:16px">
       <div style="width:138px;flex-shrink:0">${cardEl(c, { action: 'noop' })}</div>
       <div style="flex:1;min-width:0"><h2 style="font-size:24px">${cardName(c)}</h2>
-        <div class="row" style="gap:6px;flex-wrap:wrap;margin:6px 0"><span class="clsChip">${CLASSES[b.cls].e} ${b.cls}</span><span class="tierChip ${T.cls}">${T.name}</span>${c.minted ? '<span class="clsChip">⛓️ NFT</span>' : ''}</div>
+        <div class="row" style="gap:6px;flex-wrap:wrap;margin:6px 0"><span class="fchip f-${facOf(b.cls)}">${FACTIONS[facOf(b.cls)].name}</span><span class="clsChip">${ROLE[b.cls][2]} ${ROLE[b.cls][0]}</span><span class="tierChip ${T.cls}">${T.name}</span>${c.minted ? '<span class="clsChip">⛓️ NFT</span>' : ''}</div>
         <div class="muted">Lv ${c.lvl}/${cap} · F${c.f}/10 · Power ${fmt(power(c))} · ${T.pts} Bark Points</div>
         <div class="statsbox">${['ATK', 'HP', 'SPD', 'RCV'].map(k => `<div class="statrow"><span>${k}</span><div class="bar"><i style="width:${Math.min(100, s[k] / maxes[k] * 100)}%"></i></div><b>${s[k]}</b></div>`).join('')}</div></div></div>
     <div class="card"><h3>✨ Special: ${SPECIALS[b.cls][0]}</h3><div class="muted">${SPECIALS[b.cls][1]} · strength ×${T.sp}</div><h3 style="margin-top:12px">🧬 Passives</h3>${passiveText(c)}</div>
@@ -2131,6 +2157,7 @@ function renderTeam() {
     <button class="back" data-action="go" data-view="pbhub">‹ Battle</button>
     <div class="between"><h2 class="section-title">🧩 Team</h2><span class="chip ${pts > 30 ? '' : 'gold'}">Bark Points ${pts}/30</span></div>
     <div class="bar ${pts > 30 ? 'pink' : ''}" style="margin-bottom:10px"><i style="width:${Math.min(100, pts / 30 * 100)}%"></i></div>
+    <div class="row" style="gap:6px;flex-wrap:wrap;margin-bottom:10px">${Object.entries(FACTIONS).map(([k, x]) => { const n = S.team.filter(u => cardBy(u) && facOf(breedOf(cardBy(u).breed).cls) === k).length; return `<span class="fchip f-${k}">${x.e} ${x.name} ${n}${n >= 3 ? ' · +10% ATK' : ''}</span>`; }).join('')}</div>
     <div class="muted" style="margin-bottom:10px">Front ← → back. The front dog is hit first. Tap a team card to remove it. One of each breed. Bronze 3 · Silver 5 · Gold 7–8 · Diamond 10 points.</div>
     <div class="cardgrid five">${[0, 1, 2, 3, 4].map(i => { const c = cardBy(S.team[i]); return c ? cardEl(c, { small: true, action: 'teamrm' }) : '<button class="pcard empty" data-action="noop">＋<br>Empty</button>'; }).join('')}</div>
     <div class="row" style="gap:8px;margin:14px 0"><button class="btn sm sec" data-action="teamauto">✨ Auto-fill best</button><button class="btn sm sec" data-action="teamclear">Clear</button></div>
@@ -2162,7 +2189,7 @@ let PB = null, pbTimer = null;
 const hasPassive = (u, key) => ['GB', 'GC', 'GP', 'D'].includes(u.t) && PASSIVE_OF[u.cls][0] === key;
 function makeUnit(c, side, cap, sup) {
   const s = cardStats(c, cap), cls = breedOf(c.breed).cls;
-  const u = { c, side, name: cardName(c), cls, t: c.t, atk: s.ATK, maxhp: s.HP, hp: s.HP, spd: s.SPD, rcv: s.RCV, meter: 0, shield: 0, taunt: 0, stun: false, buff: 0, hitThisRound: false, alive: true };
+  const u = { c, side, name: cardName(c), cls, fac: breedOf(c.breed).cat ? 'cats' : facOf(cls), t: c.t, atk: s.ATK, maxhp: s.HP, hp: s.HP, spd: s.SPD, rcv: s.RCV, meter: 0, shield: 0, taunt: 0, stun: false, buff: 0, hitThisRound: false, alive: true };
   if (sup && SUPPORT_KINDS[sup.kind][1] !== 'HEAL') {
     const k = SUPPORT_KINDS[sup.kind][1], m = 1 + supPct(sup) / 100;
     if (k === 'ATK') u.atk *= m; if (k === 'HP') { u.maxhp *= m; u.hp = u.maxhp; } if (k === 'SPD') u.spd *= m; if (k === 'RCV') u.rcv *= m;
@@ -2177,6 +2204,14 @@ function applySynergy(units) {
   units.forEach(u => { u.maxhp = Math.round(u.maxhp); u.hp = u.maxhp; });
 }
 function enemyCards(mode) {
+  if (mode === 'tower') {
+    const fl = Math.min(10, S.tower), pool = ['cat_doorman', 'cat_auditor', 'cat_trader', 'cat_lawyer', 'cat_banker'];
+    const tiers = fl >= 8 ? ['GB', 'S', 'GB', 'S', 'S'] : fl >= 5 ? ['S', 'S', 'GB', 'B', 'S'] : ['B', 'S', 'B', 'B', 'B'];
+    return tiers.map((t, i) => {
+      const boss = fl === 10 && i === 0, breed = boss ? 'cat_boss' : pool[(i + fl) % pool.length];
+      return { uid: 'e' + i, breed, t: boss ? 'D' : t, lvl: Math.max(1, Math.round(3 + fl * 3 + rand(-2, 2) + (boss ? 8 : 0))), f: boss ? 2 : 0, copies: 0, name: breedOf(breed).name };
+    });
+  }
   const fl = Math.min(10, S.tower);
   const lvlBase = mode === 'tower' ? 3 + fl * 3 : mode === 'friendly' ? 9 : Math.round(leagueOf(S.pbLadder).lvl * 0.25);
   const tiers = mode === 'tower' ? (fl >= 8 ? ['D', 'GB', 'S', 'GP', 'S'] : fl >= 5 ? ['S', 'GB', 'S', 'B', 'S'] : ['B', 'S', 'B', 'B', 'B'])
@@ -2198,11 +2233,11 @@ function startPB(mode) {
   const me = S.team.map(cardBy).map(c => makeUnit(c, 'me', cap, sup));
   const foeSup = { kind: pick(['park', 'spiked', 'treat']), t: 'S', f: 1 };
   const foe = enemyCards(mode).map(c => makeUnit(c, 'foe', cap, foeSup));
-  applySynergy(me); applySynergy(foe);
+  applySynergy(me); applySynergy(foe); crewBonus(me); crewBonus(foe);
   const rule = mode === 'tower' ? TOWER_RULE[S.tower] : null;
-  if (rule) [...me, ...foe].forEach(u => { if (S.tower === 3) u.spd *= 0.8; if (S.tower === 6) u.rcv *= 1.5; if (S.tower === 9 && u.cls === 'Legend') u.atk *= 1.2; });
-  const foeName = mode === 'tower' ? `Tower floor ${S.tower}` : mode === 'friendly' ? "@sesame_sprint's pack" : `@${pick(NAMES)}'s pack (${lg.name})`;
-  PB = { mode, round: 0, me, foe, sup, foeSup, rule, foeName, log: [`${foeName} is ready. Tap Fight!`], over: false, playing: false };
+  if (rule) [...me, ...foe].forEach(u => { if (S.tower === 3 && u.fac === 'demo') u.spd *= 0.75; if (S.tower === 9 && u.fac === 'cats') { u.maxhp = Math.round(u.maxhp * 1.2); u.hp = u.maxhp; } });
+  const foeName = mode === 'tower' ? `Fat Cat Vault · floor ${S.tower}` : mode === 'friendly' ? "@sesame_sprint's pack" : `@${pick(NAMES)}'s pack (${lg.name})`;
+  PB = { mode, round: 0, me, foe, sup, foeSup, rule, foeName, squirrelMult: mode === 'tower' && S.tower === 6 ? 3 : 1, log: [`${foeName} is ready. Tap Fight!`], over: false, playing: false };
   clearInterval(pbTimer);
   go('pbfight');
 }
@@ -2216,15 +2251,18 @@ function pbHit(u, tgt, mult, allies) {
   let atk = u.atk * (1 + u.buff);
   if (hasPassive(u, 'howl')) atk *= 1 + 0.06 * allies.filter(a => a.alive && a.cls === 'Trekker').length;
   if (PB.round === 1 && hasPassive(u, 'headstart')) atk *= 1.1;
-  const tm = typeMult(u.cls, tgt.cls);
+  if (PB.round === 1 && u.fac === 'demo') atk *= 1.1;
+  const tm = facMult(u.fac, tgt.fac);
   let dmg = atk * tm * mult * rand(0.9, 1.1);
+  if (u.fac === 'barki' && u.hp < u.maxhp * 0.3) dmg *= 1.25;
+  if (tgt.fac === 'barki' && tgt.hp < tgt.maxhp * 0.3) dmg *= 1.25;
   if (hasPassive(u, 'nose') && tgt.hp < tgt.maxhp / 2) dmg *= 1.2;
   if (hasPassive(tgt, 'watchdog') && !tgt.hitThisRound) dmg *= 0.7;
   tgt.hitThisRound = true;
   dmg = Math.round(dmg);
   if (tgt.shield) { const ab = Math.min(tgt.shield, dmg); tgt.shield -= ab; dmg -= ab; }
   tgt.hp = Math.max(0, tgt.hp - dmg);
-  if (tgt.hp <= 0) { tgt.alive = false; return `${u.name} → ${tgt.name} ${dmg} · KO 💥`; }
+  if (tgt.hp <= 0) { tgt.alive = false; return `${u.name} → ${tgt.name} ${dmg} · tuckered out 💤`; }
   return `${u.name} → ${tgt.name} ${dmg}${tm > 1 ? ' ✨' : ''}`;
 }
 function pbSpecial(u, foes, allies) {
@@ -2240,7 +2278,7 @@ function pbSpecial(u, foes, allies) {
   if (u.cls === 'Charmer') {
     const t = foes.reduce((a, b) => (a.atk > b.atk ? a : b)); t.stun = true;
     const w = allies.reduce((a, b) => (a.hp / a.maxhp < b.hp / b.maxhp ? a : b)), h = Math.round(w.maxhp * 0.15 * k); w.hp = Math.min(w.maxhp, w.hp + h);
-    return `💛 ${u.name}: ${n}! ${t.name} is charmed, ${w.name} +${h}`;
+    return `📣 ${u.name}: ${n}! ${t.name} is distracted, ${w.name} +${h}`;
   }
   allies.forEach(a => { a.buff = Math.min(0.3, a.buff + 0.15 * k); });
   return `🌕 ${u.name}: ${n}! Team ATK up · ` + pbHit(u, pickTarget(u, foes), 1.2 * k, allies);
@@ -2250,15 +2288,20 @@ function pbRound() {
   PB.round++;
   const all = [...PB.me, ...PB.foe].filter(u => u.alive);
   all.forEach(u => { u.hitThisRound = false; });
-  const spdOf = u => u.spd * (PB.round === 1 && hasPassive(u, 'headstart') ? 1.25 : 1);
+  const spdOf = u => u.spd * (PB.round === 1 && hasPassive(u, 'headstart') ? 1.25 : 1) * (PB.round === 1 && u.fac === 'demo' ? 1.2 : 1);
   all.sort((a, b) => spdOf(b) - spdOf(a) || Math.random() - 0.5);
   const lines = [];
+  if (Math.random() < 0.12 * (PB.squirrelMult || 1)) {
+    const v = pick(all.flatMap(u => (u.fac === 'kernel' ? [u, u] : [u])));
+    v.squirrel = true; lines.push(`🐿️ SQUIRREL! ${v.name} chases it and loses a turn`);
+  }
   for (const u of all) {
     if (!u.alive) continue;
     const foes = (u.side === 'me' ? PB.foe : PB.me).filter(x => x.alive), allies = (u.side === 'me' ? PB.me : PB.foe).filter(x => x.alive);
     if (!foes.length) break;
-    if (u.stun) { u.stun = false; lines.push(`${u.name} is charmed and skips 🥺`); continue; }
-    u.meter += 25;
+    if (u.squirrel) { u.squirrel = false; continue; }
+    if (u.stun) { u.stun = false; lines.push(`${u.name} is distracted and skips 🥺`); continue; }
+    u.meter += u.fac === 'kernel' ? 35 : 25;
     if (u.meter >= 100) { u.meter = 0; lines.push(pbSpecial(u, foes, allies)); } else lines.push(pbHit(u, pickTarget(u, foes), 1, allies));
   }
   for (const [side, sup] of [[PB.me, PB.sup], [PB.foe, PB.foeSup]]) {
@@ -2280,7 +2323,7 @@ function endPB(win) {
   if (win) S.pbWins++;
   if (PB.mode === 'tower') {
     if (win) {
-      const fl = S.tower; S.bones += 150 * fl; S.passXp += 40; reward = `+${fmt(150 * fl)} 🍖 Bones · +40 pass XP`;
+      const fl = S.tower; S.bones += 150 * fl; S.passXp += 40; reward = `Loot taken back from the Fat Cats: +${fmt(150 * fl)} 🍖 Bones · +40 pass XP`;
       if (fl === 5) { addCard('beagle', 'GC'); extra = '🥇 Gold Challenge Beagle card unlocked!'; }
       if (fl === 10) { addCard('samoyed', 'GC'); S.pawprints += 500; extra = '🥇 Gold Challenge Samoyed + 500 🐾 Pawprints!'; }
       S.tower++;
@@ -2308,7 +2351,7 @@ function renderPBFight() {
       ${u.shield ? '<span class="ub">🛡️</span>' : u.stun ? '<span class="ub">🥺</span>' : ''}</div>`).join('')}</div>`;
   $('[data-v=pbfight]').innerHTML = `
     <button class="back" data-action="pbleave">‹ Battle</button>
-    <div class="between"><h2 class="section-title">${{ tower: '🗼 Tower', friendly: '🤝 Friendly', ranked: '🏆 Ranked' }[PB.mode]}</h2><span class="chip">Round ${PB.round}/20</span></div>
+    <div class="between"><h2 class="section-title">${{ tower: '🏦 Fat Cat Vault', friendly: '🤝 Friendly', ranked: '🏆 Ranked' }[PB.mode]}</h2><span class="chip">Round ${PB.round}/20</span></div>
     <div class="muted" style="font-weight:900;margin-bottom:6px">${PB.foeName}</div>
     ${row(PB.foe)}<div class="vs">VS</div>${row(PB.me)}
     <div class="muted" style="font-weight:900;margin:6px 0 10px">YOUR PACK${PB.rule ? ' · ' + PB.rule : ''}</div>
@@ -2406,7 +2449,7 @@ const PASS_QUESTS = [
   { id: 'win3', text: 'Win 3 battles', prog: () => S.pbWins, target: 3, xp: 150 },
   { id: 'walk6', text: 'Walk 6,000 steps today', prog: () => S.steps, target: 6000, xp: 100 },
   { id: 'fuse1', text: 'Fuse any card', prog: () => S.fusedToday, target: 1, xp: 100 },
-  { id: 'tower3', text: 'Reach Tower floor 3', prog: () => S.tower, target: 3, xp: 120 },
+  { id: 'tower3', text: 'Reach Vault floor 3', prog: () => S.tower, target: 3, xp: 120 },
 ];
 function renderPass() {
   const lv = passLevel();
@@ -2417,7 +2460,7 @@ function renderPass() {
   };
   $('[data-v=pass]').innerHTML = `
     <button class="back" data-action="go" data-view="pbhub">‹ Battle</button>
-    <div class="between"><h2 class="section-title">🎫 Season Pass</h2><span class="chip">S1 · Moon Pups · 23d left</span></div>
+    <div class="between"><h2 class="section-title">🎫 Heist Pass</h2><span class="chip">S1 · Take back what is yours · 23d left</span></div>
     <div class="card"><div class="between"><b>Tier ${lv}/30</b><span class="muted">${lv >= 30 ? 'Max tier!' : `${S.passXp % 200}/200 XP`}</span></div>
       <div class="bar" style="margin:8px 0"><i style="width:${lv >= 30 ? 100 : (S.passXp % 200) / 2}%"></i></div>
       <div class="muted">Pass XP comes from quests, battles and 10 XP per 1,000 steps. Premium is mostly cosmetics and limited skins, never exclusive battle power.</div>
@@ -2431,11 +2474,98 @@ function renderPass() {
       ${Array.from({ length: 30 }, (_, i) => i + 1).map(t => `<div class="passrow"><div class="plv ${t <= lv ? 'on' : ''}">${t}</div>${cell('free', t)}${cell('prem', t)}</div>`).join('')}</div>`;
 }
 
+/* ---------- Grand Heist alignment (v5, docs/15) ---------- */
+const FACTIONS = {
+  demo: { name: 'Demolition Dogs', e: '🧨', tagline: 'Breaking down the doors, spread the signal.', role: 'The frontline: social quests that make every bark heard', tags: 'Degens · Social',
+    power: 'Always Online', powerFx: 'Demolition dogs get +20% SPD and +10% ATK in round 1', weak: 'No Wi-Fi', weakFx: 'Dead Zone floors: −25% SPD', reward: 'bringing in new Shibes and spreading the signal' },
+  kernel: { name: 'Kernel Crew', e: '📣', tagline: 'Amplify the signal. Arm the troops.', role: 'Creators, educators and culture shapers', tags: 'Artists · Creative',
+    power: 'Viral Bark', powerFx: 'Specials charge 40% faster', weak: 'Squirrels', weakFx: 'Twice as likely to chase a squirrel mid-battle', reward: 'creating culture and helping new walkers' },
+  barki: { name: 'Barkitects', e: '🛠️', tagline: 'Go on-chain and execute.', role: 'Builders who use the on-chain tools', tags: 'Builders · On-chain',
+    power: 'Utility Maxxing', powerFx: 'Gear bonuses ×1.5', weak: 'Full Degen', weakFx: 'Under 30% HP: deal and take +25% damage', reward: 'getting on-chain and using the tools' },
+};
+// Our six battle roles regrouped under the three Heist factions (internal class keys stay the same)
+const ROLE = { Guardian: ['Breacher', 'demo', '🧨'], Sprinter: ['Runner', 'demo', '📡'], Charmer: ['Amplifier', 'kernel', '📣'], Tracker: ['Intel', 'kernel', '🗂️'], Trekker: ['Engineer', 'barki', '🛠️'], Legend: ['Operator', 'barki', '💻'] };
+const facOf = cls => (ROLE[cls] ? ROLE[cls][1] : 'cats');
+const FAC_BEATS = { demo: 'barki', barki: 'kernel', kernel: 'demo' };
+const facMult = (a, b) => (FAC_BEATS[a] === b ? 1.3 : FAC_BEATS[b] === a ? 0.77 : 1);
+Object.entries(ROLE).forEach(([k, r]) => { CLASSES[k].e = r[2]; });
+Object.assign(SPECIALS, { Guardian: ['Door Breach', 'shield worth 30% HP and holds the enemy\'s attention for 2 rounds'], Tracker: ['Exploit Found', '1.8× hit on the weakest enemy'],
+  Sprinter: ['Signal Burst', 'two quick 0.8× strikes'], Trekker: ['Hotfix', 'heals 35% HP'], Charmer: ['Viral Thread', 'distracts the strongest enemy and heals the weakest ally 15%'], Legend: ['Ship It', 'team +15% ATK, then a 1.2× hit'] });
+Object.entries({ Guardian: 'Hold the Line', Charmer: 'Morale Boost', Sprinter: 'Head Start', Tracker: 'Read the Chain', Trekker: 'Build Mode', Legend: 'Much Wow' }).forEach(([k, n]) => { PASSIVE_OF[k][1] = n; });
+for (const k in TOWER_RULE) delete TOWER_RULE[k];
+Object.assign(TOWER_RULE, { 3: '📶 Dead Zone: no Wi-Fi, Demolition Dogs −25% SPD', 5: '🔐 Security door: a Gold Challenge card waits behind it', 6: '🐿️ Squirrel Storm: three times the squirrels', 9: '💼 Audit floor: Fat Cats +20% HP', 10: '🎩 Boss floor: the Fat Cat guards the vault' });
+
+// Fat Cat security: Vault enemies only, never collectable
+const CATS = [
+  { id: 'cat_doorman', name: 'Doorman Cat', cls: 'Guardian', fur: '#8A8FA3', dark: '#5E6273', cream: '#E6E8F0', brow: '#8A8FA3' },
+  { id: 'cat_auditor', name: 'Auditor Cat', cls: 'Tracker', fur: '#E8A456', dark: '#B9771F', cream: '#FFF1DA', brow: '#E8A456' },
+  { id: 'cat_trader', name: 'Trader Cat', cls: 'Sprinter', fur: '#2E2836', dark: '#16121C', cream: '#E6E8F0', brow: '#2E2836' },
+  { id: 'cat_lawyer', name: 'Lawyer Cat', cls: 'Charmer', fur: '#F4F1EA', dark: '#C9C2B4', cream: '#FFFFFF', brow: '#F4F1EA' },
+  { id: 'cat_banker', name: 'Banker Cat', cls: 'Trekker', fur: '#C98A4B', dark: '#8A5A2B', cream: '#F2D7B4', brow: '#C98A4B' },
+  { id: 'cat_boss', name: 'The Fat Cat', cls: 'Legend', fur: '#9AA0B4', dark: '#5E6273', cream: '#E6E8F0', brow: '#9AA0B4', boss: true },
+].map(c => ({ ...c, cat: true, ears: 'pointy' }));
+CATS.forEach(b => { COATS['b_' + b.id] = { name: b.name, fur: b.fur, dark: b.dark, cream: b.cream, brow: b.brow, ears: 'pointy', cat: true, boss: !!b.boss }; });
+function catBits(c) {
+  const ink = '#1F1A33';
+  return `<g stroke="${ink}" stroke-width="3" stroke-linecap="round"><path d="M40 120 L70 126 M38 134 L70 132 M160 120 L130 126 M162 134 L130 132"/></g>
+    <path d="M92 120 L108 120 L100 130 Z" fill="#FF8FA3" stroke="${ink}" stroke-width="3" stroke-linejoin="round"/>
+    <path d="M78 170 L100 161 L122 170 L122 152 L100 161 L78 152 Z" fill="#6C5CE7" stroke="${ink}" stroke-width="3" stroke-linejoin="round"/>
+    ${c.boss ? `<rect x="70" y="14" width="60" height="44" rx="4" fill="${ink}"/><rect x="54" y="54" width="92" height="10" rx="4" fill="${ink}"/><rect x="70" y="44" width="60" height="8" fill="#FFC531"/>
+      <circle cx="124" cy="104" r="14" fill="none" stroke="#FFC531" stroke-width="4"/><path d="M138 108 Q150 130 146 150" stroke="#FFC531" stroke-width="2" fill="none"/>` : ''}`;
+}
+function crewBonus(units) {
+  const n = {}; units.forEach(u => { n[u.fac] = (n[u.fac] || 0) + 1; });
+  units.forEach(u => { if (u.fac !== 'cats' && n[u.fac] >= 3) u.atk *= 1.1; });
+}
+const facSteps = () => { const base = { demo: 4120000, kernel: 2710000, barki: 3250000 }; base[S.faction] += S.steps; return base; };
+const FAC_MISSIONS = {
+  demo: [{ id: 'd1', text: 'Recon walk: 6,000 steps', done: () => S.steps >= 6000 }, { id: 'd2', text: 'Spread the signal: share a walk recap', manual: true }, { id: 'd3', text: 'Recruit a Shibe: invite a friend', manual: true }],
+  kernel: [{ id: 'k1', text: 'Field work: walk 6,000 steps', done: () => S.steps >= 6000 }, { id: 'k2', text: 'Write a field guide: post a tip for new walkers', manual: true }, { id: 'k3', text: 'Help a recruit: cheer 3 walkers', manual: true }],
+  barki: [{ id: 'b1', text: 'Recon walk: 6,000 steps', done: () => S.steps >= 6000 }, { id: 'b2', text: 'Go on-chain: claim your treats', done: () => S.claimable === 0 }, { id: 'b3', text: 'Build the crew: fuse or mint a card', done: () => S.fusedToday > 0 || S.cards.some(c => c.minted) }],
+};
+const FAC_RANKS = ['Recruit', 'Operative', 'Specialist', 'Mastermind'];
+const facRank = () => FAC_RANKS[Math.min(3, Math.floor(S.facXp / 300))];
+const missionDone = m => S.facDone.includes(m.id) || (m.done && m.done());
+function heistHomeCards() {
+  const f = FACTIONS[S.faction], st = facSteps(), total = st.demo + st.kernel + st.barki;
+  const rows = Object.entries(FACTIONS).sort((a, b) => st[b[0]] - st[a[0]]).map(([k, x]) => `<div class="fbar f-${k}"><span>${x.e} ${x.name}</span><div class="bar"><i style="width:${st[k] / total * 100}%"></i></div><b>${Math.round(st[k] / total * 100)}%</b></div>`).join('');
+  return `
+    <button class="heistbar f-${S.faction}" data-action="go" data-view="heist"><span class="prompt">root@muchwalk:~$</span> heist --status<br><span class="ok">●</span> GRAND HEIST LIVE · faction <b>${f.name}</b> · ${facRank()}<br>ignore the squirrels · no fat cats · tap for intel</button>
+    <div class="card f-${S.faction}"><h3>📡 Signal standings · this week</h3><div class="fbars">${rows}</div>
+      <div class="muted">Every step you walk adds signal to ${f.name}. The winning faction's walkers get a Vault key.</div></div>
+    <div class="card f-${S.faction}"><h3>${f.e} ${f.name} missions <span class="muted" style="margin-left:auto">${facRank()} · ${S.facXp} XP</span></h3>
+      ${FAC_MISSIONS[S.faction].map(m => { const ok = missionDone(m), got = S.facClaimed.includes(m.id);
+        return `<div class="quest ${got ? 'done' : ''}"><div class="chk">${got ? '✓' : ''}</div><div style="flex:1;min-width:0"><span class="qt">${m.text}</span></div>
+          ${got ? '' : ok ? `<button class="btn sm mint" data-action="facclaim" data-id="${m.id}">+100 XP</button>` : m.manual ? `<button class="btn sm sec" data-action="facdo" data-id="${m.id}">Do it</button>` : '<span class="muted">in progress</span>'}</div>`; }).join('')}
+    </div>`;
+}
+function renderHeist() {
+  const f = FACTIONS[S.faction];
+  $('[data-v=heist]').innerHTML = `
+    <button class="back" data-action="go" data-view="home">‹ Home</button>
+    <h2 class="section-title pixel">🕵️ The Grand Heist</h2>
+    <div class="heistbar f-${S.faction}"><span class="prompt">root@muchwalk:~$</span> cat briefing.txt<br>The value Dogecoin created kept flowing to the Fat Cats who run the exchanges. The Heist moves it back on-chain, one quest at a time. Here, every walk is a mission and every dog you befriend joins your crew.</div>
+    <div class="banner">Community concept built around the DogeOS Grand Heist. Not affiliated with or endorsed by DogeOS, MyDoge or Layer 69 Foundation. Do the official quests at <a href="https://quest.dogeos.com" target="_blank" rel="noopener">quest.dogeos.com</a> · lore at <a href="https://heist.dogeos.com" target="_blank" rel="noopener">heist.dogeos.com</a>.</div>
+    <h3 style="font-family:var(--f-display);font-size:20px;margin:6px 0 10px">Your faction</h3>
+    ${Object.entries(FACTIONS).map(([k, x]) => `<button class="fcard f-${k} ${S.faction === k ? 'on' : ''}" data-action="pickfac" data-f="${k}">
+      <h3>${x.e} ${x.name}${S.faction === k ? ' ✓' : ''}</h3><div class="muted" style="font-weight:800">${x.tagline}</div>
+      <div class="muted" style="margin-top:6px">${x.role} · <span class="fchip">${x.tags}</span></div>
+      <div class="muted" style="margin-top:6px"><b>Super power, ${x.power}:</b> ${x.powerFx}</div>
+      <div class="muted"><b>Weakness, ${x.weak}:</b> ${x.weakFx}</div>
+      <div class="muted"><b>Earns loot by</b> ${x.reward}</div>
+      <div class="muted"><b>Roles:</b> ${Object.entries(ROLE).filter(([, r]) => r[1] === k).map(([cls, r]) => `${r[2]} ${r[0]} (${BREEDS.filter(b => b.cls === cls).map(b => b.name).join(', ')})`).join(' · ')}</div></button>`).join('')}
+    <div class="card"><h3>🔺 Faction matchups</h3><div class="muted">Demolition Dogs smash Barkitect builds before they ship. Barkitects ship before the Kernel Crew finishes the thread. Kernel Crew out-plans the Demolition Dogs' raw noise. Each hits the next one ×1.3.</div>
+      <div class="muted" style="margin-top:6px">Three or more dogs from one faction on a team give those dogs +10% ATK (crew bonus).</div></div>
+    <div class="card"><h3>🐱 Dossier: the Fat Cats</h3><div class="muted">Wealthy suits who take a cut of every move while staying outside the culture. Their power is that the community never had alternatives. In the Vault you face their security: Doorman, Auditor, Trader, Lawyer and Banker cats, and the Fat Cat himself on floor 10. Nobody gets hurt: you just outsmart the security and take back the loot.</div></div>
+    <div class="card"><h3>🐿️ Dossier: the Squirrels</h3><div class="muted">Anything built to pull your attention off the mission: price FUD, drama, shiny new coins. In battle, a squirrel can appear any round and make a dog lose its turn chasing it. Kernel Crew dogs find them hardest to ignore.</div></div>`;
+}
+
 /* ---------- Onboarding ---------- */
 let onbStep = 0;
 function renderOnb() {
   const steps = [
-    { art: pupSVG({ coat: S.pup.coat, stage: 1, mood: 'happy' }), h: 'Much walk. Very health.', p: 'Walk, run or roll. Earn treats. Raise a Shibe that grows with every step.', btn: 'Wow, next' },
+    { art: pupSVG({ coat: S.pup.coat, stage: 1, mood: 'happy' }), h: 'The Grand Heist needs walkers', p: "Every step spreads the signal. Build a crew of dogs, crack the Fat Cats' vault and take back what is yours.", btn: 'Wow, next' },
+    { art: '<div style="font-size:72px">🕵️</div>', h: 'Pick your faction', p: Object.entries(FACTIONS).map(([k, x]) => `<button class="fcard f-${k} ${S.faction === k ? 'on' : ''}" data-action="pickfac" data-f="${k}"><h3>${x.e} ${x.name}</h3><div class="muted">${x.tagline} Power: ${x.power}. Weakness: ${x.weak}.</div></button>`).join(''), btn: 'Join the heist' },
     { art: pupSVG({ coat: S.pup.coat, stage: 0, mood: 'happy' }), h: 'Pick your Pup', p: `<div class="swatches" style="justify-content:center;margin-bottom:12px">${Object.entries(COATS).slice(0, 4).map(([k, c]) => `<button class="swatch ${S.pup.coat === k ? 'on' : ''}" style="background:${c.fur}" data-action="onbcoat" data-c="${k}" aria-label="${c.name}"></button>`).join('')}</div>Name: <b>${S.pup.name}</b> · ${COATS[S.pup.coat].name}`, btn: 'This one!' },
     { art: '<div style="font-size:110px">❤️‍🩹</div>', h: 'Your steps, privately', p: 'We read step counts from Apple Health or Health Connect. GPS is only used during walks you start, and your map is never public.', btn: 'Allow health access' },
     { art: '<div style="font-size:110px">🦴</div>', h: 'Walk first, wallet later', p: 'No wallet needed today. Treats pile up, and you connect MyDoge or MetaMask only when you want to claim.', btn: "Let's go! 🐾" },
@@ -2502,7 +2632,7 @@ document.addEventListener('click', e => {
     }
     case 'blockme': blockFound(true); break;
     case 'onboarding': showOnb(); break;
-    case 'onbnext': if (onbStep < 3) { onbStep++; renderOnb(); } else hideOnb(); break;
+    case 'onbnext': if (onbStep < 4) { onbStep++; renderOnb(); } else hideOnb(); break;
     case 'onbskip': hideOnb(); break;
     case 'onbcoat': S.pup.coat = d.c; renderOnb(); break;
     case 'equipg': equipGenesis(d.id); break;
@@ -2673,6 +2803,9 @@ document.addEventListener('click', e => {
     case 'passbuy': if (S.wallet < 500) { toast('Needs 500 TREAT. Claim your treats first!'); break; } S.wallet -= 500; S.passPremium = true; confetti(150); toast('⭐ Premium pass unlocked'); renderChrome(); renderPass(); break;
     case 'passclaim': { if (S.passClaimed.includes(d.k)) break; const [tr, t] = d.k.split(':'); S.passClaimed.push(d.k); toast(`🎫 ${grant(passReward(tr, +t).give)}`); renderPass(); break; }
     case 'pquest': { const q = PASS_QUESTS.find(x => x.id === d.id); if (S.questsClaimed.includes(q.id)) break; S.questsClaimed.push(q.id); S.passXp += q.xp; toast(`+${q.xp} pass XP`); renderPass(); break; }
+    case 'pickfac': S.faction = d.f; toast(`${FACTIONS[d.f].e} You joined the ${FACTIONS[d.f].name}`); if ($('#onb').classList.contains('show')) renderOnb(); else { renderChrome(); if (S.view === 'heist') renderHeist(); else renderHome(); } break;
+    case 'facdo': if (!S.facDone.includes(d.id)) S.facDone.push(d.id); toast('Mission done (demo)'); renderHome(); break;
+    case 'facclaim': if (!S.facClaimed.includes(d.id)) { S.facClaimed.push(d.id); S.facXp += 100; confetti(70); toast(`+100 faction XP · ${facRank()}`); } renderHome(); break;
     case 'reset': clearInterval(walkTimer); clearTimeout(cheerTimer); if (F) F.running = false; S = initialState(); seedWild(); seedCards(); PB = null; closeSheet(); go('home'); toast('↺ Demo reset'); break;
   }
 });
