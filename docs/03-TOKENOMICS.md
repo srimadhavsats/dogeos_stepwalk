@@ -1,5 +1,7 @@
 # 03 · Tokenomics ($TREAT)
 
+> **Economy v2 proposal:** [TOKENOMICS.md](TOKENOMICS.md) (Points First, revenue-linked Treat Bowl, claim with commitment, leash energy, sponsored walks) replaces the economy model on this page while it's under discussion. The contract mechanics below (Merkle claims, Walk Blocks, Walk Bets math) still apply unless TOKENOMICS.md says otherwise.
+
 > **Principle:** every reward is a **pro-rata share of a fixed pool**. No mechanic mints "X tokens per step". As a result, emissions can never exceed the schedule, however many users or bots show up.
 > All amounts are integers. TREAT has 18 decimals and uses `bigint` (wei) in TS and `uint256` in Solidity. Multipliers are **basis points (bps, 10,000 = 1.0)**. Always use floor division.
 > Testnet numbers match mainnet's so the economy can be rehearsed. Testnet TREAT has **no value**. Mainnet uses fresh contracts.

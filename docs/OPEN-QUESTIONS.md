@@ -15,3 +15,4 @@ Agents add a concern here when a spec looks wrong, then keep building to the spe
 | 9 | TEAM | Mainnet: turn on the patient-claim option and the circuit-breaker thresholds in 03 §14? | open |
 | 10 | TEAM | Pack Battles as the core game (Wild = card source)? Cards as NFTs on demand (Gold+) or all on-chain? Founders foil instead of Genesis 1,000? Pass price and weekly power-deal cap? See 14 §12 | open |
 | 11 | TEAM | Written permission from DogeOS / Layer 69 Foundation to use the Grand Heist faction names and premise? Apply as a Heist Crew with MuchWalk quests on quest.dogeos.com? See 15 §6 | open |
+| 12 | TEAM | Economy v2 ([TOKENOMICS.md](TOKENOMICS.md) §15): do only verified dog walks earn Treats? Vesting 14, 21 or 28 days? Launch gate numbers? Walkers Drop (3%)? Allocation split? Which stablecoin for sponsors? | open |
