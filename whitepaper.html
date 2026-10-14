@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MuchWalk Whitepaper</title>
+<meta name="description" content="MuchWalk: a dog-walking game on DogeOS where real dog walks fill a shared Treat Bowl. Points first, token later.">
+<meta property="og:title" content="MuchWalk Whitepaper">
+<meta property="og:description" content="MuchWalk: a dog-walking game on DogeOS where real dog walks fill a shared Treat Bowl. Points first, token later.">
+<meta property="og:type" content="article">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800&family=Nunito:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#FFF6E5;--surface:#FFFFFF;--surface2:#FFF0CC;--text:#1F1A33;--text2:#5B5470;--outline:#1F1A33;--gold:#FFC531;--mint:#22C997;--pink:#FF5C8A;--link:#5B4BD6;--codebg:#1F1A33;--codefg:#FFE29A;color-scheme:light}
+@media (prefers-color-scheme: dark){:root{--bg:#14112A;--surface:#221D40;--surface2:#2C2652;--text:#FFF6E5;--text2:#B9B2D9;--outline:#05040C;--link:#A99CFF;--codebg:#0B0920;color-scheme:dark}}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:130px}
+@media (min-width:760px){html{scroll-padding-top:84px}}
+body{margin:0;background:var(--bg);color:var(--text);font:600 16px/1.65 "Nunito",system-ui,sans-serif}
+a{color:var(--link);font-weight:800}
+.top{position:sticky;top:0;z-index:5;background:var(--bg);border-bottom:3px solid var(--outline)}
+.top .in{max-width:1120px;margin:0 auto;padding:10px 16px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.brand{font:800 22px "Baloo 2",sans-serif;color:var(--text);text-decoration:none;margin-right:auto}
+.seg{display:flex;border:3px solid var(--outline);border-radius:999px;overflow:hidden}
+.seg a{padding:6px 14px;text-decoration:none;color:var(--text);font-size:14px}
+.seg a[aria-current]{background:var(--outline);color:var(--gold)}
+.btn{display:inline-flex;align-items:center;gap:6px;border:3px solid var(--outline);border-radius:999px;padding:6px 12px;background:var(--gold);color:#1F1A33;font:800 14px "Nunito",sans-serif;text-decoration:none;box-shadow:0 3px 0 var(--outline);cursor:pointer}
+.btn.sec{background:var(--surface);color:var(--text)}
+.btn:active{transform:translateY(2px);box-shadow:0 1px 0 var(--outline)}
+.wrap{max-width:1120px;margin:0 auto;padding:24px 16px 64px;display:grid;grid-template-columns:minmax(0,1fr);gap:32px}
+@media (min-width:1000px){.wrap{grid-template-columns:230px minmax(0,1fr)}}
+.toc{align-self:start}
+@media (min-width:1000px){.toc{position:sticky;top:84px;max-height:calc(100vh - 100px);overflow:auto}}
+.toc details{border:3px solid var(--outline);border-radius:18px;background:var(--surface);padding:10px 14px}
+.toc summary{font-weight:900;cursor:pointer}
+.toc ol{margin:8px 0 0;padding-left:20px;font-size:14px;line-height:1.5}
+.toc li{margin:4px 0}
+.toc a{color:var(--text);font-weight:700;text-decoration:none}
+.toc a:hover{text-decoration:underline}
+article{max-width:760px;min-width:0}
+.hero h1{font:800 clamp(34px,6vw,52px)/1.05 "Baloo 2",sans-serif;margin:0 0 10px}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.chip{border:3px solid var(--outline);border-radius:999px;padding:3px 10px;font-weight:900;font-size:12px;background:var(--surface)}
+.chip.draft{background:var(--outline);color:var(--gold);letter-spacing:1px}
+h2{font:800 28px/1.15 "Baloo 2",sans-serif;margin:40px 0 10px;padding-top:6px;border-top:3px dashed var(--outline)}
+h3{font:800 20px/1.2 "Baloo 2",sans-serif;margin:24px 0 6px}
+p{margin:10px 0}
+ul,ol{padding-left:24px;margin:10px 0}
+li{margin:5px 0}
+li > ul,li > ol{margin:4px 0}
+strong{font-weight:900}
+.note{border:3px dashed var(--outline);border-radius:18px;background:var(--surface2);padding:4px 16px;margin:16px 0}
+.note p{margin:10px 0}
+.tablewrap{overflow-x:auto;margin:14px 0;border:3px solid var(--outline);border-radius:18px;background:var(--surface);box-shadow:0 4px 0 var(--outline)}
+table{border-collapse:collapse;width:100%;font-size:14.5px;line-height:1.45}
+th,td{text-align:left;vertical-align:top;padding:9px 12px;border-bottom:1px solid color-mix(in srgb,var(--text) 14%,transparent)}
+th{background:var(--surface2);font-weight:900;white-space:nowrap}
+tbody tr:last-child td{border-bottom:0}
+td:first-child{font-weight:700}
+code{font:600 .9em ui-monospace,SFMono-Regular,Consolas,monospace;background:var(--surface2);border-radius:6px;padding:1px 5px}
+pre{background:var(--codebg);color:var(--codefg);border:3px solid var(--outline);border-radius:18px;padding:14px 16px;overflow-x:auto;font-size:13.5px;line-height:1.55}
+pre code{background:none;padding:0;color:inherit}
+.fine{color:var(--text2);font-size:14px;border-top:3px dashed var(--outline);padding-top:14px;margin-top:36px}
+.foot{color:var(--text2);font-size:13px;margin-top:28px}
+@media print{
+  :root{--bg:#fff;--surface:#fff;--surface2:#f4f1ea;--text:#111;--text2:#444;--outline:#222;--link:#222;--codebg:#f4f1ea;--codefg:#111}
+  .top,.toc,.foot{display:none}
+  .wrap{display:block;padding:0}
+  article{max-width:none}
+  .tablewrap{box-shadow:none;overflow:visible}
+  tr,pre,.note{break-inside:avoid}
+  h2{break-after:avoid}
+  a{color:inherit;text-decoration:none}
+}
+</style>
+</head>
+<body>
+<header class="top"><div class="in">
+  <a class="brand" href="./">🐕 MuchWalk</a>
+  <nav class="seg" aria-label="Documents"><a href="whitepaper.html" aria-current="page">Whitepaper</a><a href="tokenomics.html">Tokenomics</a></nav>
+  <a class="btn sec" href="./">▶ Open the app</a>
+  <button class="btn" type="button" onclick="window.print()">⎙ Save as PDF</button>
+</div></header>
+<div class="wrap">
+  <nav class="toc" aria-label="Contents"><details open><summary>Contents</summary><ol><li><a href="#summary">Summary</a></li><li><a href="#1-why-this-and-why-now">1. Why this, and why now</a></li><li><a href="#2-how-it-works">2. How it works</a></li><li><a href="#3-walking-a-real-dog">3. Walking a real dog</a></li><li><a href="#4-the-game">4. The game</a></li><li><a href="#5-coach-bark-the-ai-coach">5. Coach Bark, the AI coach</a></li><li><a href="#6-the-economy-in-brief">6. The economy in brief</a></li><li><a href="#7-nfts">7. NFTs</a></li><li><a href="#8-fair-play-and-security">8. Fair play and security</a></li><li><a href="#9-technology">9. Technology</a></li><li><a href="#10-roadmap">10. Roadmap</a></li><li><a href="#11-risks-we-take-seriously">11. Risks we take seriously</a></li><li><a href="#12-team">12. Team</a></li></ol></details></nav>
+  <article>
+    <div class="hero"><h1>MuchWalk Whitepaper</h1>
+      <div class="chips"><span class="chip draft">DRAFT v0.2</span><span class="chip">October 2026</span><span class="chip">For discussion</span></div></div>
+<aside class="note"><p><strong>Draft v0.2 · October 2026 · for discussion.</strong> MuchWalk is an independent community project building on DogeOS. It is not affiliated with or endorsed by DogeOS, MyDoge or Layer 69 Foundation. Everything described here is in design or prototype, and every number is a proposal.</p><p>Economy details: <a href="tokenomics.html">Tokenomics</a> · Try it: <a href="https://srimadhavsats.github.io/dogeos_stepwalk/" target="_blank" rel="noopener">clickable prototype</a></p></aside>
+<h2 id="summary">Summary</h2>
+<p>MuchWalk is a game for people who walk their dogs.</p>
+<ul><li>Every verified dog walk fills a shared daily <strong>Treat Bowl</strong>, grows your Pup companion and earns cards for your crew.</li><li>Walks also push your faction up the weekly race.</li><li>Around that sit the things that keep people coming back: streaks, leagues, card battles, mini-games, friends cheering you on live, and an AI coach with a sense of humour.</li></ul>
+<p>The economy is built so it doesn't repeat what happened to earlier move-to-earn tokens:</p>
+<ul><li><strong>Rewards follow real money.</strong> Each day's rewards are sized by yesterday's spending and revenue.</li><li><strong>Paid items are priced in DOGE or stablecoins.</strong> Half of that revenue buys back and burns the token.</li><li><strong>Sponsors pay for themed walks.</strong></li><li><strong>Taking rewards early costs half. Waiting costs nothing.</strong></li></ul>
+<p>And we start with <strong>points, not a token</strong>. TREAT launches only after the app has proven real revenue and real retention.</p>
+<h2 id="1-why-this-and-why-now">1. Why this, and why now</h2>
+<ul><li><strong>Dog owners already walk every day.</strong> It's one of the most reliable daily habits there is, and nobody needs convincing to start. We don't have to create the habit, just make it more fun and more social.</li><li><strong>Move-to-earn proved demand and then broke its economy.</strong> Those tokens printed rewards per step and relied on new players to buy them. When growth slowed, prices only went down. We keep the fun parts and fix the money parts.</li><li><strong>DogeOS gives Doge a home on-chain.</strong> Fast, cheap transactions paid in DOGE, a community that loves dogs, and a wallet (MyDoge) people already use. A dog-walking game fits that community naturally.</li><li><strong>Fitness apps are lonely and dull.</strong> Ours has a dog with a personality, friends who cheer, a crew to fight for and loot to open.</li></ul>
+<h2 id="2-how-it-works">2. How it works</h2>
+<ol><li><strong>Walk your dog</strong> with the app. It runs a quick check that it was a real dog walk (§3).</li><li><strong>Fill the Treat Bowl.</strong> Your verified steps earn a share of the day's shared reward pool.</li><li><strong>Level up:</strong><ul><li>Your Pup companion grows.</li><li>You earn cards and gear.</li><li>Your faction climbs the weekly race.</li><li>Quests, streaks and leagues move forward.</li></ul></li><li><strong>Play:</strong> card battles, the Fat Cat Vault, mini-games, the Wild.</li><li><strong>Choose how to take rewards:</strong> half now, or all of it over 21 days.</li></ol>
+<p>All your steps during the day still count for XP, cards, quests and the faction race. Only dog walks earn Treats.</p>
+<h2 id="3-walking-a-real-dog">3. Walking a real dog</h2>
+<p><strong>The dog-walk check</strong> runs when a walk ends:</p>
+<ul><li><strong>Session length:</strong> at least 10 minutes.</li><li><strong>Pace:</strong> dog-walking pace of 2–6 km/h.</li><li><strong>Sniff-stops:</strong> dogs stop to sniff every few minutes, and a fake walk doesn't.</li><li><strong>GPS path:</strong> continuous and natural.</li><li><strong>Steps and distance agree.</strong></li></ul>
+<p>A phone strapped to a fan or a car fails. A walk that doesn't pass simply counts as a solo walk: no accusation, no penalty.</p>
+<p><strong>Your dog's profile</strong> holds its name, breed and photo. Your Pup companion carries your dog's name, and a Genesis Pup NFT can be its collectible companion.</p>
+<p class="fine"><strong>Privacy:</strong></p>
+<ul><li>Step counts come from Apple Health or Health Connect.</li><li>GPS is used only during walks you start.</li><li>Your map is never public. Friends see your pace, never your route.</li><li>Sponsors only see anonymous totals.</li></ul>
+<h2 id="4-the-game">4. The game</h2>
+<ul><li><strong>Your Pup and Walker:</strong> a dog companion that evolves (Puppy → Shibe → Doge → Moon Doge), plus a Walker avatar with a closet of unlockable items.</li><li><strong>Pack Battles, the card game:</strong><ul><li>Dog cards come in Bronze, Silver, Gold (Basic, Challenge, Premium) and Diamond.</li><li>They level to 100 and fuse up to F10.</li><li>Gear goes from Common to Legendary, and support cards can also be fused.</li><li>Battles are 5v5, with league caps so paying can't buy a win.</li><li>Battles are friendly. Dogs that lose get tuckered out and nap.</li></ul></li><li><strong>The Grand Heist factions:</strong><ul><li>Players join the <strong>Demolition Dogs</strong>, <strong>Kernel Crew</strong> or <strong>Barkitects</strong>. These are the factions from the DogeOS Grand Heist story, used as a community concept.</li><li>Each faction has its own powers, weaknesses and missions.</li><li>Factions race each other on total steps every week.</li><li>Everyone can break into the <strong>Fat Cat Vault</strong>, 10 floors guarded by cartoon cats in suits.</li><li><strong>Squirrels</strong> stand for distractions, and they make dogs lose a turn.</li></ul></li><li><strong>The Wild:</strong> meet dogs on your route, build trust with them, fill an 18-breed Pawdex and add them to your crew.</li><li><strong>Mini-games:</strong> Fetch Frenzy and the Doge Derby. Tickets come only from walking.</li><li><strong>Social:</strong><ul><li>Go Live on a walk so friends can cheer in real time.</li><li>Tips in DOGE.</li><li>Pack walks with friends.</li><li>Walk Bets (stake-free challenges until TREAT launches).</li></ul></li><li><strong>Progress:</strong><ul><li>Daily quests and streaks with Streak Shields.</li><li>Weekly leagues from Kibble to Moon.</li><li>Badges, plus a community "walk to the Moon" goal (384,400 km).</li></ul></li><li><strong>Loot:</strong> loot boxes are <strong>earned only, never sold</strong>, with published odds.</li></ul>
+<h2 id="5-coach-bark-the-ai-coach">5. Coach Bark, the AI coach</h2>
+<p>Coach Bark is a cheerful AI coach that knows your walking history:</p>
+<ul><li>It suggests realistic goals, plans walks around your day and nudges you at the right moment.</li><li>It celebrates your dog's milestones.</li><li>It's funny on purpose ("much stride, very proud").</li><li>It never gives financial advice.</li><li>It runs on a modern Claude model, with strict limits on cost and content.</li></ul>
+<p>The premium tier (Ð 10 a month) covers the AI costs.</p>
+<h2 id="6-the-economy-in-brief">6. The economy in brief</h2>
+<p>The full model is in <a href="tokenomics.html">Tokenomics</a>.</p>
+<div class="tablewrap"><table><thead><tr><th>Piece</th><th>How it works</th></tr></thead><tbody><tr><td><strong>Phase 1: Points First</strong></td><td>Treats are in-app points with no money value. Treats only buy things that stay in your account. Anything tradable is priced in DOGE</td></tr><tr><td><strong>Treat Bowl</strong></td><td>Each day's rewards ≈ 90% of yesterday's spending and revenue, plus a small base, under a hard ceiling. When walking slows, minting slows</td></tr><tr><td><strong>Real-money items</strong></td><td>The Heist Pass, shop deals and the Genesis Pup mint are priced in DOGE or stablecoins. 50% of that revenue buys back and burns TREAT (or saves for launch liquidity in Phase 1)</td></tr><tr><td><strong>Claim with commitment</strong></td><td>Instant: you get 50% and 50% is burned. Vested: you get 100% over 21 days</td></tr><tr><td><strong>Staking</strong></td><td>Boosts your earn rate (up to +20%), adds leash energy and unlocks the top leagues. <strong>No interest is ever paid</strong></td></tr><tr><td><strong>Leash energy</strong></td><td>A free daily tier covers about a 45-minute dog walk. A leashed Genesis Pup or staked TREAT raises it</td></tr><tr><td><strong>Sponsored walks</strong></td><td>Pet brands and ecosystem apps pay stablecoins. That money tops up the bowl without minting</td></tr><tr><td><strong>Launch</strong></td><td>TREAT has a 1B hard cap. It launches only after the launch gate, with protocol-owned liquidity, a locked team and no presale. The long-run goal is burns ≥ mints</td></tr></tbody></table></div>
+<h2 id="7-nfts">7. NFTs</h2>
+<ul><li><strong>1,000 Genesis NFTs, ever:</strong> 500 Pups, 350 Walkers and 150 Relics, in rarities from Normal to Much Wow.<ul><li>They come from the nightly Genesis Draw (earned entries), the Forge, and a small fixed-price mint sale in DOGE.</li><li>A Genesis Pup can be <strong>leashed</strong> to your dog's profile for extra energy. A leashed Pup can't be sold or rented.</li></ul></li><li><strong>Cards</strong> stay in your account until you choose to <strong>mint</strong> them as NFTs. The first 1,000 Diamonds minted get a Founders foil.</li><li><strong>Trade, rent and lend:</strong><ul><li>The market supports buying, selling, swaps and rentals (ERC-4907): the owner keeps the NFT, and the renter uses it for a while.</li><li>Phase 1 is DOGE only.</li><li>A 5% fee is split between the treasury or burns and the Shelter Fund.</li></ul></li></ul>
+<h2 id="8-fair-play-and-security">8. Fair play and security</h2>
+<ul><li><strong>Anti-cheat:</strong><ul><li>the dog-walk check</li><li>device and motion signals</li><li>per-user caps (no one takes more than 0.5% of the walk share)</li><li>a trust score that quietly removes suspicious steps</li><li>Walk Blocks drawn with public, re-runnable randomness</li></ul></li><li><strong>Contracts:</strong><ul><li>OpenZeppelin v5.</li><li>Admin is a multisig with a timelock.</li><li>Minting is capped on-chain both by the ceiling and by last epoch's burns.</li><li>Claims use a cumulative Merkle tree with gasless batching.</li><li>Two independent audits before TREAT launches.</li></ul></li><li><strong>Openness:</strong><ul><li>A public dashboard of minted, burned, revenue, buybacks, reserve and walkers.</li><li>Open-source contracts.</li><li>Every epoch's data is published so anyone can check it.</li></ul></li><li><strong>Keys:</strong> we never ask for seed phrases. You can walk first and connect a wallet later.</li></ul>
+<h2 id="9-technology">9. Technology</h2>
+<div class="tablewrap"><table><thead><tr><th>Layer</th><th>What we use</th></tr></thead><tbody><tr><td>Chain</td><td>DogeOS (Chikyū testnet now, chain 6281971), with DOGE as gas</td></tr><tr><td>Contracts</td><td>Solidity with Foundry and OpenZeppelin v5. TreatToken, RewardsDistributor, TreatStaking, GenesisNFT, BadgeSBT, MuchMarket, RentalHouse, BuybackBurner, SponsorVault</td></tr><tr><td>Backend</td><td>TypeScript (Hono), Postgres, Redis, BullMQ and viem. A daily epoch planner and the anti-cheat pipeline</td></tr><tr><td>Apps</td><td>A mobile app (Expo / React Native) and a web app (Next.js with wagmi), with MyDoge, MetaMask and WalletConnect</td></tr><tr><td>Games</td><td>Phaser web games with deterministic replays checked on the server</td></tr><tr><td>AI</td><td>Coach Bark on the Claude API, with cost caps and safety filters</td></tr></tbody></table></div>
+<h2 id="10-roadmap">10. Roadmap</h2>
+<div class="tablewrap"><table><thead><tr><th>Stage</th><th>What ships</th></tr></thead><tbody><tr><td><strong>0 · Prototype</strong> (now)</td><td>Clickable prototype builds v1–v6, game design, tokenomics v2</td></tr><tr><td><strong>1 · Testnet beta</strong></td><td>Dog-walk check, Treats as points, Genesis NFTs and the market on Chikyū, a DOGE shop (testnet DOGE), Pack Battles, the Heist factions</td></tr><tr><td><strong>2 · Public launch (Points First)</strong></td><td>Mobile and web apps, real DOGE revenue, a sponsored-walk pilot, the public health dashboard</td></tr><tr><td><strong>3 · Launch gate review</strong></td><td>90 days of revenue, 5,000+ weekly dog walkers, simulated burns ≥ mints, two audits</td></tr><tr><td><strong>4 · TREAT</strong></td><td>Token launch with protocol-owned liquidity, commitment claims, staking and buyback-and-burn</td></tr><tr><td><strong>5 · Grow</strong></td><td>Pet-brand and insurer partners, a deeper MyDoge integration, new games and seasons</td></tr></tbody></table></div>
+<h2 id="11-risks-we-take-seriously">11. Risks we take seriously</h2>
+<ul><li><strong>Nobody walks for the game.</strong> Then no token design matters. That's why we prove retention with points first.</li><li><strong>Fake walks.</strong> The dog-walk check, energy caps and per-user caps limit what a cheater can take, and a failed check costs honest users nothing.</li><li><strong>Regulation.</strong> We get legal review for the token, the points, sponsored rewards, the marketplace and health data before launch. Loot boxes are never sold.</li><li><strong>Too few sponsors.</strong> The bowl still works without them, with sponsors only adding on top.</li><li><strong>Partner IP.</strong> The Heist faction names belong to their owners. We use them only as a community concept, always with a clear not-affiliated notice, and never imply the project is official.</li></ul>
+<h2 id="12-team">12. Team</h2>
+<p>MuchWalk is built by <strong>srimadhavsats</strong>, who also built Kennel (a token launchpad on the DogeOS testnet). We build in public: every prototype build stays online, and the code and docs are open on GitHub.</p>
+<p class="fine"><em>Not financial advice. Treats in Phase 1 are points with no cash value. TREAT may never launch if the launch gate isn't met. Product details may change. MuchWalk is an independent community project, not affiliated with or endorsed by DogeOS, MyDoge or Layer 69 Foundation.</em></p>
+    <p class="foot">Source: <a href="https://github.com/srimadhavsats/dogeos_stepwalk/blob/main/docs/WHITEPAPER.md" target="_blank" rel="noopener">docs/WHITEPAPER.md</a> on GitHub · <a href="./">Back to the prototype</a></p>
+  </article>
+</div>
+<script>
+// Keep the contents list compact on small screens
+if (matchMedia('(max-width: 999px)').matches) document.querySelector('.toc details').removeAttribute('open');
+</script>
+</body>
+</html>

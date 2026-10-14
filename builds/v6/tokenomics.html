@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MuchWalk Tokenomics</title>
+<meta name="description" content="The dog-walk economy: revenue-linked Treat Bowl, claim with commitment, leash energy, sponsored walks and a careful launch.">
+<meta property="og:title" content="MuchWalk Tokenomics">
+<meta property="og:description" content="The dog-walk economy: revenue-linked Treat Bowl, claim with commitment, leash energy, sponsored walks and a careful launch.">
+<meta property="og:type" content="article">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800&family=Nunito:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#FFF6E5;--surface:#FFFFFF;--surface2:#FFF0CC;--text:#1F1A33;--text2:#5B5470;--outline:#1F1A33;--gold:#FFC531;--mint:#22C997;--pink:#FF5C8A;--link:#5B4BD6;--codebg:#1F1A33;--codefg:#FFE29A;color-scheme:light}
+@media (prefers-color-scheme: dark){:root{--bg:#14112A;--surface:#221D40;--surface2:#2C2652;--text:#FFF6E5;--text2:#B9B2D9;--outline:#05040C;--link:#A99CFF;--codebg:#0B0920;color-scheme:dark}}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:130px}
+@media (min-width:760px){html{scroll-padding-top:84px}}
+body{margin:0;background:var(--bg);color:var(--text);font:600 16px/1.65 "Nunito",system-ui,sans-serif}
+a{color:var(--link);font-weight:800}
+.top{position:sticky;top:0;z-index:5;background:var(--bg);border-bottom:3px solid var(--outline)}
+.top .in{max-width:1120px;margin:0 auto;padding:10px 16px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.brand{font:800 22px "Baloo 2",sans-serif;color:var(--text);text-decoration:none;margin-right:auto}
+.seg{display:flex;border:3px solid var(--outline);border-radius:999px;overflow:hidden}
+.seg a{padding:6px 14px;text-decoration:none;color:var(--text);font-size:14px}
+.seg a[aria-current]{background:var(--outline);color:var(--gold)}
+.btn{display:inline-flex;align-items:center;gap:6px;border:3px solid var(--outline);border-radius:999px;padding:6px 12px;background:var(--gold);color:#1F1A33;font:800 14px "Nunito",sans-serif;text-decoration:none;box-shadow:0 3px 0 var(--outline);cursor:pointer}
+.btn.sec{background:var(--surface);color:var(--text)}
+.btn:active{transform:translateY(2px);box-shadow:0 1px 0 var(--outline)}
+.wrap{max-width:1120px;margin:0 auto;padding:24px 16px 64px;display:grid;grid-template-columns:minmax(0,1fr);gap:32px}
+@media (min-width:1000px){.wrap{grid-template-columns:230px minmax(0,1fr)}}
+.toc{align-self:start}
+@media (min-width:1000px){.toc{position:sticky;top:84px;max-height:calc(100vh - 100px);overflow:auto}}
+.toc details{border:3px solid var(--outline);border-radius:18px;background:var(--surface);padding:10px 14px}
+.toc summary{font-weight:900;cursor:pointer}
+.toc ol{margin:8px 0 0;padding-left:20px;font-size:14px;line-height:1.5}
+.toc li{margin:4px 0}
+.toc a{color:var(--text);font-weight:700;text-decoration:none}
+.toc a:hover{text-decoration:underline}
+article{max-width:760px;min-width:0}
+.hero h1{font:800 clamp(34px,6vw,52px)/1.05 "Baloo 2",sans-serif;margin:0 0 10px}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.chip{border:3px solid var(--outline);border-radius:999px;padding:3px 10px;font-weight:900;font-size:12px;background:var(--surface)}
+.chip.draft{background:var(--outline);color:var(--gold);letter-spacing:1px}
+h2{font:800 28px/1.15 "Baloo 2",sans-serif;margin:40px 0 10px;padding-top:6px;border-top:3px dashed var(--outline)}
+h3{font:800 20px/1.2 "Baloo 2",sans-serif;margin:24px 0 6px}
+p{margin:10px 0}
+ul,ol{padding-left:24px;margin:10px 0}
+li{margin:5px 0}
+li > ul,li > ol{margin:4px 0}
+strong{font-weight:900}
+.note{border:3px dashed var(--outline);border-radius:18px;background:var(--surface2);padding:4px 16px;margin:16px 0}
+.note p{margin:10px 0}
+.tablewrap{overflow-x:auto;margin:14px 0;border:3px solid var(--outline);border-radius:18px;background:var(--surface);box-shadow:0 4px 0 var(--outline)}
+table{border-collapse:collapse;width:100%;font-size:14.5px;line-height:1.45}
+th,td{text-align:left;vertical-align:top;padding:9px 12px;border-bottom:1px solid color-mix(in srgb,var(--text) 14%,transparent)}
+th{background:var(--surface2);font-weight:900;white-space:nowrap}
+tbody tr:last-child td{border-bottom:0}
+td:first-child{font-weight:700}
+code{font:600 .9em ui-monospace,SFMono-Regular,Consolas,monospace;background:var(--surface2);border-radius:6px;padding:1px 5px}
+pre{background:var(--codebg);color:var(--codefg);border:3px solid var(--outline);border-radius:18px;padding:14px 16px;overflow-x:auto;font-size:13.5px;line-height:1.55}
+pre code{background:none;padding:0;color:inherit}
+.fine{color:var(--text2);font-size:14px;border-top:3px dashed var(--outline);padding-top:14px;margin-top:36px}
+.foot{color:var(--text2);font-size:13px;margin-top:28px}
+@media print{
+  :root{--bg:#fff;--surface:#fff;--surface2:#f4f1ea;--text:#111;--text2:#444;--outline:#222;--link:#222;--codebg:#f4f1ea;--codefg:#111}
+  .top,.toc,.foot{display:none}
+  .wrap{display:block;padding:0}
+  article{max-width:none}
+  .tablewrap{box-shadow:none;overflow:visible}
+  tr,pre,.note{break-inside:avoid}
+  h2{break-after:avoid}
+  a{color:inherit;text-decoration:none}
+}
+</style>
+</head>
+<body>
+<header class="top"><div class="in">
+  <a class="brand" href="./">🐕 MuchWalk</a>
+  <nav class="seg" aria-label="Documents"><a href="whitepaper.html">Whitepaper</a><a href="tokenomics.html" aria-current="page">Tokenomics</a></nav>
+  <a class="btn sec" href="./">▶ Open the app</a>
+  <button class="btn" type="button" onclick="window.print()">⎙ Save as PDF</button>
+</div></header>
+<div class="wrap">
+  <nav class="toc" aria-label="Contents"><details open><summary>Contents</summary><ol><li><a href="#at-a-glance">At a glance</a></li><li><a href="#1-the-problem-were-solving">1. The problem we're solving</a></li><li><a href="#2-design-rules">2. Design rules</a></li><li><a href="#3-phase-1-points-first-where-we-are-now">3. Phase 1: Points First (where we are now)</a></li><li><a href="#4-supply-and-allocation">4. Supply and allocation</a></li><li><a href="#5-the-treat-bowl-daily-rewards">5. The Treat Bowl (daily rewards)</a></li><li><a href="#6-claim-with-commitment">6. Claim with commitment</a></li><li><a href="#7-earning-walk-points-and-leash-energy">7. Earning: Walk Points and leash energy</a></li><li><a href="#8-staking-hold-for-perks-not-interest">8. Staking: hold for perks, not interest</a></li><li><a href="#9-where-money-comes-from-real-money-sinks">9. Where money comes from (real-money sinks)</a></li><li><a href="#10-sponsored-walks">10. Sponsored walks</a></li><li><a href="#11-health-metrics-shown-on-a-public-dashboard">11. Health metrics (shown on a public dashboard)</a></li><li><a href="#12-launch-carefully-phase-2">12. Launch carefully (Phase 2)</a></li><li><a href="#13-compared-with-what-came-before">13. Compared with what came before</a></li><li><a href="#14-what-changes-for-builders">14. What changes for builders</a></li><li><a href="#15-open-questions">15. Open questions</a></li></ol></details></nav>
+  <article>
+    <div class="hero"><h1>MuchWalk Tokenomics v2: the dog-walk economy</h1>
+      <div class="chips"><span class="chip draft">DRAFT v0.2</span><span class="chip">October 2026</span><span class="chip">For discussion</span></div></div>
+<aside class="note"><p><strong>Draft v0.2 · October 2026 · for discussion.</strong> Every number here is a proposal and can change before launch. This replaces the economy model in <a href="https://github.com/srimadhavsats/dogeos_stepwalk/blob/main/docs/03-TOKENOMICS.md" target="_blank" rel="noopener">03-TOKENOMICS</a>. The contract-level details in 03 (Merkle claims, Walk Blocks, Walk Bets math) still apply unless this page says otherwise.</p><p>Read the <a href="whitepaper.html">Whitepaper</a> for the product side.</p></aside>
+<h2 id="at-a-glance">At a glance</h2>
+<div class="tablewrap"><table><tbody><tr><td><strong>Token</strong></td><td>TREAT, hard cap <strong>1,000,000,000</strong>, launched only after Phase 1 proves real revenue</td></tr><tr><td><strong>Phase 1 (now)</strong></td><td><strong>Points First:</strong> Treats are in-app points with <strong>no money value</strong></td></tr><tr><td><strong>Who earns</strong></td><td>People walking a <strong>real dog</strong>. Each walk passes a dog-walk check</td></tr><tr><td><strong>Daily rewards</strong></td><td>The <strong>Treat Bowl</strong>, sized by yesterday's money in: ≈ 90% of yesterday's sink spend and revenue, plus a small base</td></tr><tr><td><strong>Paid items</strong></td><td>Priced in <strong>DOGE or stablecoins</strong>. 50% of that revenue buys TREAT and burns it</td></tr><tr><td><strong>Claiming</strong></td><td><strong>Instant:</strong> you get 50% and the other 50% is burned. <strong>Vested:</strong> you get 100%, unlocked over 21 days</td></tr><tr><td><strong>Earning limits</strong></td><td><strong>Leash energy</strong>: a free daily tier, then more energy for a leashed Genesis Pup or staked TREAT</td></tr><tr><td><strong>Sponsors</strong></td><td>Pet brands and ecosystem apps pay stablecoins for sponsored walks, so someone else pays for those rewards</td></tr><tr><td><strong>Long-run target</strong></td><td>TREAT burned ≥ <strong>100%</strong> of TREAT minted</td></tr><tr><td><strong>Launch</strong></td><td>Protocol-owned liquidity, locked team tokens, no presale</td></tr></tbody></table></div>
+<h2 id="1-the-problem-were-solving">1. The problem we're solving</h2>
+<p>Most move-to-earn tokens failed for the same reason. The only buyers were players spending what they had just earned, so every token sold needed a new user to absorb it. When growth slowed, the rewards were dumped and the price only went one way.</p>
+<p>Our first design already fixed the worst part:</p>
+<ul><li>Steps never mint tokens.</li><li>A fixed daily pool is shared out, so more users or bots never print more.</li><li>Spending burns TREAT.</li></ul>
+<p>That still wasn't enough. Burning 40% of what is minted means 60% of every day's rewards still hits the market. Version 2 adds the missing pieces:</p>
+<ol><li>Money from outside the game.</li><li>Rewards that are tied to that money.</li><li>A reason for earners to hold.</li></ol>
+<h2 id="2-design-rules">2. Design rules</h2>
+<ol><li><strong>Outside money pays for rewards.</strong> Real revenue (DOGE, stablecoins, sponsors) has to flow in, not only players' own earnings.</li><li><strong>Never print more than comes in.</strong> Each day's rewards follow yesterday's spending and revenue. When walking slows, minting slows.</li><li><strong>Reward patience.</strong> Taking rewards early costs half, waiting costs nothing, and staking earns perks, never interest.</li><li><strong>Every Treat is about walking a real dog.</strong> Dog walks are a habit people already have, and they are hard to fake at scale.</li><li><strong>Prove it before there's a price.</strong> Treats run as points first. TREAT launches against real revenue, not hype.</li></ol>
+<h2 id="3-phase-1-points-first-where-we-are-now">3. Phase 1: Points First (where we are now)</h2>
+<p>In Phase 1, Treats are <strong>points with no money value</strong>:</p>
+<ul><li>They live in your account. No wallet is needed, they can't be transferred and they can't be sold.</li><li><strong>Treats only buy things that stay in your account:</strong> Pup evolution, Streak Shields, the Heist Pass, training items, cosmetics.</li><li><strong>Anything tradable is priced in DOGE:</strong> minting a card NFT, the Genesis Forge, marketplace sales and rentals, cheer tips. That way points can never leak out as value.</li><li>Walk Bets run as <strong>stake-free challenges</strong> until TREAT exists.</li><li><strong>Paid items are priced in DOGE or stablecoins from day one</strong>, so real revenue exists before any token does.</li><li>The full Phase 2 machine (Treat Bowl, commitment claims, staking, leash energy, health metrics) runs on points. Revenue counts at a fixed reference rate of <strong>1 DOGE = 10 Treats</strong>. Before any price exists, we can see whether burns keep up with rewards.</li></ul>
+<h3 id="launch-gate-when-treat-can-launch">Launch gate: when TREAT can launch</h3>
+<p>TREAT launches only when <strong>all</strong> of these are true. The targets are proposals.</p>
+<div class="tablewrap"><table><thead><tr><th>Gate</th><th>Target</th></tr></thead><tbody><tr><td>Real revenue</td><td>90 days in a row of DOGE or stablecoin revenue</td></tr><tr><td>Revenue per daily walker</td><td>Trending up in at least 8 of the last 12 weeks</td></tr><tr><td>Walkers</td><td>5,000+ weekly verified dog walkers, with 30-day retention ≥ 25%</td></tr><tr><td>Simulated burns</td><td>Burned ÷ minted ≥ 1.0 for 8 weeks in a row, measured on points</td></tr><tr><td>Security</td><td>Two independent audits of every token contract</td></tr><tr><td>Liquidity</td><td>The TREAT launch reserve (below) holds enough DOGE for protocol-owned liquidity</td></tr></tbody></table></div>
+<h3 id="what-happens-to-phase-1-money">What happens to Phase 1 money</h3>
+<ul><li><strong>50% of revenue goes into the TREAT launch reserve.</strong> In Phase 2 this share buys back and burns TREAT. In Phase 1 it saves up for the launch, then becomes the DOGE side of protocol-owned liquidity.</li><li><strong>40%</strong> goes to the treasury: servers, AI coach costs, audits and a 24-month runway.</li><li><strong>10%</strong> goes to the Shelter Fund, which pays real dog shelters.</li></ul>
+<h3 id="do-points-turn-into-treat">Do points turn into TREAT?</h3>
+<p><strong>Not 1:1.</strong> Points stay points. Our proposal is a capped <strong>Walkers Drop</strong> of <strong>3% of supply (30M TREAT)</strong>:</p>
+<ul><li>It is shared by <strong>verified dog-walk days</strong> in Phase 1, not by points, so farming points doesn't pay.</li><li>It comes with sybil checks.</li><li>It is claimed under the same commitment rules (§6).</li></ul>
+<p>This is open for discussion and subject to legal review. It is not a promise.</p>
+<h2 id="4-supply-and-allocation">4. Supply and allocation</h2>
+<div class="tablewrap"><table><thead><tr><th>Bucket</th><th>%</th><th>TREAT</th><th>How it's released</th></tr></thead><tbody><tr><td>Walk rewards (Treat Bowl ceiling)</td><td>45%</td><td>450,000,000</td><td>Minted only by the RewardsDistributor, never above the ceiling in §5</td></tr><tr><td>Walkers Drop (Phase 1 dog walkers)</td><td>3%</td><td>30,000,000</td><td>At launch, under the commitment rules in §6</td></tr><tr><td>Liquidity (protocol-owned)</td><td>10%</td><td>100,000,000</td><td>Paired with the launch reserve. LP tokens are held by a timelocked treasury for at least 4 years</td></tr><tr><td>Ecosystem and sponsors</td><td>10%</td><td>100,000,000</td><td>Partner quests and integrations, released by governance over 4 years</td></tr><tr><td>Community and Shelter</td><td>8%</td><td>80,000,000</td><td>Events, Moon Parties and shelter donations</td></tr><tr><td>Treasury</td><td>12%</td><td>120,000,000</td><td>Multisig plus timelock, spent against a published budget</td></tr><tr><td>Team</td><td>12%</td><td>120,000,000</td><td>On-chain vesting: a 1-year cliff, then linear over 3 years</td></tr><tr><td>Investors</td><td>0%</td><td>0</td><td>No presale or VC round at launch. Any future strategic round comes out of the treasury, with the team's locks, and is announced first</td></tr></tbody></table></div>
+<h2 id="5-the-treat-bowl-daily-rewards">5. The Treat Bowl (daily rewards)</h2>
+<p>Each day (one UTC epoch) the bowl is sized by <strong>yesterday's money in</strong>:</p>
+<pre><code>inflow(d-1)   = Treats burned on sinks + TREAT bought back with revenue and burned
+minted(d)     = min( ceiling(d),  base(d) + k × inflow(d-1) )
+bowl(d)       = minted(d) + sponsor top-ups (bought on the market, not minted)</code></pre>
+<ul><li><strong>k = 0.9.</strong> The allowed range is 0.8–1.0.</li><li><strong>base = 12,000 a day in year 1</strong>, about 5% of the ceiling. It shrinks with the ceiling. It keeps rewards alive on quiet days and while revenue ramps up.</li><li><strong>The ceiling is the old fixed schedule: 246,575 a day in year 1, shrinking 20% a year.</strong> It sums to the 450M bucket, so the hard cap can never be broken.</li><li>Anything not handed out is <strong>never minted</strong>.</li><li><strong>The contract enforces it.</strong> TreatToken counts every burn. The distributor can never mint more in an epoch than <code>base + 1.0 × last epoch&#x27;s burns</code>, and never more than the ceiling. Even a broken off-chain planner can't over-mint.</li></ul>
+<p><strong>How the bowl is split</strong> (same as before; all three count only verified dog-walk steps):</p>
+<div class="tablewrap"><table><thead><tr><th>Pool</th><th>Share</th><th>How it's paid</th></tr></thead><tbody><tr><td>Walk share</td><td>75%</td><td>Pro-rata by Walk Points (§7)</td></tr><tr><td>Walk Blocks</td><td>15%</td><td>144 blocks a day, drawn by hashes from dog-walk steps</td></tr><tr><td>Quests and leagues</td><td>10%</td><td>Quest points, weekly league prizes, game prizes</td></tr></tbody></table></div>
+<h3 id="worked-example-yesterday-today">Worked example (yesterday → today)</h3>
+<div class="tablewrap"><table><thead><tr><th>Line</th><th>Amount</th></tr></thead><tbody><tr><td>Treats spent on sinks yesterday (burned)</td><td>148,200</td></tr><tr><td>DOGE revenue yesterday: Ð 5,130. Half (Ð 2,565) buys back TREAT at an example price of 10 TREAT per DOGE, and it's burned</td><td>25,650</td></tr><tr><td><strong>Inflow</strong></td><td><strong>173,850</strong></td></tr><tr><td>Minted today = 12,000 + 0.9 × 173,850</td><td><strong>168,465</strong> (ceiling: 246,575)</td></tr><tr><td>Sponsor top-ups (1,200 USDC of sponsored walks, bought on the market)</td><td>12,000</td></tr><tr><td><strong>Today's bowl</strong></td><td><strong>180,465</strong></td></tr><tr><td>Walk share 75% / Walk Blocks 15% / Quests and leagues 10%</td><td>135,348 / 27,069 / 18,046</td></tr><tr><td><strong>Burned ÷ minted</strong></td><td>173,850 ÷ 168,465 = <strong>1.03</strong> ✅</td></tr></tbody></table></div>
+<h2 id="6-claim-with-commitment">6. Claim with commitment</h2>
+<p>You decide how to take your rewards:</p>
+<div class="tablewrap"><table><thead><tr><th>Choice</th><th>You get</th><th>What happens to the rest</th></tr></thead><tbody><tr><td><strong>⚡ Instant</strong></td><td>50% now</td><td>The other 50% is burned. On-chain it's simply never minted, which has the same effect and costs less gas</td></tr><tr><td><strong>🌱 Vest</strong></td><td>100%</td><td>Unlocks in a straight line over <strong>21 days</strong>. Unlocked Treats can be claimed any time, gasless</td></tr><tr><td><strong>Leave vesting early</strong></td><td>50% of whatever is still locked</td><td>The other 50% of the locked part is burned</td></tr></tbody></table></div>
+<ul><li>The 21 days is a proposal; anything from 14 to 28 days works.</li><li>This replaces the old "patient claim" (a 10% fee, or wait 7 days). Daily claim-and-dump becomes expensive, and holders win by default.</li><li>In Phase 1 the same rule applies to points, so we can measure how people choose before it matters.</li></ul>
+<h2 id="7-earning-walk-points-and-leash-energy">7. Earning: Walk Points and leash energy</h2>
+<h3 id="only-real-dog-walks-earn-treats">Only real dog walks earn Treats</h3>
+<ul><li>Start a walk in the app with <strong>🐕 Dog walk</strong> on.</li><li>When it ends, the <strong>dog-walk check</strong> looks at:<ul><li><strong>Session length:</strong> at least 10 minutes.</li><li><strong>Pace:</strong> an average of 2–6 km/h, with no long stretches above 9 km/h.</li><li><strong>Sniff-stops:</strong> short stops of 5–90 seconds, about one every 5 minutes. A 20-minute walk with no stops gets flagged.</li><li><strong>GPS path:</strong> continuous and natural, with no teleports. A phone moving with no GPS movement ("a phone on a fan") fails.</li><li><strong>Steps and distance agree:</strong> the step cadence matches the distance covered.</li></ul></li><li>Your dog has a profile with name, breed and photo. A Bluetooth collar tag could add an extra check later.</li><li>If a walk doesn't pass, it <strong>counts as a solo walk</strong>, with no accusation and no penalty.</li><li><strong>Solo walks and all-day steps still count for everything else:</strong> XP, Bones, cards, the Heist signal race, quests and leagues. They just don't earn Treats.</li></ul>
+<h3 id="leash-energy-the-free-tier-and-above">Leash energy (the free tier and above)</h3>
+<p><strong>1 ⚡ = 1,000 dog-walk steps that earn Treats.</strong> Steps beyond your energy still count for the game.</p>
+<div class="tablewrap"><table><thead><tr><th>Source</th><th>Energy</th></tr></thead><tbody><tr><td>Free tier: everyone, every day</td><td><strong>5 ⚡</strong>, about a 45-minute dog walk</td></tr><tr><td>A leashed Genesis Pup NFT, by rarity: Normal / Rare / Super Rare / Legendary / Much Wow</td><td>+2 / +3 / +4 / +5 / +6 ⚡</td></tr><tr><td>Staked TREAT, by tier (§8)</td><td>+1 to +4 ⚡</td></tr><tr><td><strong>Maximum</strong></td><td><strong>15 ⚡</strong></td></tr></tbody></table></div>
+<ul><li>A leashed Pup is your real dog's companion.</li><li>A leashed Pup can't be sold or rented. Unleashing takes effect the next day.</li><li><strong>There's no repair cost and no energy you have to buy.</strong> Energy refills every day for free.</li></ul>
+<h3 id="walk-points">Walk Points</h3>
+<pre><code>earningSteps = min(verified dog-walk steps, energy × 1,000)
+multiplier   = 1 + min(0.5, streak (≤ 0.15) + companion Pup (≤ 0.15) + stake tier (≤ 0.20))
+WP           = earningSteps × multiplier × trust
+yourShare    = min( walkShare × WP ÷ ΣWP,  0.5% of walkShare )</code></pre>
+<p><strong>Example:</strong> 3,120 dog-walk steps × 1.21 = 3,775 WP. Out of 1,290,000 WP in total, that's 0.29% of 135,348, or <strong>≈ 396 Treats</strong>.</p>
+<h2 id="8-staking-hold-for-perks-not-interest">8. Staking: hold for perks, not interest</h2>
+<p>Staking <strong>never pays new tokens</strong>. There's no APY, so we never print to keep people staked. It gives you:</p>
+<div class="tablewrap"><table><thead><tr><th>Tier</th><th>Staked</th><th>Earn boost</th><th>Leash energy</th><th>Unlocks</th></tr></thead><tbody><tr><td>Leash</td><td>1,000</td><td>+5%</td><td>+1 ⚡</td><td>Staker badge</td></tr><tr><td>Harness</td><td>5,000</td><td>+10%</td><td>+2 ⚡</td><td>Golden Bone league</td></tr><tr><td>Pack Leader</td><td>20,000</td><td>+15%</td><td>+3 ⚡</td><td>Diamond Paw league, top-100 prizes</td></tr><tr><td>Alpha</td><td>50,000</td><td>+20%</td><td>+4 ⚡</td><td>Moon league</td></tr></tbody></table></div>
+<ul><li>Unstaking takes <strong>7 days</strong>. You get no boost during that time.</li><li>The per-user cap (0.5% of the walk share) still applies, so whales can't take the bowl.</li></ul>
+<h2 id="9-where-money-comes-from-real-money-sinks">9. Where money comes from (real-money sinks)</h2>
+<div class="tablewrap"><table><thead><tr><th>Item</th><th>Price</th><th>Notes</th></tr></thead><tbody><tr><td>Heist Pass premium (each season)</td><td>Ð 25, or 500 Treats</td><td>Mostly cosmetics</td></tr><tr><td>Fixed-content shop deals (cards, gear, skins)</td><td>Ð 8–150, or the Treat price</td><td>You always see exactly what you get. A weekly cap applies to power deals</td></tr><tr><td>Genesis Pup mint (the sale portion of the 500 Pups)</td><td>Set before mainnet</td><td>A fixed price, not an auction</td></tr><tr><td>Card NFT mint and the Genesis Forge</td><td>DOGE in Phase 1, TREAT or DOGE in Phase 2</td><td>Phase 1 keeps points from turning into tradable items</td></tr><tr><td>Coach Premium</td><td>Ð 10 a month</td><td>Covers AI costs</td></tr><tr><td>Marketplace and rental fee</td><td>5%</td><td>Phase 1 is DOGE only</td></tr><tr><td><strong>Sponsored walks</strong></td><td>Stablecoins</td><td>§10</td></tr></tbody></table></div>
+<p><strong>Random loot boxes and card packs are never sold, for money or for Treats.</strong> They cost Bones you earn by playing.</p>
+<p class="fine"><strong>Revenue split (DOGE and stablecoins):</strong></p>
+<div class="tablewrap"><table><thead><tr><th>Share</th><th>Phase 1</th><th>Phase 2</th></tr></thead><tbody><tr><td>50%</td><td>TREAT launch reserve</td><td><strong>Buys TREAT on the market and burns it</strong> (weekly, with price-impact limits, on a public dashboard)</td></tr><tr><td>40%</td><td>Treasury and runway</td><td>Treasury and runway</td></tr><tr><td>10%</td><td>Shelter Fund</td><td>Shelter Fund</td></tr></tbody></table></div>
+<p><strong>Treat sinks</strong> (spending Treats burns them):</p>
+<ul><li>Pup evolution: 100, 500 or 2,000</li><li>Streak Shield: 50</li><li>Heist Pass: 500</li><li>Cosmetics and training items: 40–400</li><li>Rename: 25</li><li>The forfeited half of instant claims</li></ul>
+<p>All of these are <strong>100% burned</strong>. The fee on Treat marketplace sales (Phase 2) is 5%: half is burned and half goes to the Shelter Fund.</p>
+<h2 id="10-sponsored-walks">10. Sponsored walks</h2>
+<ul><li>Pet brands and ecosystem apps pay <strong>stablecoins</strong> for themed walks. Examples: a dog-park loop, "five dog walks this week", or a partner's quest.</li><li><strong>80%</strong> of the money buys TREAT on the market for the Treat Bowl (in Phase 1 it goes to the launch reserve), and <strong>20%</strong> covers operations.</li><li>These are rewards someone else pays for: they add to the bowl without minting anything.</li><li>Sponsors get anonymous, aggregated reach reports. <strong>We never sell location data.</strong></li></ul>
+<h2 id="11-health-metrics-shown-on-a-public-dashboard">11. Health metrics (shown on a public dashboard)</h2>
+<div class="tablewrap"><table><thead><tr><th>Metric</th><th>Healthy</th><th>What happens if it isn't</th></tr></thead><tbody><tr><td><strong>Burned ÷ minted</strong> (7-day)</td><td>≥ 1.0 over the long run</td><td>Below 0.8 for 2 weeks: k drops to 0.8. Below 0.6 for 4 weeks: base is paused. Above 1.2 for 4 weeks: k can go back up, never above 1.0</td></tr><tr><td><strong>Revenue per daily walker</strong> (30-day)</td><td>Trending up</td><td>Falling for 3 months triggers a public review of pricing, sponsors and features</td></tr><tr><td><strong>Claimed instantly vs vested</strong></td><td>More vested is healthier</td><td>Shown weekly. If most people claim instantly, holding isn't attractive enough</td></tr></tbody></table></div>
+<p>Also on the dashboard:</p>
+<ul><li>minted, burned and net issuance</li><li>revenue and buybacks</li><li>the size of the launch reserve</li><li>active verified dog walkers</li><li>the average reward per walker</li></ul>
+<h2 id="12-launch-carefully-phase-2">12. Launch carefully (Phase 2)</h2>
+<ul><li><strong>Protocol-owned liquidity:</strong> the launch reserve's DOGE plus the 10% liquidity allocation seed the DEX pool. The LP tokens sit with a timelocked treasury for 4+ years. There's no liquidity mining and no rented LPs that leave once incentives stop.</li><li><strong>Locked team:</strong> a 1-year cliff, then 3 years linear, enforced on-chain.</li><li><strong>No presale and no VC allocation at launch.</strong></li><li><strong>The long-run target is burns ≥ 100% of emissions</strong>, up from 40% in v1.</li><li>If the launch gate (§3) isn't met, TREAT doesn't launch, and the game keeps running on points.</li></ul>
+<h2 id="13-compared-with-what-came-before">13. Compared with what came before</h2>
+<div class="tablewrap"><table><thead><tr><th></th><th>Typical move-to-earn</th><th>MuchWalk v1</th><th><strong>MuchWalk v2</strong></th></tr></thead><tbody><tr><td>New tokens per step</td><td>Yes, uncapped</td><td>No, a fixed pool</td><td>No. The pool follows yesterday's inflow</td></tr><tr><td>Who pays rewards</td><td>New players</td><td>Mostly new players</td><td><strong>Revenue, sponsors and burns</strong></td></tr><tr><td>Burn target</td><td>None</td><td>40%</td><td><strong>≥ 100%</strong></td></tr><tr><td>Claim and dump</td><td>Free</td><td>10% fee, or wait 7 days</td><td><strong>50% burned, or vest 21 days</strong></td></tr><tr><td>Need to buy before earning</td><td>Yes (NFT)</td><td>No</td><td><strong>No.</strong> The free tier covers a daily dog walk</td></tr><tr><td>Token at launch</td><td>Day 1</td><td>Day 1</td><td><strong>Only after the launch gate</strong></td></tr></tbody></table></div>
+<h2 id="14-what-changes-for-builders">14. What changes for builders</h2>
+<p>Phase 1 needs <strong>no token contracts</strong>. It runs on points off-chain, plus GenesisNFT, the market and DOGE payments. That cuts the first build a lot.</p>
+<p>For Phase 2:</p>
+<ul><li><strong>TreatToken:</strong> add a <code>totalBurned()</code> counter.</li><li><strong>RewardsDistributor:</strong><ul><li>an epoch mint cap of <code>min(ceiling, base + kMax × burnedLastEpoch)</code></li><li><code>claimInstant</code> (mints 50%, and the rest is never minted)</li><li><code>claimVested</code> (21-day linear)</li><li><code>exitVesting</code></li></ul></li><li><strong>TreatStaking:</strong> stake, 7-day unbonding, and tier lookup.</li><li><strong>Genesis leash lock:</strong> use it to grant energy (the lock already exists).</li><li><strong>BuybackBurner:</strong> swaps DOGE for TREAT with TWAP and slippage limits, then burns. In Phase 1 it holds the launch reserve instead.</li><li><strong>SponsorVault:</strong> stablecoin escrow for sponsored walks.</li></ul>
+<p><a href="https://github.com/srimadhavsats/dogeos_stepwalk/blob/main/docs/05-SMART-CONTRACTS.md" target="_blank" rel="noopener">05-SMART-CONTRACTS</a> and <a href="https://github.com/srimadhavsats/dogeos_stepwalk/blob/main/docs/11-BUILD-PLAN.md" target="_blank" rel="noopener">11-BUILD-PLAN</a> will be updated once this model is agreed.</p>
+<h2 id="15-open-questions">15. Open questions</h2>
+<ol><li>Do only verified dog walks earn Treats, or do solo walks earn at a reduced rate?</li><li>What's the vesting period: 14, 21 or 28 days?</li><li>Are the launch gate numbers right? Should anything be added?</li><li>Walkers Drop: yes or no, and is 3% the right size?</li><li>Allocations: is 45% for walk rewards right with revenue-linked emissions, or should more go to liquidity or ecosystem?</li><li>Which stablecoin should be accepted on DogeOS for sponsors?</li></ol>
+<p class="fine"><em>Not financial advice. Treats in Phase 1 are points with no cash value and can't be redeemed for money. TREAT may never launch if the launch gate isn't met. MuchWalk is an independent community project, not affiliated with or endorsed by DogeOS, MyDoge or Layer 69 Foundation.</em></p>
+    <p class="foot">Source: <a href="https://github.com/srimadhavsats/dogeos_stepwalk/blob/main/docs/TOKENOMICS.md" target="_blank" rel="noopener">docs/TOKENOMICS.md</a> on GitHub · <a href="./">Back to the prototype</a></p>
+  </article>
+</div>
+<script>
+// Keep the contents list compact on small screens
+if (matchMedia('(max-width: 999px)').matches) document.querySelector('.toc details').removeAttribute('open');
+</script>
+</body>
+</html>
