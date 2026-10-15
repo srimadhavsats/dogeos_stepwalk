@@ -161,7 +161,7 @@ The full model is in [Tokenomics](TOKENOMICS.md).
 - **Too few sponsors.** The bowl still works without them, with sponsors only adding on top.
 - **Partner IP.** The Heist faction names belong to their owners. We use them only as a community concept, always with a clear not-affiliated notice, and never imply the project is official.
 
-## 12. Team
-MuchWalk is built by **srimadhavsats**, who also built Kennel (a token launchpad on the DogeOS testnet). We build in public: every prototype build stays online, and the code and docs are open on GitHub.
+## 12. Who builds it
+MuchWalk is built by **srimadhavsats**, who also built Kennel (a token launchpad on the DogeOS testnet). It's built in public: every prototype build stays online, and the code and docs are open on GitHub.
 
 *Not financial advice. Treats in Phase 1 are points with no cash value. TREAT may never launch if the launch gate isn't met. Product details may change. MuchWalk is an independent community project, not affiliated with or endorsed by DogeOS, MyDoge or Layer 69 Foundation.*
